@@ -4,16 +4,22 @@
     using System.Drawing;
     using System.IO;
     using System.Linq;
+    using Prism.Mvvm;
 
-    public class ImageLoader
+    public class ImageLoader : BindableBase
     {
-        public List<ImageFile> ImageFilesA { get; private set; } = new List<ImageFile>();
+        private List<ImageFile> imageFilesA = new List<ImageFile>();
+        private List<ImageFile> imageFilesB = new List<ImageFile>();
+        private List<ImageFile> imageFilesC = new List<ImageFile>();
+        private List<ImageFile> imageFilesD = new List<ImageFile>();
 
-        public List<ImageFile> ImageFilesB { get; private set; } = new List<ImageFile>();
+        public List<ImageFile> ImageFilesA { get => imageFilesA; private set => SetProperty(ref imageFilesA, value); }
 
-        public List<ImageFile> ImageFilesC { get; private set; } = new List<ImageFile>();
+        public List<ImageFile> ImageFilesB { get => imageFilesB; private set => SetProperty(ref imageFilesB, value); }
 
-        public List<ImageFile> ImageFilesD { get; private set; } = new List<ImageFile>();
+        public List<ImageFile> ImageFilesC { get => imageFilesC; private set => SetProperty(ref imageFilesC, value); }
+
+        public List<ImageFile> ImageFilesD { get => imageFilesD; private set => SetProperty(ref imageFilesD, value); }
 
         public void Load(string directoryPath)
         {
