@@ -20,6 +20,35 @@
                 <RowDefinition />
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="2">
+                <Border>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="Margin" Value="20,0,5,0" />
+                            </Style>
+
+                            <Style TargetType="ComboBox">
+                                <Setter Property="Width" Value="100" />
+                            </Style>
+                        </StackPanel.Resources>
+
+                        <TextBlock Text="A" />
+                        <ComboBox />
+
+                        <TextBlock Text="B" />
+                        <ComboBox />
+
+                        <TextBlock Text="C" />
+                        <ComboBox />
+
+                        <TextBlock Text="D" />
+                        <ComboBox />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>
