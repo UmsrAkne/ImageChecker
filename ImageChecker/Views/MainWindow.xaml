@@ -29,7 +29,7 @@
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="1" Stretch="None">
+            <Image Grid.Row="0" Stretch="None">
                 <Image.Source>
                     <DrawingImage>
                         <DrawingImage.Drawing>
@@ -43,7 +43,7 @@
                 </Image.Source>
             </Image>
 
-            <StackPanel Grid.Row="2">
+            <StackPanel Grid.Row="1">
                 <Border>
                     <StackPanel Margin="5,0" Orientation="Horizontal">
                         <StackPanel.Resources>
