@@ -29,13 +29,18 @@
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Stretch="None">
+            <Image Grid.Row="0" Stretch="Fill">
                 <Image.Source>
                     <DrawingImage>
                         <DrawingImage.Drawing>
                             <DrawingGroup>
                                 <!--  ImageDrawing は複数入力可能  -->
                                 <!-- <ImageDrawing ImageSource="sampleImages\kiwi.png" Rect="75,75,100,100" /> -->
+
+                                <ImageDrawing ImageSource="{Binding ImageLoader.CurrentImageFileA.FileInfo.FullName}" Rect="100,100,100,100" />
+                                <ImageDrawing ImageSource="{Binding ImageLoader.CurrentImageFileB.FileInfo.FullName}" Rect="100,100,100,100" />
+                                <ImageDrawing ImageSource="{Binding ImageLoader.CurrentImageFileC.FileInfo.FullName}" Rect="100,100,100,100" />
+                                <ImageDrawing ImageSource="{Binding ImageLoader.CurrentImageFileD.FileInfo.FullName}" Rect="100,100,100,100" />
 
                             </DrawingGroup>
                         </DrawingImage.Drawing>
