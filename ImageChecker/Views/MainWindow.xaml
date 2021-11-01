@@ -21,9 +21,31 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
+                        <Border
+                            Width="115"
+                            Padding="0,2"
+                            BorderBrush="DarkGray"
+                            BorderThickness="0,0,0,2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
 
-                        <Border Width="110">
-                            <Image Source="{Binding FileInfo.FullName}" Stretch="Fill" />
+                                </Grid.RowDefinitions>
+
+                                <Image
+                                    Grid.Row="0"
+                                    Source="{Binding FileInfo.FullName}"
+                                    Stretch="Fill" />
+
+                                <TextBlock
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding FileInfo.Name}" />
+
+                            </Grid>
+
                         </Border>
                     </DataTemplate>
                 </Setter.Value>
