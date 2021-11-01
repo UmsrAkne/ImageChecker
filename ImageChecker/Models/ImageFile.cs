@@ -14,5 +14,10 @@
         public Bitmap Bitmap { get; private set; }
 
         public FileInfo FileInfo { get; private set; }
+
+        public override string ToString()
+        {
+            return FileInfo.Name;
+        }
     }
 }
