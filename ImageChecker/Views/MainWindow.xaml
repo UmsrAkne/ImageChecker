@@ -77,5 +77,23 @@
                 </Border>
             </StackPanel>
         </Grid>
+
+        <ListBox Grid.Column="1" ItemsSource="{Binding ImageLoader.ImageFilesA}">
+            <ListBox.Resources>
+                <Style TargetType="ListBox">
+                    <Setter Property="ItemTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+
+                                <Border Width="120">
+                                    <Image Source="{Binding FileInfo.FullName}" Stretch="Fill" />
+                                </Border>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.Resources>
+        </ListBox>
+
     </Grid>
 </Window>
