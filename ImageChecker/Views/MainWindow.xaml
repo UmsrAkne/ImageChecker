@@ -6,7 +6,7 @@
     xmlns:model="clr-namespace:ImageChecker.Models"
     xmlns:prism="http://prismlibrary.com/"
     Title="{Binding Title}"
-    Width="800"
+    Width="1200"
     Height="600"
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowDrop="True">
@@ -15,9 +15,52 @@
         <model:DragAndDropuBehavior />
     </i:Interaction.Behaviors>
 
+    <Window.Resources>
+
+        <Style TargetType="ListBox">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border
+                            Width="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=ActualWidth}"
+                            MinWidth="110"
+                            Padding="0,2"
+                            BorderBrush="DarkGray"
+                            BorderThickness="0,0,0,2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+
+                                </Grid.RowDefinitions>
+
+                                <Image
+                                    Grid.Row="0"
+                                    Source="{Binding FileInfo.FullName}"
+                                    Stretch="Fill" />
+
+                                <TextBlock
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding FileInfo.Name}" />
+
+                            </Grid>
+
+                        </Border>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600" />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
@@ -29,7 +72,7 @@
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="1" Stretch="None">
+            <Image Grid.Row="0" Stretch="Fill">
                 <Image.Source>
                     <DrawingImage>
                         <DrawingImage.Drawing>
@@ -37,13 +80,18 @@
                                 <!--  ImageDrawing は複数入力可能  -->
                                 <!-- <ImageDrawing ImageSource="sampleImages\kiwi.png" Rect="75,75,100,100" /> -->
 
+                                <ImageDrawing ImageSource="{Binding ImageLoader.CurrentImageFileA.FileInfo.FullName}" Rect="100,100,100,100" />
+                                <ImageDrawing ImageSource="{Binding ImageLoader.CurrentImageFileB.FileInfo.FullName}" Rect="100,100,100,100" />
+                                <ImageDrawing ImageSource="{Binding ImageLoader.CurrentImageFileC.FileInfo.FullName}" Rect="100,100,100,100" />
+                                <ImageDrawing ImageSource="{Binding ImageLoader.CurrentImageFileD.FileInfo.FullName}" Rect="100,100,100,100" />
+
                             </DrawingGroup>
                         </DrawingImage.Drawing>
                     </DrawingImage>
                 </Image.Source>
             </Image>
 
-            <StackPanel Grid.Row="2">
+            <StackPanel Grid.Row="1">
                 <Border>
                     <StackPanel Margin="5,0" Orientation="Horizontal">
                         <StackPanel.Resources>
@@ -72,5 +120,26 @@
                 </Border>
             </StackPanel>
         </Grid>
+
+        <ListBox
+            Grid.Column="1"
+            ItemsSource="{Binding ImageLoader.ImageFilesA}"
+            SelectedItem="{Binding ImageLoader.CurrentImageFileA}" />
+
+        <ListBox
+            Grid.Column="2"
+            ItemsSource="{Binding ImageLoader.ImageFilesB}"
+            SelectedItem="{Binding ImageLoader.CurrentImageFileB}" />
+
+        <ListBox
+            Grid.Column="3"
+            ItemsSource="{Binding ImageLoader.ImageFilesC}"
+            SelectedItem="{Binding ImageLoader.CurrentImageFileC}" />
+
+        <ListBox
+            Grid.Column="4"
+            ItemsSource="{Binding ImageLoader.ImageFilesD}"
+            SelectedItem="{Binding ImageLoader.CurrentImageFileD}" />
+
     </Grid>
 </Window>
