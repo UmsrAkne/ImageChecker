@@ -98,10 +98,25 @@
             </StackPanel>
         </Grid>
 
-        <ListBox Grid.Column="1" ItemsSource="{Binding ImageLoader.ImageFilesA}" />
-        <ListBox Grid.Column="2" ItemsSource="{Binding ImageLoader.ImageFilesB}" />
-        <ListBox Grid.Column="3" ItemsSource="{Binding ImageLoader.ImageFilesC}" />
-        <ListBox Grid.Column="4" ItemsSource="{Binding ImageLoader.ImageFilesD}" />
+        <ListBox
+            Grid.Column="1"
+            ItemsSource="{Binding ImageLoader.ImageFilesA}"
+            SelectedItem="{Binding ImageLoader.CurrentImageFileA}" />
+
+        <ListBox
+            Grid.Column="2"
+            ItemsSource="{Binding ImageLoader.ImageFilesB}"
+            SelectedItem="{Binding ImageLoader.CurrentImageFileB}" />
+
+        <ListBox
+            Grid.Column="3"
+            ItemsSource="{Binding ImageLoader.ImageFilesC}"
+            SelectedItem="{Binding ImageLoader.CurrentImageFileC}" />
+
+        <ListBox
+            Grid.Column="4"
+            ItemsSource="{Binding ImageLoader.ImageFilesD}"
+            SelectedItem="{Binding ImageLoader.CurrentImageFileD}" />
 
     </Grid>
 </Window>
