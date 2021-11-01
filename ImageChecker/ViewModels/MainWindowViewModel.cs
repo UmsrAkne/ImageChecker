@@ -18,5 +18,10 @@
         }
 
         public ImageLoader ImageLoader { get; private set; } = new ImageLoader();
+
+        public void LoadImages(string directoryPath)
+        {
+            ImageLoader.Load(directoryPath);
+        }
     }
 }
