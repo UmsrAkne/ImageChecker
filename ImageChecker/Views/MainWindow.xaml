@@ -50,16 +50,16 @@
                         </StackPanel.Resources>
 
                         <TextBlock Text="A" />
-                        <ComboBox />
+                        <ComboBox ItemsSource="{Binding ImageLoader.ImageFilesA}" SelectedItem="{Binding ImageLoader.CurrentImageFileA}" />
 
                         <TextBlock Text="B" />
-                        <ComboBox />
+                        <ComboBox ItemsSource="{Binding ImageLoader.ImageFilesB}" SelectedItem="{Binding ImageLoader.CurrentImageFileB}" />
 
                         <TextBlock Text="C" />
-                        <ComboBox />
+                        <ComboBox ItemsSource="{Binding ImageLoader.ImageFilesC}" SelectedItem="{Binding ImageLoader.CurrentImageFileC}" />
 
                         <TextBlock Text="D" />
-                        <ComboBox />
+                        <ComboBox ItemsSource="{Binding ImageLoader.ImageFilesD}" SelectedItem="{Binding ImageLoader.CurrentImageFileD}" />
                     </StackPanel>
                 </Border>
             </StackPanel>

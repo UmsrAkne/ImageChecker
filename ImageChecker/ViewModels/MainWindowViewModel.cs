@@ -1,5 +1,6 @@
 ﻿namespace ImageChecker.ViewModels
 {
+    using ImageChecker.Models;
     using Prism.Mvvm;
 
     public class MainWindowViewModel : BindableBase
@@ -15,5 +16,7 @@
             get { return title; }
             set { SetProperty(ref title, value); }
         }
+
+        public ImageLoader ImageLoader { get; private set; } = new ImageLoader();
     }
 }
