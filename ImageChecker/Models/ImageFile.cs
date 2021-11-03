@@ -8,10 +8,7 @@
         public ImageFile(string filePath)
         {
             FileInfo = new FileInfo(filePath);
-            Bitmap = new Bitmap(filePath);
         }
-
-        public Bitmap Bitmap { get; private set; }
 
         public FileInfo FileInfo { get; private set; }
 
