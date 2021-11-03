@@ -112,21 +112,33 @@
                             </Style>
                         </StackPanel.Resources>
 
-                        <CheckBox />
+                        <CheckBox IsChecked="{Binding DrawingA}" />
                         <TextBlock Text="A" />
-                        <ComboBox ItemsSource="{Binding ImageLoader.ImageFilesA}" SelectedItem="{Binding ImageLoader.CurrentImageFileA}" />
+                        <ComboBox
+                            IsEnabled="{Binding DrawingA}"
+                            ItemsSource="{Binding ImageLoader.ImageFilesA}"
+                            SelectedItem="{Binding ImageLoader.CurrentImageFileA}" />
 
-                        <CheckBox />
+                        <CheckBox IsChecked="{Binding DrawingB}" />
                         <TextBlock Text="B" />
-                        <ComboBox ItemsSource="{Binding ImageLoader.ImageFilesB}" SelectedItem="{Binding ImageLoader.CurrentImageFileB}" />
+                        <ComboBox
+                            IsEnabled="{Binding DrawingB}"
+                            ItemsSource="{Binding ImageLoader.ImageFilesB}"
+                            SelectedItem="{Binding ImageLoader.CurrentImageFileB}" />
 
-                        <CheckBox />
+                        <CheckBox IsChecked="{Binding DrawingC}" />
                         <TextBlock Text="C" />
-                        <ComboBox ItemsSource="{Binding ImageLoader.ImageFilesC}" SelectedItem="{Binding ImageLoader.CurrentImageFileC}" />
+                        <ComboBox
+                            IsEnabled="{Binding DrawingC}"
+                            ItemsSource="{Binding ImageLoader.ImageFilesC}"
+                            SelectedItem="{Binding ImageLoader.CurrentImageFileC}" />
 
-                        <CheckBox />
+                        <CheckBox IsChecked="{Binding DrawingD}" />
                         <TextBlock Text="D" />
-                        <ComboBox ItemsSource="{Binding ImageLoader.ImageFilesD}" SelectedItem="{Binding ImageLoader.CurrentImageFileD}" />
+                        <ComboBox
+                            IsEnabled="{Binding DrawingD}"
+                            ItemsSource="{Binding ImageLoader.ImageFilesD}"
+                            SelectedItem="{Binding ImageLoader.CurrentImageFileD}" />
                     </StackPanel>
                 </Border>
             </StackPanel>

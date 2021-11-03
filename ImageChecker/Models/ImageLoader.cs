@@ -38,6 +38,8 @@
         {
             List<string> fileNames = Directory.GetFiles(directoryPath, "*.png").Concat(Directory.GetFiles(directoryPath, "*.jpg")).ToList();
 
+            ImageFilesA = new List<ImageFile>() { new ImageFile("/") };
+
             ImageFilesA = fileNames.Where(name => Path.GetFileName(name).Contains("A")).Select(name => new ImageFile(name)).ToList();
             ImageFilesB = fileNames.Where(name => Path.GetFileName(name).Contains("B")).Select(name => new ImageFile(name)).ToList();
             ImageFilesC = fileNames.Where(name => Path.GetFileName(name).Contains("C")).Select(name => new ImageFile(name)).ToList();
