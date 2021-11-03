@@ -96,24 +96,35 @@
                     <StackPanel Margin="5,0" Orientation="Horizontal">
                         <StackPanel.Resources>
                             <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center" />
                                 <Setter Property="FontSize" Value="14" />
                             </Style>
 
                             <Style TargetType="ComboBox">
-                                <Setter Property="Width" Value="120" />
-                                <Setter Property="Margin" Value="5,0,18,0" />
+                                <Setter Property="Width" Value="100" />
+                                <Setter Property="Margin" Value="4,0,18,0" />
+                            </Style>
+
+                            <Style TargetType="CheckBox">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="0,0,2,0" />
+                                <Setter Property="IsChecked" Value="True" />
                             </Style>
                         </StackPanel.Resources>
 
+                        <CheckBox />
                         <TextBlock Text="A" />
                         <ComboBox ItemsSource="{Binding ImageLoader.ImageFilesA}" SelectedItem="{Binding ImageLoader.CurrentImageFileA}" />
 
+                        <CheckBox />
                         <TextBlock Text="B" />
                         <ComboBox ItemsSource="{Binding ImageLoader.ImageFilesB}" SelectedItem="{Binding ImageLoader.CurrentImageFileB}" />
 
+                        <CheckBox />
                         <TextBlock Text="C" />
                         <ComboBox ItemsSource="{Binding ImageLoader.ImageFilesC}" SelectedItem="{Binding ImageLoader.CurrentImageFileC}" />
 
+                        <CheckBox />
                         <TextBlock Text="D" />
                         <ComboBox ItemsSource="{Binding ImageLoader.ImageFilesD}" SelectedItem="{Binding ImageLoader.CurrentImageFileD}" />
                     </StackPanel>
