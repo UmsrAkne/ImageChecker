@@ -76,8 +76,10 @@
 
             <Grid.Resources>
                 <Style TargetType="Image">
-                    <Setter Property="Stretch" Value="Fill" />
                     <Setter Property="Grid.Row" Value="0" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+
                 </Style>
             </Grid.Resources>
 
