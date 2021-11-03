@@ -21,6 +21,11 @@
             set { SetProperty(ref title, value); }
         }
 
+        public string samplePath
+        {
+            get; set;
+        } = "";
+
         public bool DrawingA
         {
             get => drawingA;

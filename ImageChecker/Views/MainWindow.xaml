@@ -17,6 +17,8 @@
 
     <Window.Resources>
 
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
         <Style TargetType="ListBox">
             <Setter Property="ItemTemplate">
                 <Setter.Value>
@@ -72,24 +74,17 @@
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Stretch="Fill">
-                <Image.Source>
-                    <DrawingImage>
-                        <DrawingImage.Drawing>
-                            <DrawingGroup>
-                                <!--  ImageDrawing は複数入力可能  -->
-                                <!-- <ImageDrawing ImageSource="sampleImages\kiwi.png" Rect="75,75,100,100" /> -->
+            <Grid.Resources>
+                <Style TargetType="Image">
+                    <Setter Property="Stretch" Value="Fill" />
+                    <Setter Property="Grid.Row" Value="0" />
+                </Style>
+            </Grid.Resources>
 
-                                <ImageDrawing ImageSource="{Binding ImageLoader.CurrentImageFileA.FileInfo.FullName}" Rect="100,100,100,100" />
-                                <ImageDrawing ImageSource="{Binding ImageLoader.CurrentImageFileB.FileInfo.FullName}" Rect="100,100,100,100" />
-                                <ImageDrawing ImageSource="{Binding ImageLoader.CurrentImageFileC.FileInfo.FullName}" Rect="100,100,100,100" />
-                                <ImageDrawing ImageSource="{Binding ImageLoader.CurrentImageFileD.FileInfo.FullName}" Rect="100,100,100,100" />
-
-                            </DrawingGroup>
-                        </DrawingImage.Drawing>
-                    </DrawingImage>
-                </Image.Source>
-            </Image>
+            <Image Source="{Binding ImageLoader.CurrentImageFileA.FileInfo.FullName}" Visibility="{Binding DrawingA, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Image Source="{Binding ImageLoader.CurrentImageFileB.FileInfo.FullName}" Visibility="{Binding DrawingB, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Image Source="{Binding ImageLoader.CurrentImageFileC.FileInfo.FullName}" Visibility="{Binding DrawingC, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Image Source="{Binding ImageLoader.CurrentImageFileD.FileInfo.FullName}" Visibility="{Binding DrawingD, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
             <StackPanel Grid.Row="1">
                 <Border>
