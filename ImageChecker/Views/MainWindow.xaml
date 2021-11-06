@@ -70,11 +70,21 @@
 
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
                 <RowDefinition />
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
 
-            <Canvas Grid.Row="0" ClipToBounds="True">
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock Text="画面比率 : " />
+                <ComboBox
+                    Width="100"
+                    ItemsSource="{Binding AspectRatioStrings}"
+                    SelectedIndex="0"
+                    SelectedItem="{Binding AspectRatio}" />
+            </StackPanel>
+
+            <Canvas Grid.Row="1" ClipToBounds="True">
                 <Canvas.Resources>
                     <Style TargetType="Image">
                         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -89,7 +99,7 @@
 
             </Canvas>
 
-            <StackPanel Grid.Row="1">
+            <StackPanel Grid.Row="2">
                 <Border>
                     <StackPanel Margin="5,0" Orientation="Horizontal">
                         <StackPanel.Resources>

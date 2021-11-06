@@ -2,6 +2,7 @@
 {
     using ImageChecker.Models;
     using Prism.Mvvm;
+    using System.Collections.Generic;
 
     public class MainWindowViewModel : BindableBase
     {
@@ -10,6 +11,7 @@
         private bool drawingB = true;
         private bool drawingC = true;
         private bool drawingD = true;
+        private string aspectRatio;
 
         public MainWindowViewModel()
         {
@@ -51,6 +53,10 @@
         }
 
         public ImageLoader ImageLoader { get; private set; } = new ImageLoader();
+
+        public List<string> AspectRatioStrings { get; private set; } = new List<string>() { "4:3", "16:9", "16:10" };
+
+        public string AspectRatio { get => aspectRatio; set => SetProperty(ref aspectRatio, value); }
 
         public void LoadImages(string directoryPath)
         {
