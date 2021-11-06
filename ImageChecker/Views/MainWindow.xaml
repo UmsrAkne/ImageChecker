@@ -74,19 +74,20 @@
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
 
-            <Grid.Resources>
-                <Style TargetType="Image">
-                    <Setter Property="Grid.Row" Value="0" />
-                    <Setter Property="HorizontalAlignment" Value="Left" />
-                    <Setter Property="VerticalAlignment" Value="Top" />
+            <Canvas Grid.Row="0" ClipToBounds="True">
+                <Canvas.Resources>
+                    <Style TargetType="Image">
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="VerticalAlignment" Value="Top" />
+                    </Style>
+                </Canvas.Resources>
 
-                </Style>
-            </Grid.Resources>
+                <Image Source="{Binding ImageLoader.CurrentImageFileA.FileInfo.FullName}" Visibility="{Binding DrawingA, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <Image Source="{Binding ImageLoader.CurrentImageFileB.FileInfo.FullName}" Visibility="{Binding DrawingB, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <Image Source="{Binding ImageLoader.CurrentImageFileC.FileInfo.FullName}" Visibility="{Binding DrawingC, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <Image Source="{Binding ImageLoader.CurrentImageFileD.FileInfo.FullName}" Visibility="{Binding DrawingD, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-            <Image Source="{Binding ImageLoader.CurrentImageFileA.FileInfo.FullName}" Visibility="{Binding DrawingA, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Image Source="{Binding ImageLoader.CurrentImageFileB.FileInfo.FullName}" Visibility="{Binding DrawingB, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Image Source="{Binding ImageLoader.CurrentImageFileC.FileInfo.FullName}" Visibility="{Binding DrawingC, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Image Source="{Binding ImageLoader.CurrentImageFileD.FileInfo.FullName}" Visibility="{Binding DrawingD, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </Canvas>
 
             <StackPanel Grid.Row="1">
                 <Border>
