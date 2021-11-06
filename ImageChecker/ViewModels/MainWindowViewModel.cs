@@ -1,8 +1,11 @@
 ﻿namespace ImageChecker.ViewModels
 {
+    using System.Collections.Generic;
+    using System.Xml.Linq;
+    using System.Linq;
     using ImageChecker.Models;
     using Prism.Mvvm;
-    using System.Collections.Generic;
+    using System.IO;
 
     public class MainWindowViewModel : BindableBase
     {
@@ -64,6 +67,26 @@
         public void LoadImages(string directoryPath)
         {
             ImageLoader.Load(directoryPath);
+        }
+
+        public void LoadXML(string xmlFilePath)
+        {
+            XDocument xDocument = XDocument.Load(xmlFilePath);
+            XElement xElement = xDocument.Element("root");
+            IEnumerable<XElement> locations = xElement.Elements("location");
+            locations.ToList().ForEach(l =>
+            {
+                ImageFile imgFile = ImageLoader.ImageFiles.FirstOrDefault(img =>
+                {
+                    return Path.GetFileNameWithoutExtension(img.FileInfo.Name) == l.Attribute("name").Value;
+                });
+
+                if (imgFile != null)
+                {
+                    imgFile.X = int.Parse(l.Attribute("x").Value);
+                    imgFile.Y = int.Parse(l.Attribute("y").Value);
+                }
+            });
         }
     }
 }
