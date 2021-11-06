@@ -11,6 +11,7 @@
         private bool drawingB = true;
         private bool drawingC = true;
         private bool drawingD = true;
+        private double scale = 0.5;
         private string aspectRatio;
 
         public MainWindowViewModel()
@@ -27,6 +28,8 @@
         {
             get; set;
         } = "";
+
+        public double Scale { get => scale; set => SetProperty(ref scale, value); }
 
         public bool DrawingA
         {

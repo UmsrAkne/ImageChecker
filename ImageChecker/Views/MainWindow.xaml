@@ -95,6 +95,7 @@
                 <Image Source="{Binding ImageLoader.CurrentImageFileA.FileInfo.FullName}" Visibility="{Binding DrawingA, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.RenderTransform>
                         <TransformGroup>
+                            <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
                             <TranslateTransform X="{Binding ImageLoader.CurrentImageFileA.X}" Y="{Binding ImageLoader.CurrentImageFileA.Y}" />
                         </TransformGroup>
                     </Image.RenderTransform>
@@ -103,6 +104,7 @@
                 <Image Source="{Binding ImageLoader.CurrentImageFileB.FileInfo.FullName}" Visibility="{Binding DrawingB, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.RenderTransform>
                         <TransformGroup>
+                            <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
                             <TranslateTransform X="{Binding ImageLoader.CurrentImageFileB.X}" Y="{Binding ImageLoader.CurrentImageFileB.Y}" />
                         </TransformGroup>
                     </Image.RenderTransform>
@@ -111,6 +113,7 @@
                 <Image Source="{Binding ImageLoader.CurrentImageFileC.FileInfo.FullName}" Visibility="{Binding DrawingC, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.RenderTransform>
                         <TransformGroup>
+                            <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
                             <TranslateTransform X="{Binding ImageLoader.CurrentImageFileC.X}" Y="{Binding ImageLoader.CurrentImageFileC.Y}" />
                         </TransformGroup>
                     </Image.RenderTransform>
@@ -119,6 +122,7 @@
                 <Image Source="{Binding ImageLoader.CurrentImageFileD.FileInfo.FullName}" Visibility="{Binding DrawingD, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.RenderTransform>
                         <TransformGroup>
+                            <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
                             <TranslateTransform X="{Binding ImageLoader.CurrentImageFileD.X}" Y="{Binding ImageLoader.CurrentImageFileD.Y}" />
                         </TransformGroup>
                     </Image.RenderTransform>
