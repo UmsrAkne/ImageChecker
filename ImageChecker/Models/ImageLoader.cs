@@ -26,6 +26,8 @@
 
         public List<ImageFile> ImageFilesD { get => imageFilesD; private set => SetProperty(ref imageFilesD, value); }
 
+        public List<ImageFile> ImageFiles { get; set; }
+
         public ImageFile CurrentImageFileA { get => currentImageFileA; set => SetProperty(ref currentImageFileA, value); }
 
         public ImageFile CurrentImageFileB { get => currentImageFileB; set => SetProperty(ref currentImageFileB, value); }
@@ -49,6 +51,11 @@
             CurrentImageFileB = ImageFilesB.FirstOrDefault();
             CurrentImageFileC = ImageFilesC.FirstOrDefault();
             CurrentImageFileD = ImageFilesD.FirstOrDefault();
+
+            ImageFiles = new List<ImageFile>(ImageFilesA);
+            ImageFiles.AddRange(ImageFilesB);
+            ImageFiles.AddRange(ImageFilesC);
+            ImageFiles.AddRange(ImageFilesD);
         }
     }
 }

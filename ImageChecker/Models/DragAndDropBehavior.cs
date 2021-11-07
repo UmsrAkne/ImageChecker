@@ -36,6 +36,11 @@
             {
                 vm.LoadImages(files[0]);
             }
+
+            if (Path.GetExtension(files[0]) == ".xml")
+            {
+                vm.LoadXML(files[0]);
+            }
         }
 
         private void AssociatedObject_PreviewDragOver(object sender, DragEventArgs e)
