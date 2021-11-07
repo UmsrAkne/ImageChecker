@@ -1,13 +1,13 @@
 ﻿namespace ImageChecker.ViewModels
 {
     using System.Collections.Generic;
-    using System.Xml.Linq;
-    using System.Linq;
-    using ImageChecker.Models;
-    using Prism.Mvvm;
     using System.IO;
-    using Prism.Commands;
+    using System.Linq;
     using System.Windows;
+    using System.Xml.Linq;
+    using ImageChecker.Models;
+    using Prism.Commands;
+    using Prism.Mvvm;
 
     public class MainWindowViewModel : BindableBase
     {
@@ -35,7 +35,7 @@
         public string samplePath
         {
             get; set;
-        } = "";
+        } = string.Empty;
 
         public double Scale { get => scale; private set => SetProperty(ref scale, value); }
 
@@ -69,31 +69,6 @@
 
         public string AspectRatio { get => aspectRatio; set => SetProperty(ref aspectRatio, value); }
 
-        public void LoadImages(string directoryPath)
-        {
-            ImageLoader.Load(directoryPath);
-        }
-
-        public void LoadXML(string xmlFilePath)
-        {
-            XDocument xDocument = XDocument.Load(xmlFilePath);
-            XElement xElement = xDocument.Element("root");
-            IEnumerable<XElement> locations = xElement.Elements("location");
-            locations.ToList().ForEach(l =>
-            {
-                ImageFile imgFile = ImageLoader.ImageFiles.FirstOrDefault(img =>
-                {
-                    return Path.GetFileNameWithoutExtension(img.FileInfo.Name) == l.Attribute("name").Value;
-                });
-
-                if (imgFile != null)
-                {
-                    imgFile.X = int.Parse(l.Attribute("x").Value);
-                    imgFile.Y = int.Parse(l.Attribute("y").Value);
-                }
-            });
-        }
-
         public DelegateCommand GenerateImageTagCommand
         {
             get => generateImageTagCommand ?? (generateImageTagCommand = new DelegateCommand(() =>
@@ -118,6 +93,31 @@
 
                 Clipboard.SetText($"<draw a=\"{imageA}\" b=\"{imageB}\" c=\"{imageC}\" d=\"{imageD}\" />");
             }));
+        }
+
+        public void LoadImages(string directoryPath)
+        {
+            ImageLoader.Load(directoryPath);
+        }
+
+        public void LoadXML(string xmlFilePath)
+        {
+            XDocument xDocument = XDocument.Load(xmlFilePath);
+            XElement xElement = xDocument.Element("root");
+            IEnumerable<XElement> locations = xElement.Elements("location");
+            locations.ToList().ForEach(l =>
+            {
+                ImageFile imgFile = ImageLoader.ImageFiles.FirstOrDefault(img =>
+                {
+                    return Path.GetFileNameWithoutExtension(img.FileInfo.Name) == l.Attribute("name").Value;
+                });
+
+                if (imgFile != null)
+                {
+                    imgFile.X = int.Parse(l.Attribute("x").Value);
+                    imgFile.Y = int.Parse(l.Attribute("y").Value);
+                }
+            });
         }
     }
 }
