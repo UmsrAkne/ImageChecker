@@ -6,6 +6,8 @@
     using ImageChecker.Models;
     using Prism.Mvvm;
     using System.IO;
+    using Prism.Commands;
+    using System.Windows;
 
     public class MainWindowViewModel : BindableBase
     {
@@ -16,6 +18,8 @@
         private bool drawingD = true;
         private double scale = 0.5;
         private string aspectRatio;
+
+        private DelegateCommand generateImageTagCommand;
 
         public MainWindowViewModel()
         {
@@ -87,6 +91,19 @@
                     imgFile.Y = int.Parse(l.Attribute("y").Value);
                 }
             });
+        }
+
+        public DelegateCommand GenerateImageTagCommand
+        {
+            get => generateImageTagCommand ?? (generateImageTagCommand = new DelegateCommand(() =>
+            {
+                string imageA = DrawingA ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileA.FileInfo.Name) : string.Empty;
+                string imageB = DrawingB ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileB.FileInfo.Name) : string.Empty;
+                string imageC = DrawingC ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileC.FileInfo.Name) : string.Empty;
+                string imageD = DrawingD ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileD.FileInfo.Name) : string.Empty;
+
+                Clipboard.SetText($"<image a=\"{imageA}\" b=\"{imageB}\" c=\"{imageC}\" d=\"{imageD}\" />");
+            }));
         }
     }
 }
