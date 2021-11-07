@@ -20,6 +20,7 @@
         private string aspectRatio;
 
         private DelegateCommand generateImageTagCommand;
+        private DelegateCommand generateDrawTagCommand;
 
         public MainWindowViewModel()
         {
@@ -103,6 +104,19 @@
                 string imageD = DrawingD ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileD.FileInfo.Name) : string.Empty;
 
                 Clipboard.SetText($"<image a=\"{imageA}\" b=\"{imageB}\" c=\"{imageC}\" d=\"{imageD}\" />");
+            }));
+        }
+
+        public DelegateCommand GenerateDrawTagCommand
+        {
+            get => generateDrawTagCommand ?? (generateDrawTagCommand = new DelegateCommand(() =>
+            {
+                string imageA = DrawingA ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileA.FileInfo.Name) : string.Empty;
+                string imageB = DrawingB ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileB.FileInfo.Name) : string.Empty;
+                string imageC = DrawingC ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileC.FileInfo.Name) : string.Empty;
+                string imageD = DrawingD ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileD.FileInfo.Name) : string.Empty;
+
+                Clipboard.SetText($"<draw a=\"{imageA}\" b=\"{imageB}\" c=\"{imageC}\" d=\"{imageD}\" />");
             }));
         }
     }

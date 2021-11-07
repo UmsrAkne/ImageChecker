@@ -21,6 +21,11 @@
             Command="{Binding GenerateImageTagCommand}"
             Modifiers="Control" />
 
+        <KeyBinding
+            Key="D"
+            Command="{Binding GenerateDrawTagCommand}"
+            Modifiers="Control" />
+
     </Window.InputBindings>
 
     <Window.Resources>
