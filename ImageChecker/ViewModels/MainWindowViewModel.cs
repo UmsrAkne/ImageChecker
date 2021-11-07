@@ -32,11 +32,6 @@
             set { SetProperty(ref title, value); }
         }
 
-        public string samplePath
-        {
-            get; set;
-        } = string.Empty;
-
         public double Scale { get => scale; private set => SetProperty(ref scale, value); }
 
         public bool DrawingA
