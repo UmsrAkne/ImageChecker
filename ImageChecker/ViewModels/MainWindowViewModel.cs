@@ -32,7 +32,7 @@
             get; set;
         } = "";
 
-        public double Scale { get => scale; set => SetProperty(ref scale, value); }
+        public double Scale { get => scale; private set => SetProperty(ref scale, value); }
 
         public bool DrawingA
         {
