@@ -15,6 +15,14 @@
         <model:DragAndDropuBehavior />
     </i:Interaction.Behaviors>
 
+    <Window.InputBindings>
+        <KeyBinding
+            Key="I"
+            Command="{Binding GenerateImageTagCommand}"
+            Modifiers="Control" />
+
+    </Window.InputBindings>
+
     <Window.Resources>
 
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
