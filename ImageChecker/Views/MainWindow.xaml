@@ -97,15 +97,17 @@
                     SelectedItem="{Binding AspectRatio}" />
             </StackPanel>
 
-            <Grid Grid.Row="1" ClipToBounds="True">
-                <Grid.Resources>
+            <Canvas Grid.Row="1" ClipToBounds="True">
+                <Canvas.Resources>
                     <Style TargetType="Image">
                         <Setter Property="HorizontalAlignment" Value="Left" />
                         <Setter Property="VerticalAlignment" Value="Top" />
                     </Style>
-                </Grid.Resources>
+                </Canvas.Resources>
 
                 <Image
+                    Canvas.Left="{Binding ImageLoader.CurrentImageFileA.X}"
+                    Canvas.Top="{Binding ImageLoader.CurrentImageFileA.Y}"
                     Width="{Binding ImageLoader.CurrentImageFileA.Width}"
                     Height="{Binding ImageLoader.CurrentImageFileA.Height}"
                     Source="{Binding ImageLoader.CurrentImageFileA.FileInfo.FullName}"
@@ -113,12 +115,13 @@
                     <Image.LayoutTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
-                            <TranslateTransform X="{Binding ImageLoader.CurrentImageFileA.X}" Y="{Binding ImageLoader.CurrentImageFileA.Y}" />
                         </TransformGroup>
                     </Image.LayoutTransform>
                 </Image>
 
                 <Image
+                    Canvas.Left="{Binding ImageLoader.CurrentImageFileB.X}"
+                    Canvas.Top="{Binding ImageLoader.CurrentImageFileB.Y}"
                     Width="{Binding ImageLoader.CurrentImageFileB.Width}"
                     Height="{Binding ImageLoader.CurrentImageFileB.Height}"
                     Source="{Binding ImageLoader.CurrentImageFileB.FileInfo.FullName}"
@@ -126,12 +129,13 @@
                     <Image.LayoutTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
-                            <TranslateTransform X="{Binding ImageLoader.CurrentImageFileB.X}" Y="{Binding ImageLoader.CurrentImageFileB.Y}" />
                         </TransformGroup>
                     </Image.LayoutTransform>
                 </Image>
 
                 <Image
+                    Canvas.Left="{Binding ImageLoader.CurrentImageFileC.X}"
+                    Canvas.Top="{Binding ImageLoader.CurrentImageFileC.Y}"
                     Width="{Binding ImageLoader.CurrentImageFileC.Width}"
                     Height="{Binding ImageLoader.CurrentImageFileC.Height}"
                     Source="{Binding ImageLoader.CurrentImageFileC.FileInfo.FullName}"
@@ -139,12 +143,13 @@
                     <Image.LayoutTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
-                            <TranslateTransform X="{Binding ImageLoader.CurrentImageFileC.X}" Y="{Binding ImageLoader.CurrentImageFileC.Y}" />
                         </TransformGroup>
                     </Image.LayoutTransform>
                 </Image>
 
                 <Image
+                    Canvas.Left="{Binding ImageLoader.CurrentImageFileD.X}"
+                    Canvas.Top="{Binding ImageLoader.CurrentImageFileD.Y}"
                     Width="{Binding ImageLoader.CurrentImageFileD.Width}"
                     Height="{Binding ImageLoader.CurrentImageFileD.Height}"
                     Source="{Binding ImageLoader.CurrentImageFileD.FileInfo.FullName}"
@@ -152,12 +157,11 @@
                     <Image.LayoutTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
-                            <TranslateTransform X="{Binding ImageLoader.CurrentImageFileD.X}" Y="{Binding ImageLoader.CurrentImageFileD.Y}" />
                         </TransformGroup>
                     </Image.LayoutTransform>
                 </Image>
 
-            </Grid>
+            </Canvas>
 
             <StackPanel Grid.Row="2">
                 <Border>

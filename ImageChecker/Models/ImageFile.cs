@@ -20,6 +20,7 @@
                 bitmap = new Bitmap(filePath);
                 Width = bitmap.Width;
                 Height = bitmap.Height;
+                System.Diagnostics.Debug.WriteLine($"{filePath},{Width},{Height}");
             }
         }
 
