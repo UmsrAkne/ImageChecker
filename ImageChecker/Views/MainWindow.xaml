@@ -97,13 +97,13 @@
                     SelectedItem="{Binding AspectRatio}" />
             </StackPanel>
 
-            <Canvas Grid.Row="1" ClipToBounds="True">
-                <Canvas.Resources>
+            <Grid Grid.Row="1" ClipToBounds="True">
+                <Grid.Resources>
                     <Style TargetType="Image">
                         <Setter Property="HorizontalAlignment" Value="Left" />
                         <Setter Property="VerticalAlignment" Value="Top" />
                     </Style>
-                </Canvas.Resources>
+                </Grid.Resources>
 
                 <Image Source="{Binding ImageLoader.CurrentImageFileA.FileInfo.FullName}" Visibility="{Binding DrawingA, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.RenderTransform>
@@ -141,7 +141,7 @@
                     </Image.RenderTransform>
                 </Image>
 
-            </Canvas>
+            </Grid>
 
             <StackPanel Grid.Row="2">
                 <Border>
