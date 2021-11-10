@@ -9,7 +9,8 @@
     Width="1200"
     Height="600"
     prism:ViewModelLocator.AutoWireViewModel="True"
-    AllowDrop="True">
+    AllowDrop="True"
+    Background="#404040">
 
     <i:Interaction.Behaviors>
         <model:DragAndDropuBehavior />
@@ -33,6 +34,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <Style TargetType="ListBox">
+            <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Background}" />
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
