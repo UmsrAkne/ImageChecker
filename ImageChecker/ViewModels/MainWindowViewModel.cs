@@ -11,7 +11,6 @@
 
     public class MainWindowViewModel : BindableBase
     {
-        private string title = "Prism Application";
         private bool drawingA = true;
         private bool drawingB = true;
         private bool drawingC = true;
@@ -97,22 +96,25 @@
 
         public void LoadXML(string xmlFilePath)
         {
-            XDocument xDocument = XDocument.Load(xmlFilePath);
-            XElement xElement = xDocument.Element("root");
-            IEnumerable<XElement> locations = xElement.Elements("location");
-            locations.ToList().ForEach(l =>
+            if (ImageLoader.Loaded)
             {
-                ImageFile imgFile = ImageLoader.ImageFiles.FirstOrDefault(img =>
+                XDocument xDocument = XDocument.Load(xmlFilePath);
+                XElement xElement = xDocument.Element("root");
+                IEnumerable<XElement> locations = xElement.Elements("location");
+                locations.ToList().ForEach(l =>
                 {
-                    return Path.GetFileNameWithoutExtension(img.FileInfo.Name) == l.Attribute("name").Value;
-                });
+                    ImageFile imgFile = ImageLoader.ImageFiles.FirstOrDefault(img =>
+                    {
+                        return Path.GetFileNameWithoutExtension(img.FileInfo.Name) == l.Attribute("name").Value;
+                    });
 
-                if (imgFile != null)
-                {
-                    imgFile.X = int.Parse(l.Attribute("x").Value);
-                    imgFile.Y = int.Parse(l.Attribute("y").Value);
-                }
-            });
+                    if (imgFile != null)
+                    {
+                        imgFile.X = int.Parse(l.Attribute("x").Value);
+                        imgFile.Y = int.Parse(l.Attribute("y").Value);
+                    }
+                });
+            }
         }
     }
 }
