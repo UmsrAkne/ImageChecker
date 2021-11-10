@@ -11,7 +11,6 @@
 
     public class MainWindowViewModel : BindableBase
     {
-        private string title = "Prism Application";
         private bool drawingA = true;
         private bool drawingB = true;
         private bool drawingC = true;
