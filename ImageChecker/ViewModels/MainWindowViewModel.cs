@@ -111,7 +111,6 @@
                 {
                     imgFile.X = int.Parse(l.Attribute("x").Value);
                     imgFile.Y = int.Parse(l.Attribute("y").Value);
-                    System.Diagnostics.Debug.WriteLine($"{imgFile.X}, {imgFile.Y}");
                 }
             });
         }
