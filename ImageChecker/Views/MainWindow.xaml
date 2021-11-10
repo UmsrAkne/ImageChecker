@@ -5,11 +5,12 @@
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:model="clr-namespace:ImageChecker.Models"
     xmlns:prism="http://prismlibrary.com/"
-    Title="{Binding Title}"
+    Title="{Binding ImageLoader.CurrentDirectoryPath}"
     Width="1200"
     Height="600"
     prism:ViewModelLocator.AutoWireViewModel="True"
-    AllowDrop="True">
+    AllowDrop="True"
+    Background="#404040">
 
     <i:Interaction.Behaviors>
         <model:DragAndDropuBehavior />
@@ -33,6 +34,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <Style TargetType="ListBox">
+            <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Background}" />
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
@@ -58,6 +60,7 @@
                                 <TextBlock
                                     Grid.Row="1"
                                     HorizontalAlignment="Center"
+                                    Foreground="WhiteSmoke"
                                     Text="{Binding FileInfo.Name}" />
 
                             </Grid>
@@ -89,7 +92,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <TextBlock Text="画面比率 : " />
+                <TextBlock Foreground="WhiteSmoke" Text="画面比率 : " />
                 <ComboBox
                     Width="100"
                     ItemsSource="{Binding AspectRatioStrings}"
@@ -185,28 +188,28 @@
                         </StackPanel.Resources>
 
                         <CheckBox IsChecked="{Binding DrawingA}" />
-                        <TextBlock Text="A" />
+                        <TextBlock Foreground="WhiteSmoke" Text="A" />
                         <ComboBox
                             IsEnabled="{Binding DrawingA}"
                             ItemsSource="{Binding ImageLoader.ImageFilesA}"
                             SelectedItem="{Binding ImageLoader.CurrentImageFileA}" />
 
                         <CheckBox IsChecked="{Binding DrawingB}" />
-                        <TextBlock Text="B" />
+                        <TextBlock Foreground="WhiteSmoke" Text="B" />
                         <ComboBox
                             IsEnabled="{Binding DrawingB}"
                             ItemsSource="{Binding ImageLoader.ImageFilesB}"
                             SelectedItem="{Binding ImageLoader.CurrentImageFileB}" />
 
                         <CheckBox IsChecked="{Binding DrawingC}" />
-                        <TextBlock Text="C" />
+                        <TextBlock Foreground="WhiteSmoke" Text="C" />
                         <ComboBox
                             IsEnabled="{Binding DrawingC}"
                             ItemsSource="{Binding ImageLoader.ImageFilesC}"
                             SelectedItem="{Binding ImageLoader.CurrentImageFileC}" />
 
                         <CheckBox IsChecked="{Binding DrawingD}" />
-                        <TextBlock Text="D" />
+                        <TextBlock Foreground="WhiteSmoke" Text="D" />
                         <ComboBox
                             IsEnabled="{Binding DrawingD}"
                             ItemsSource="{Binding ImageLoader.ImageFilesD}"
