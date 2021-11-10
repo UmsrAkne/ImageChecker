@@ -5,7 +5,7 @@
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:model="clr-namespace:ImageChecker.Models"
     xmlns:prism="http://prismlibrary.com/"
-    Title="{Binding Title}"
+    Title="{Binding ImageLoader.CurrentDirectoryPath}"
     Width="1200"
     Height="600"
     prism:ViewModelLocator.AutoWireViewModel="True"

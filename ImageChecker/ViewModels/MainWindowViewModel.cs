@@ -26,12 +26,6 @@
         {
         }
 
-        public string Title
-        {
-            get { return title; }
-            set { SetProperty(ref title, value); }
-        }
-
         public double Scale { get => scale; private set => SetProperty(ref scale, value); }
 
         public bool DrawingA

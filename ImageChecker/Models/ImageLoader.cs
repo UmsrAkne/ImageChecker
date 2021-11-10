@@ -18,6 +18,8 @@
         private ImageFile currentImageFileC;
         private ImageFile currentImageFileD;
 
+        private string currentDirectoryPath;
+
         public bool Loaded { get; private set; }
 
         public List<ImageFile> ImageFilesA { get => imageFilesA; private set => SetProperty(ref imageFilesA, value); }
@@ -38,8 +40,11 @@
 
         public ImageFile CurrentImageFileD { get => currentImageFileD; set => SetProperty(ref currentImageFileD, value); }
 
+        public string CurrentDirectoryPath { get => currentDirectoryPath; set => SetProperty(ref currentDirectoryPath, value); }
+
         public void Load(string directoryPath)
         {
+            CurrentDirectoryPath = directoryPath;
             List<string> fileNames = Directory.GetFiles(directoryPath, "*.png").Concat(Directory.GetFiles(directoryPath, "*.jpg")).ToList();
 
             ImageFilesA = fileNames.Where(name => Path.GetFileName(name).Contains("A")).Select(name => new ImageFile(name)).ToList();
