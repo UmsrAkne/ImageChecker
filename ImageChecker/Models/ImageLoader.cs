@@ -32,7 +32,15 @@
 
         public List<ImageFile> ImageFiles { get; set; }
 
-        public ImageFile CurrentImageFileA { get => currentImageFileA; set => SetProperty(ref currentImageFileA, value); }
+        public ImageFile CurrentImageFileA
+        {
+            get => currentImageFileA;
+            set
+            {
+                SetProperty(ref currentImageFileA, value);
+                SelectSameGroupImages(value);
+            }
+        }
 
         public ImageFile CurrentImageFileB { get => currentImageFileB; set => SetProperty(ref currentImageFileB, value); }
 
@@ -63,6 +71,36 @@
             ImageFiles.AddRange(ImageFilesD);
 
             Loaded = ImageFiles.Count > 0;
+
+            SelectSameGroupImages(CurrentImageFileA);
+        }
+
+        private void SelectSameGroupImages(ImageFile selectedImageFile)
+        {
+            if (!selectedImageFile.IsMatchingNamingRule || ImageFiles == null)
+            {
+                return;
+            }
+
+            int groupIndex = selectedImageFile.Index;
+
+            ImageFilesB = ImageFiles.Where(imgFile =>
+            {
+                return Path.GetFileName(imgFile.FileInfo.Name).Contains("B") && groupIndex == imgFile.Index;
+            }).ToList();
+            CurrentImageFileB = ImageFilesB.FirstOrDefault();
+
+            ImageFilesC = ImageFiles.Where(imgFile =>
+            {
+                return Path.GetFileName(imgFile.FileInfo.Name).Contains("C") && groupIndex == imgFile.Index;
+            }).ToList();
+            CurrentImageFileC = ImageFilesC.FirstOrDefault();
+
+            ImageFilesD = ImageFiles.Where(imgFile =>
+            {
+                return Path.GetFileName(imgFile.FileInfo.Name).Contains("D") && groupIndex == imgFile.Index;
+            }).ToList();
+            CurrentImageFileD = ImageFilesD.FirstOrDefault();
         }
     }
 }
