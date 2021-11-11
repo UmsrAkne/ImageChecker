@@ -16,7 +16,6 @@
         private bool drawingC = true;
         private bool drawingD = true;
         private double scale = 0.5;
-        private string aspectRatio;
 
         private DelegateCommand generateImageTagCommand;
         private DelegateCommand generateDrawTagCommand;
@@ -52,10 +51,6 @@
         }
 
         public ImageLoader ImageLoader { get; private set; } = new ImageLoader();
-
-        public List<string> AspectRatioStrings { get; private set; } = new List<string>() { "4:3", "16:9", "16:10" };
-
-        public string AspectRatio { get => aspectRatio; set => SetProperty(ref aspectRatio, value); }
 
         public DelegateCommand GenerateImageTagCommand
         {
