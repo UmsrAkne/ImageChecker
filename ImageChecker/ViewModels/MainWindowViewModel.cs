@@ -4,6 +4,8 @@
     using System.IO;
     using System.Linq;
     using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
     using System.Xml.Linq;
     using ImageChecker.Models;
     using Prism.Commands;
@@ -19,6 +21,7 @@
 
         private DelegateCommand generateImageTagCommand;
         private DelegateCommand generateDrawTagCommand;
+        private DelegateCommand<ListBox> focusToListBoxCommand;
 
         public MainWindowViewModel()
         {
@@ -82,6 +85,11 @@
                     Clipboard.SetText($"<draw a=\"{imageA}\" b=\"{imageB}\" c=\"{imageC}\" d=\"{imageD}\" />");
                 }
             }));
+        }
+
+        public DelegateCommand<ListBox> FocusToListBoxCommand
+        {
+            get => focusToListBoxCommand ?? (focusToListBoxCommand = new DelegateCommand<ListBox>((l) => Keyboard.Focus(l)));
         }
 
         public void LoadImages(string directoryPath)
