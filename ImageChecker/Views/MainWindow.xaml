@@ -210,21 +210,25 @@
         </Grid>
 
         <ListBox
+            Name="ImageListBoxA"
             Grid.Column="1"
             ItemsSource="{Binding ImageLoader.ImageFilesA}"
             SelectedItem="{Binding ImageLoader.CurrentImageFileA}" />
 
         <ListBox
+            Name="ImageListBoxB"
             Grid.Column="2"
             ItemsSource="{Binding ImageLoader.ImageFilesB}"
             SelectedItem="{Binding ImageLoader.CurrentImageFileB}" />
 
         <ListBox
+            Name="ImageListBoxC"
             Grid.Column="3"
             ItemsSource="{Binding ImageLoader.ImageFilesC}"
             SelectedItem="{Binding ImageLoader.CurrentImageFileC}" />
 
         <ListBox
+            Name="ImageListBoxD"
             Grid.Column="4"
             ItemsSource="{Binding ImageLoader.ImageFilesD}"
             SelectedItem="{Binding ImageLoader.CurrentImageFileD}" />
