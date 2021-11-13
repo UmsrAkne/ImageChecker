@@ -18,7 +18,7 @@
         private ImageFile currentImageFileC;
         private ImageFile currentImageFileD;
 
-        private string currentDirectoryPath;
+        private string currentDirectoryPath = string.Empty;
 
         public bool Loaded { get; private set; }
 
