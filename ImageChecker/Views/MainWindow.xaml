@@ -59,7 +59,7 @@
                 <Setter.Value>
                     <DataTemplate>
                         <Border
-                            Width="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=ActualWidth}"
+                            Width="90"
                             MinWidth="110"
                             Padding="0,2"
                             BorderBrush="DarkGray"
