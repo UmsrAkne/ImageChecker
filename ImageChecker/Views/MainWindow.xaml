@@ -108,7 +108,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
+                <RowDefinition Height="70" />
             </Grid.RowDefinitions>
 
             <Canvas Grid.Row="0" ClipToBounds="True">
@@ -228,38 +228,60 @@
                     </StackPanel>
                 </Border>
             </StackPanel>
-            <Border Grid.Row="2" Padding="10,0">
-                <Grid>
-                    <Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="2">
 
-                        <ColumnDefinition Width="60" />
-                        <ColumnDefinition Width="30" />
-                        <ColumnDefinition />
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="Width" Value="40" />
+                    </Style>
+                </StackPanel.Resources>
 
-                    </Grid.ColumnDefinitions>
+                <DockPanel>
 
-                    <TextBlock
-                        Grid.Column="0"
-                        FontSize="15"
-                        Foreground="White"
-                        Text="Scale = " />
-
-                    <TextBlock
-                        Grid.Column="1"
-                        FontSize="15"
-                        Foreground="White"
-                        Text="{Binding Scale}" />
+                    <TextBlock Text="Scale = " />
+                    <TextBlock Text="{Binding Scale}" />
 
                     <Slider
-                        Grid.Column="2"
                         IsSnapToTickEnabled="true"
                         Maximum="4"
                         Minimum="0.1"
                         TickFrequency="0.1"
                         Value="{Binding Scale}" />
 
-                </Grid>
-            </Border>
+                </DockPanel>
+
+                <DockPanel Margin="0,5">
+
+                    <TextBlock Grid.Column="0" Text="X = " />
+                    <TextBlock Grid.Column="1" Text="{Binding X}" />
+
+                    <Slider
+                        IsSnapToTickEnabled="true"
+                        Maximum="1000"
+                        Minimum="-1000"
+                        TickFrequency="10"
+                        Value="{Binding X}" />
+
+                </DockPanel>
+
+                <DockPanel>
+
+                    <TextBlock Text="Y = " />
+                    <TextBlock Text="{Binding Y}" />
+
+                    <Slider
+                        IsSnapToTickEnabled="true"
+                        Maximum="1000"
+                        Minimum="-1000"
+                        TickFrequency="10"
+                        Value="{Binding Y}" />
+
+                </DockPanel>
+
+
+            </StackPanel>
         </Grid>
 
         <ListBox
