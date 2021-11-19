@@ -133,6 +133,20 @@
                 </Image>
 
                 <Image
+                    Canvas.Left="{Binding ImageLoader.CurrentImageFileD.X}"
+                    Canvas.Top="{Binding ImageLoader.CurrentImageFileD.Y}"
+                    Width="{Binding ImageLoader.CurrentImageFileD.Width}"
+                    Height="{Binding ImageLoader.CurrentImageFileD.Height}"
+                    Source="{Binding ImageLoader.CurrentImageFileD.FileInfo.FullName}"
+                    Visibility="{Binding DrawingD, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Image.LayoutTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
+                        </TransformGroup>
+                    </Image.LayoutTransform>
+                </Image>
+
+                <Image
                     Canvas.Left="{Binding ImageLoader.CurrentImageFileB.X}"
                     Canvas.Top="{Binding ImageLoader.CurrentImageFileB.Y}"
                     Width="{Binding ImageLoader.CurrentImageFileB.Width}"
@@ -153,20 +167,6 @@
                     Height="{Binding ImageLoader.CurrentImageFileC.Height}"
                     Source="{Binding ImageLoader.CurrentImageFileC.FileInfo.FullName}"
                     Visibility="{Binding DrawingC, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Image.LayoutTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
-                        </TransformGroup>
-                    </Image.LayoutTransform>
-                </Image>
-
-                <Image
-                    Canvas.Left="{Binding ImageLoader.CurrentImageFileD.X}"
-                    Canvas.Top="{Binding ImageLoader.CurrentImageFileD.Y}"
-                    Width="{Binding ImageLoader.CurrentImageFileD.Width}"
-                    Height="{Binding ImageLoader.CurrentImageFileD.Height}"
-                    Source="{Binding ImageLoader.CurrentImageFileD.FileInfo.FullName}"
-                    Visibility="{Binding DrawingD, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.LayoutTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
