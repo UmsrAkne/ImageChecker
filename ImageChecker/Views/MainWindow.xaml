@@ -107,7 +107,8 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition Height="100" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
 
             <Canvas Grid.Row="0" ClipToBounds="True">
@@ -227,6 +228,38 @@
                     </StackPanel>
                 </Border>
             </StackPanel>
+            <Border Grid.Row="2" Padding="10,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="60" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition />
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Column="0"
+                        FontSize="15"
+                        Foreground="White"
+                        Text="Scale = " />
+
+                    <TextBlock
+                        Grid.Column="1"
+                        FontSize="15"
+                        Foreground="White"
+                        Text="{Binding Scale}" />
+
+                    <Slider
+                        Grid.Column="2"
+                        IsSnapToTickEnabled="true"
+                        Maximum="4"
+                        Minimum="0.1"
+                        TickFrequency="0.1"
+                        Value="{Binding Scale}" />
+
+                </Grid>
+            </Border>
         </Grid>
 
         <ListBox

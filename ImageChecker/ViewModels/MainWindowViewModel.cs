@@ -27,8 +27,6 @@
         {
         }
 
-        public double Scale { get => scale; private set => SetProperty(ref scale, value); }
-
         public bool DrawingA
         {
             get => drawingA;
@@ -54,6 +52,8 @@
         }
 
         public ImageLoader ImageLoader { get; private set; } = new ImageLoader();
+
+        public double Scale { get => scale; set => SetProperty(ref scale, value); }
 
         public DelegateCommand GenerateImageTagCommand
         {
