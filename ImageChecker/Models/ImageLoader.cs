@@ -38,7 +38,11 @@
             set
             {
                 SetProperty(ref currentImageFileA, value);
-                SelectSameGroupImages(value);
+
+                if (value != null)
+                {
+                    SelectSameGroupImages(value);
+                }
             }
         }
 

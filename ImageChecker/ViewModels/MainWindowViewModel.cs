@@ -18,6 +18,8 @@
         private bool drawingC = true;
         private bool drawingD = true;
         private double scale = 0.5;
+        private int x;
+        private int y;
 
         private DelegateCommand generateImageTagCommand;
         private DelegateCommand generateDrawTagCommand;
@@ -26,8 +28,6 @@
         public MainWindowViewModel()
         {
         }
-
-        public double Scale { get => scale; private set => SetProperty(ref scale, value); }
 
         public bool DrawingA
         {
@@ -54,6 +54,28 @@
         }
 
         public ImageLoader ImageLoader { get; private set; } = new ImageLoader();
+
+        public double Scale { get => scale; set => SetProperty(ref scale, value); }
+
+        public int X
+        {
+            get => x;
+            set
+            {
+                ImageLoader.ImageFiles?.ForEach(img => img.X = value);
+                SetProperty(ref x, value);
+            }
+        }
+
+        public int Y
+        {
+            get => y;
+            set
+            {
+                ImageLoader.ImageFiles?.ForEach(img => img.Y = value);
+                SetProperty(ref y, value);
+            }
+        }
 
         public DelegateCommand GenerateImageTagCommand
         {
@@ -113,8 +135,8 @@
 
                     if (imgFile != null)
                     {
-                        imgFile.X = int.Parse(l.Attribute("x").Value);
-                        imgFile.Y = int.Parse(l.Attribute("y").Value);
+                        imgFile.X = (int)(scale * int.Parse(l.Attribute("x").Value));
+                        imgFile.Y = (int)(scale * int.Parse(l.Attribute("y").Value));
                     }
                 });
             }
