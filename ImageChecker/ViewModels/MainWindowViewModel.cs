@@ -113,8 +113,8 @@
 
                     if (imgFile != null)
                     {
-                        imgFile.X = int.Parse(l.Attribute("x").Value);
-                        imgFile.Y = int.Parse(l.Attribute("y").Value);
+                        imgFile.X = (int)(scale * int.Parse(l.Attribute("x").Value));
+                        imgFile.Y = (int)(scale * int.Parse(l.Attribute("y").Value));
                     }
                 });
             }
