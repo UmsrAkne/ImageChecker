@@ -111,7 +111,10 @@
                 <RowDefinition Height="70" />
             </Grid.RowDefinitions>
 
-            <Canvas Grid.Row="0" ClipToBounds="True">
+            <Canvas
+                Grid.Row="0"
+                Background="Gray"
+                ClipToBounds="True">
                 <Canvas.Resources>
                     <Style TargetType="Image">
                         <Setter Property="HorizontalAlignment" Value="Left" />
