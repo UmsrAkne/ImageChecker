@@ -55,7 +55,15 @@
 
         public ImageLoader ImageLoader { get; private set; } = new ImageLoader();
 
-        public double Scale { get => scale; set => SetProperty(ref scale, value); }
+        public double Scale
+        {
+            get => scale;
+            set
+            {
+                SetProperty(ref scale, value);
+                ImageLoader.ImageFiles?.ForEach(img => img.Scale = scale);
+            }
+        }
 
         public int X
         {
@@ -135,8 +143,9 @@
 
                     if (imgFile != null)
                     {
-                        imgFile.X = (int)(scale * int.Parse(l.Attribute("x").Value));
-                        imgFile.Y = (int)(scale * int.Parse(l.Attribute("y").Value));
+                        imgFile.Scale = Scale;
+                        imgFile.DefaultX = int.Parse(l.Attribute("x").Value);
+                        imgFile.DefaultY = int.Parse(l.Attribute("y").Value);
                     }
                 });
             }

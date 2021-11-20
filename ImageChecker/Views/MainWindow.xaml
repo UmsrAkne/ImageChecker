@@ -7,7 +7,7 @@
     xmlns:prism="http://prismlibrary.com/"
     Title="{Binding ImageLoader.CurrentDirectoryPath}"
     Width="1200"
-    Height="600"
+    Height="610"
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowDrop="True"
     Background="#404040">
@@ -106,12 +106,15 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="450" />
                 <RowDefinition Height="50" />
                 <RowDefinition Height="70" />
             </Grid.RowDefinitions>
 
-            <Canvas Grid.Row="0" ClipToBounds="True">
+            <Canvas
+                Grid.Row="0"
+                Background="Gray"
+                ClipToBounds="True">
                 <Canvas.Resources>
                     <Style TargetType="Image">
                         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -235,6 +238,7 @@
                         <Setter Property="Foreground" Value="White" />
                         <Setter Property="FontSize" Value="14" />
                         <Setter Property="Width" Value="40" />
+                        <Setter Property="Margin" Value="5,0,0,0" />
                     </Style>
                 </StackPanel.Resources>
 
