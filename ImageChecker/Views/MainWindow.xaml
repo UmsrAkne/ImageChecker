@@ -238,6 +238,7 @@
                         <Setter Property="Foreground" Value="White" />
                         <Setter Property="FontSize" Value="14" />
                         <Setter Property="Width" Value="40" />
+                        <Setter Property="Margin" Value="5,0,0,0" />
                     </Style>
                 </StackPanel.Resources>
 
