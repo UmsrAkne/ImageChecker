@@ -7,7 +7,7 @@
     xmlns:prism="http://prismlibrary.com/"
     Title="{Binding ImageLoader.CurrentDirectoryPath}"
     Width="1200"
-    Height="600"
+    Height="610"
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowDrop="True"
     Background="#404040">
@@ -106,7 +106,7 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="450" />
                 <RowDefinition Height="50" />
                 <RowDefinition Height="70" />
             </Grid.RowDefinitions>
