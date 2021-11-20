@@ -9,6 +9,9 @@
     {
         private int x = 0;
         private int y = 0;
+        private int defaultX;
+        private int defaultY;
+        private double scale;
         private int width;
         private int height;
         private Bitmap bitmap;
@@ -32,9 +35,48 @@
             }
         }
 
-        public int X { get => x; set => SetProperty(ref x, value); }
+        public int X
+        {
+            get => (int)(x + (scale * defaultX));
+            set => SetProperty(ref x, value);
+        }
 
-        public int Y { get => y; set => SetProperty(ref y, value); }
+        public int Y
+        {
+            get => (int)(y + (scale * defaultY));
+            set => SetProperty(ref y, value);
+        }
+
+        public int DefaultX
+        {
+            get => defaultX;
+            set
+            {
+                SetProperty(ref defaultX, value);
+                RaisePropertyChanged(nameof(X));
+            }
+        }
+
+        public int DefaultY
+        {
+            get => defaultY;
+            set
+            {
+                SetProperty(ref defaultY, value);
+                RaisePropertyChanged(nameof(Y));
+            }
+        }
+
+        public double Scale
+        {
+            get => scale;
+            set
+            {
+                SetProperty(ref scale, value);
+                RaisePropertyChanged(nameof(X));
+                RaisePropertyChanged(nameof(Y));
+            }
+        }
 
         public int Width { get => width; set => SetProperty(ref width, value); }
 
