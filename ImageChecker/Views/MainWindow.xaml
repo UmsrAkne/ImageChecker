@@ -7,7 +7,7 @@
     xmlns:prism="http://prismlibrary.com/"
     Title="{Binding ImageLoader.CurrentDirectoryPath}"
     Width="1200"
-    Height="610"
+    Height="620"
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowDrop="True"
     Background="#404040">
@@ -320,10 +320,16 @@
         <StatusBar
             Grid.Row="1"
             Grid.ColumnSpan="5"
-            Height="20"
+            Height="25"
             Background="Transparent"
             BorderBrush="DarkGray"
-            BorderThickness="0,1,0,0" />
+            BorderThickness="0,1,0,0">
+
+            <TextBlock
+                VerticalAlignment="Center"
+                Foreground="WhiteSmoke"
+                Text="{Binding StatusBarText}" />
+        </StatusBar>
 
     </Grid>
 </Window>

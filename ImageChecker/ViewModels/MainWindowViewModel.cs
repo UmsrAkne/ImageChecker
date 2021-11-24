@@ -21,6 +21,7 @@
         private double scale = 0.5;
         private int x;
         private int y;
+        private string statusBarText;
 
         private DelegateCommand generateImageTagCommand;
         private DelegateCommand generateDrawTagCommand;
@@ -90,6 +91,8 @@
             }
         }
 
+        public string StatusBarText { get => statusBarText; set => SetProperty(ref statusBarText, value); }
+
         public DelegateCommand GenerateImageTagCommand
         {
             get => generateImageTagCommand ?? (generateImageTagCommand = new DelegateCommand(() =>
@@ -154,6 +157,12 @@
                         imgFile.DefaultY = int.Parse(l.Attribute("y").Value);
                     }
                 });
+
+                StatusBarText = $"{xmlFilePath} をロードしました";
+            }
+            else
+            {
+                StatusBarText = $"XML は画像をロードした後に読み込んでください";
             }
         }
     }
