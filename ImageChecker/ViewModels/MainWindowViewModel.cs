@@ -17,9 +17,11 @@
         private bool drawingB = true;
         private bool drawingC = true;
         private bool drawingD = true;
+        private ImageLoader imageLoader;
         private double scale = 0.5;
         private int x;
         private int y;
+        private string statusBarText;
 
         private DelegateCommand generateImageTagCommand;
         private DelegateCommand generateDrawTagCommand;
@@ -53,7 +55,11 @@
             set => SetProperty(ref drawingD, value);
         }
 
-        public ImageLoader ImageLoader { get; private set; } = new ImageLoader();
+        public ImageLoader ImageLoader
+        {
+            get => imageLoader;
+            private set => SetProperty(ref imageLoader, value);
+        }
 
         public double Scale
         {
@@ -61,7 +67,7 @@
             set
             {
                 SetProperty(ref scale, value);
-                ImageLoader.ImageFiles?.ForEach(img => img.Scale = scale);
+                ImageLoader?.ImageFiles?.ForEach(img => img.Scale = scale);
             }
         }
 
@@ -70,7 +76,7 @@
             get => x;
             set
             {
-                ImageLoader.ImageFiles?.ForEach(img => img.X = value);
+                ImageLoader?.ImageFiles?.ForEach(img => img.X = value);
                 SetProperty(ref x, value);
             }
         }
@@ -80,10 +86,12 @@
             get => y;
             set
             {
-                ImageLoader.ImageFiles?.ForEach(img => img.Y = value);
+                ImageLoader?.ImageFiles?.ForEach(img => img.Y = value);
                 SetProperty(ref y, value);
             }
         }
+
+        public string StatusBarText { get => statusBarText; set => SetProperty(ref statusBarText, value); }
 
         public DelegateCommand GenerateImageTagCommand
         {
@@ -124,12 +132,13 @@
 
         public void LoadImages(string directoryPath)
         {
+            ImageLoader = new ImageLoader();
             ImageLoader.Load(directoryPath);
         }
 
         public void LoadXML(string xmlFilePath)
         {
-            if (ImageLoader.Loaded)
+            if (ImageLoader != null && ImageLoader.Loaded)
             {
                 XDocument xDocument = XDocument.Load(xmlFilePath);
                 XElement xElement = xDocument.Element("root");
@@ -148,6 +157,12 @@
                         imgFile.DefaultY = int.Parse(l.Attribute("y").Value);
                     }
                 });
+
+                StatusBarText = $"{xmlFilePath} をロードしました";
+            }
+            else
+            {
+                StatusBarText = $"XML は画像をロードした後に読み込んでください";
             }
         }
     }
