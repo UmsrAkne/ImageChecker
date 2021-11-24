@@ -67,7 +67,7 @@
             set
             {
                 SetProperty(ref scale, value);
-                ImageLoader.ImageFiles?.ForEach(img => img.Scale = scale);
+                ImageLoader?.ImageFiles?.ForEach(img => img.Scale = scale);
             }
         }
 
@@ -76,7 +76,7 @@
             get => x;
             set
             {
-                ImageLoader.ImageFiles?.ForEach(img => img.X = value);
+                ImageLoader?.ImageFiles?.ForEach(img => img.X = value);
                 SetProperty(ref x, value);
             }
         }
@@ -86,7 +86,7 @@
             get => y;
             set
             {
-                ImageLoader.ImageFiles?.ForEach(img => img.Y = value);
+                ImageLoader?.ImageFiles?.ForEach(img => img.Y = value);
                 SetProperty(ref y, value);
             }
         }
