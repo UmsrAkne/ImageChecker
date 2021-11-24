@@ -102,12 +102,17 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
 
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="450" />
-                <RowDefinition Height="50" />
+                <RowDefinition Height="30" />
                 <RowDefinition Height="70" />
             </Grid.RowDefinitions>
 
@@ -311,6 +316,14 @@
             Grid.Column="4"
             ItemsSource="{Binding ImageLoader.ImageFilesD}"
             SelectedItem="{Binding ImageLoader.CurrentImageFileD}" />
+
+        <StatusBar
+            Grid.Row="1"
+            Grid.ColumnSpan="5"
+            Height="20"
+            Background="Transparent"
+            BorderBrush="DarkGray"
+            BorderThickness="0,1,0,0" />
 
     </Grid>
 </Window>
