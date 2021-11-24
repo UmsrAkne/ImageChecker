@@ -17,6 +17,7 @@
         private bool drawingB = true;
         private bool drawingC = true;
         private bool drawingD = true;
+        private ImageLoader imageLoader;
         private double scale = 0.5;
         private int x;
         private int y;
@@ -53,7 +54,11 @@
             set => SetProperty(ref drawingD, value);
         }
 
-        public ImageLoader ImageLoader { get; private set; } = new ImageLoader();
+        public ImageLoader ImageLoader
+        {
+            get => imageLoader;
+            private set => SetProperty(ref imageLoader, value);
+        }
 
         public double Scale
         {
@@ -124,12 +129,13 @@
 
         public void LoadImages(string directoryPath)
         {
+            ImageLoader = new ImageLoader();
             ImageLoader.Load(directoryPath);
         }
 
         public void LoadXML(string xmlFilePath)
         {
-            if (ImageLoader.Loaded)
+            if (ImageLoader != null && ImageLoader.Loaded)
             {
                 XDocument xDocument = XDocument.Load(xmlFilePath);
                 XElement xElement = xDocument.Element("root");
