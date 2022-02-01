@@ -30,22 +30,26 @@
         <KeyBinding
             Key="A"
             Command="{Binding FocusToListBoxCommand}"
-            CommandParameter="{Binding ElementName=ImageListBoxA}" />
+            CommandParameter="{Binding ElementName=ImageListBoxA}"
+            Modifiers="Alt" />
 
         <KeyBinding
             Key="B"
             Command="{Binding FocusToListBoxCommand}"
-            CommandParameter="{Binding ElementName=ImageListBoxB}" />
+            CommandParameter="{Binding ElementName=ImageListBoxB}"
+            Modifiers="Alt" />
 
         <KeyBinding
             Key="C"
             Command="{Binding FocusToListBoxCommand}"
-            CommandParameter="{Binding ElementName=ImageListBoxC}" />
+            CommandParameter="{Binding ElementName=ImageListBoxC}"
+            Modifiers="Alt" />
 
         <KeyBinding
             Key="D"
             Command="{Binding FocusToListBoxCommand}"
-            CommandParameter="{Binding ElementName=ImageListBoxD}" />
+            CommandParameter="{Binding ElementName=ImageListBoxD}"
+            Modifiers="Alt" />
 
     </Window.InputBindings>
 
