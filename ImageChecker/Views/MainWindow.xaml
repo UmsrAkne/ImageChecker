@@ -321,7 +321,7 @@
                         HorizontalAlignment="Left"
                         Text="draw tag  : " />
 
-                    <TextBox Margin="5,2" />
+                    <TextBox Margin="5,2" Text="{Binding DrawTagReplaceBaseText, UpdateSourceTrigger=PropertyChanged}" />
 
                 </DockPanel>
 
