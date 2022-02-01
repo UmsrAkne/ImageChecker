@@ -125,7 +125,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="450" />
                 <RowDefinition Height="30" />
-                <RowDefinition Height="70" />
+                <RowDefinition />
             </Grid.RowDefinitions>
 
             <Canvas
@@ -301,6 +301,25 @@
 
                 </DockPanel>
 
+                <DockPanel>
+                    <TextBlock
+                        Width="auto"
+                        HorizontalAlignment="Left"
+                        Text="Image tag : " />
+
+                    <TextBox Margin="5,2" Text="{Binding ImageTagReplaceBaseText, UpdateSourceTrigger=PropertyChanged}" />
+
+                </DockPanel>
+
+                <DockPanel>
+                    <TextBlock
+                        Width="auto"
+                        HorizontalAlignment="Left"
+                        Text="draw tag  : " />
+
+                    <TextBox Margin="5,2" />
+
+                </DockPanel>
 
             </StackPanel>
         </Grid>
