@@ -7,7 +7,7 @@
     xmlns:prism="http://prismlibrary.com/"
     Title="{Binding ImageLoader.CurrentDirectoryPath}"
     Width="1200"
-    Height="620"
+    Height="700"
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowDrop="True"
     Background="#404040">
@@ -103,13 +103,25 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
             <RowDefinition />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
 
-        <Grid>
+        <Menu
+            Grid.Row="0"
+            Grid.ColumnSpan="5"
+            Background="Transparent">
+            <MenuItem Foreground="WhiteSmoke" Header="File" />
+            <MenuItem Foreground="WhiteSmoke" Header="Edit">
+                <MenuItem Foreground="Black" Header="Generate image tag (Ctrl + I)" />
+                <MenuItem Foreground="Black" Header="Generate draw tag (Ctrl + D)" />
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="450" />
                 <RowDefinition Height="30" />
@@ -295,30 +307,34 @@
 
         <ListBox
             Name="ImageListBoxA"
+            Grid.Row="1"
             Grid.Column="1"
             ItemsSource="{Binding ImageLoader.ImageFilesA}"
             SelectedItem="{Binding ImageLoader.CurrentImageFileA}" />
 
         <ListBox
             Name="ImageListBoxB"
+            Grid.Row="1"
             Grid.Column="2"
             ItemsSource="{Binding ImageLoader.ImageFilesB}"
             SelectedItem="{Binding ImageLoader.CurrentImageFileB}" />
 
         <ListBox
             Name="ImageListBoxC"
+            Grid.Row="1"
             Grid.Column="3"
             ItemsSource="{Binding ImageLoader.ImageFilesC}"
             SelectedItem="{Binding ImageLoader.CurrentImageFileC}" />
 
         <ListBox
             Name="ImageListBoxD"
+            Grid.Row="1"
             Grid.Column="4"
             ItemsSource="{Binding ImageLoader.ImageFilesD}"
             SelectedItem="{Binding ImageLoader.CurrentImageFileD}" />
 
         <StatusBar
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.ColumnSpan="5"
             Height="25"
             Background="Transparent"
