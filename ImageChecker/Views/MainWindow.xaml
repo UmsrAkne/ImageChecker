@@ -120,8 +120,14 @@
             Background="Transparent">
             <MenuItem Foreground="WhiteSmoke" Header="File" />
             <MenuItem Foreground="WhiteSmoke" Header="Edit">
-                <MenuItem Foreground="Black" Header="Generate image tag (Ctrl + I)" />
-                <MenuItem Foreground="Black" Header="Generate draw tag (Ctrl + D)" />
+                <MenuItem
+                    Command="{Binding GenerateImageTagCommand}"
+                    Foreground="Black"
+                    Header="Generate image tag (Ctrl + I)" />
+                <MenuItem
+                    Command="{Binding GenerateDrawTagCommand}"
+                    Foreground="Black"
+                    Header="Generate draw tag (Ctrl + D)" />
 
                 <MenuItem
                     Command="{Binding ResetBaseTextCommand}"
