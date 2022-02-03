@@ -31,6 +31,8 @@
 
         public MainWindowViewModel()
         {
+            ImageTagReplaceBaseText = Properties.Settings.Default.ImageTagReplaceBaseText;
+            DrawTagReplaceBaseText = Properties.Settings.Default.DrawTagReplaceBaseText;
         }
 
         public bool DrawingA
