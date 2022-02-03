@@ -21,6 +21,8 @@
         private double scale = 0.5;
         private int x;
         private int y;
+        private string imageTagReplaceBaseText;
+        private string drawTagReplaceBaseText;
         private string statusBarText;
 
         private DelegateCommand generateImageTagCommand;
@@ -29,6 +31,8 @@
 
         public MainWindowViewModel()
         {
+            ImageTagReplaceBaseText = Properties.Settings.Default.ImageTagReplaceBaseText;
+            DrawTagReplaceBaseText = Properties.Settings.Default.DrawTagReplaceBaseText;
         }
 
         public bool DrawingA
@@ -91,6 +95,28 @@
             }
         }
 
+        public string ImageTagReplaceBaseText
+        {
+            get => imageTagReplaceBaseText;
+            set
+            {
+                SetProperty(ref imageTagReplaceBaseText, value);
+                Properties.Settings.Default.ImageTagReplaceBaseText = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public string DrawTagReplaceBaseText
+        {
+            get => drawTagReplaceBaseText;
+            set
+            {
+                SetProperty(ref drawTagReplaceBaseText, value);
+                Properties.Settings.Default.DrawTagReplaceBaseText = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
         public string StatusBarText { get => statusBarText; set => SetProperty(ref statusBarText, value); }
 
         public DelegateCommand GenerateImageTagCommand
@@ -104,7 +130,9 @@
                     string imageC = DrawingC ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileC.FileInfo.Name) : string.Empty;
                     string imageD = DrawingD ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileD.FileInfo.Name) : string.Empty;
 
-                    Clipboard.SetText($"<image a=\"{imageA}\" b=\"{imageB}\" c=\"{imageC}\" d=\"{imageD}\" />");
+                    var baseText = ImageTagReplaceBaseText;
+                    baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
+                    Clipboard.SetText(baseText);
                 }
             }));
         }
@@ -120,10 +148,18 @@
                     string imageC = DrawingC ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileC.FileInfo.Name) : string.Empty;
                     string imageD = DrawingD ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileD.FileInfo.Name) : string.Empty;
 
-                    Clipboard.SetText($"<draw a=\"{imageA}\" b=\"{imageB}\" c=\"{imageC}\" d=\"{imageD}\" />");
+                    var baseText = drawTagReplaceBaseText;
+                    baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
+                    Clipboard.SetText(baseText);
                 }
             }));
         }
+
+        public DelegateCommand ResetBaseTextCommand => new DelegateCommand(() =>
+        {
+            ImageTagReplaceBaseText = "<image a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" scale=\"\" x=\"\" y=\"\" rotation=\"\" statusInherit=\"\" target=\"main\" />";
+            DrawTagReplaceBaseText = "<draw a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" depth=\"\" delay=\"\" target=\"main\"/>";
+        });
 
         public DelegateCommand<ListBox> FocusToListBoxCommand
         {
