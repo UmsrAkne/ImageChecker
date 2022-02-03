@@ -122,6 +122,11 @@
             <MenuItem Foreground="WhiteSmoke" Header="Edit">
                 <MenuItem Foreground="Black" Header="Generate image tag (Ctrl + I)" />
                 <MenuItem Foreground="Black" Header="Generate draw tag (Ctrl + D)" />
+
+                <MenuItem
+                    Command="{Binding ResetBaseTextCommand}"
+                    Foreground="Black"
+                    Header="Reset tag base text" />
             </MenuItem>
         </Menu>
 

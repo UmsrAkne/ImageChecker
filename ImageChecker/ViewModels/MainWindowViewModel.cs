@@ -95,9 +95,27 @@
             }
         }
 
-        public string ImageTagReplaceBaseText { get => imageTagReplaceBaseText; set => SetProperty(ref imageTagReplaceBaseText, value); }
+        public string ImageTagReplaceBaseText
+        {
+            get => imageTagReplaceBaseText;
+            set
+            {
+                SetProperty(ref imageTagReplaceBaseText, value);
+                Properties.Settings.Default.ImageTagReplaceBaseText = value;
+                Properties.Settings.Default.Save();
+            }
+        }
 
-        public string DrawTagReplaceBaseText { get => drawTagReplaceBaseText; set => SetProperty(ref drawTagReplaceBaseText, value); }
+        public string DrawTagReplaceBaseText
+        {
+            get => drawTagReplaceBaseText;
+            set
+            {
+                SetProperty(ref drawTagReplaceBaseText, value);
+                Properties.Settings.Default.DrawTagReplaceBaseText = value;
+                Properties.Settings.Default.Save();
+            }
+        }
 
         public string StatusBarText { get => statusBarText; set => SetProperty(ref statusBarText, value); }
 
@@ -136,6 +154,12 @@
                 }
             }));
         }
+
+        public DelegateCommand ResetBaseTextCommand => new DelegateCommand(() =>
+        {
+            ImageTagReplaceBaseText = "<image a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" scale=\"\" x=\"\" y=\"\" rotation=\"\" statusInherit=\"\" target=\"main\" />";
+            DrawTagReplaceBaseText = "<draw a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" depth=\"\" delay=\"\" target=\"main\"/>";
+        });
 
         public DelegateCommand<ListBox> FocusToListBoxCommand
         {
