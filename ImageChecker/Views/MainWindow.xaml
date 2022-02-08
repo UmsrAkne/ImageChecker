@@ -59,6 +59,7 @@
 
         <Style TargetType="ListBox">
             <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Background}" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
