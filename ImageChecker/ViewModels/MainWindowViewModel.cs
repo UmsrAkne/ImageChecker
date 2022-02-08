@@ -17,7 +17,7 @@
         private bool drawingB = true;
         private bool drawingC = true;
         private bool drawingD = true;
-        private ImageLoader imageLoader;
+        private ImageLoader imageLoader = new ImageLoader();
         private double scale = 0.5;
         private int x;
         private int y;
