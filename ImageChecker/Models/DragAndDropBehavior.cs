@@ -5,7 +5,7 @@
     using ImageChecker.ViewModels;
     using Microsoft.Xaml.Behaviors;
 
-    public class DragAndDropuBehavior : Behavior<Window>
+    public class DragAndDropBehavior : Behavior<Window>
     {
         protected override void OnAttached()
         {

@@ -13,7 +13,7 @@
     Background="#404040">
 
     <i:Interaction.Behaviors>
-        <model:DragAndDropuBehavior />
+        <model:DragAndDropBehavior />
     </i:Interaction.Behaviors>
 
     <Window.InputBindings>
