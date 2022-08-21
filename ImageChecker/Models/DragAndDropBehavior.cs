@@ -1,7 +1,6 @@
 ﻿namespace ImageChecker.Models
 {
     using System.IO;
-    using System.Linq;
     using System.Windows;
     using ImageChecker.ViewModels;
     using Microsoft.Xaml.Behaviors;
