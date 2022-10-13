@@ -1,10 +1,10 @@
-﻿namespace ImageChecker.Models
-{
-    using System.IO;
-    using System.Windows;
-    using ImageChecker.ViewModels;
-    using Microsoft.Xaml.Behaviors;
+﻿using System.IO;
+using System.Windows;
+using ImageChecker.ViewModels;
+using Microsoft.Xaml.Behaviors;
 
+namespace ImageChecker.Models
+{
     public class DragAndDropBehavior : Behavior<Window>
     {
         protected override void OnAttached()

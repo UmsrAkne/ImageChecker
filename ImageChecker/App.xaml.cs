@@ -1,9 +1,9 @@
-﻿namespace ImageChecker
-{
-    using System.Windows;
-    using ImageChecker.Views;
-    using Prism.Ioc;
+﻿using System.Windows;
+using ImageChecker.Views;
+using Prism.Ioc;
 
+namespace ImageChecker
+{
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>

@@ -7,21 +7,20 @@
 
     public class ImageFile : BindableBase
     {
-        private int x = 0;
-        private int y = 0;
+        private int x;
+        private int y;
         private int defaultX;
         private int defaultY;
         private double scale;
         private int width;
         private int height;
-        private Bitmap bitmap;
 
         public ImageFile(string filePath)
         {
             FileInfo = new FileInfo(filePath);
             if (File.Exists(filePath))
             {
-                bitmap = new Bitmap(filePath);
+                Bitmap bitmap = new Bitmap(filePath);
                 Width = bitmap.Width;
                 Height = bitmap.Height;
             }
@@ -78,15 +77,15 @@
             }
         }
 
-        public int Width { get => width; set => SetProperty(ref width, value); }
+        public int Width { get => width; private set => SetProperty(ref width, value); }
 
-        public int Height { get => height; set => SetProperty(ref height, value); }
+        public int Height { get => height; private set => SetProperty(ref height, value); }
 
         public bool IsMatchingNamingRule { get; private set; }
 
         public int Index { get; private set; }
 
-        public int SubIndex { get; private set; }
+        private int SubIndex { get; set; }
 
         public FileInfo FileInfo { get; private set; }
 
