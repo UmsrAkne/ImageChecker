@@ -1,16 +1,16 @@
-﻿namespace ImageChecker.ViewModels
-{
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Input;
-    using System.Xml.Linq;
-    using ImageChecker.Models;
-    using Prism.Commands;
-    using Prism.Mvvm;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Xml.Linq;
+using ImageChecker.Models;
+using Prism.Commands;
+using Prism.Mvvm;
 
+namespace ImageChecker.ViewModels
+{
     public class MainWindowViewModel : BindableBase
     {
         private bool drawingA = true;
