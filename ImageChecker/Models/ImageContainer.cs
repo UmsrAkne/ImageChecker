@@ -29,5 +29,18 @@ namespace ImageChecker.Models
 
             CurrentFile = Files.FirstOrDefault();
         }
+
+        public void SelectSameGroupImages(ImageFile baseImageFile)
+        {
+            if (keyChar == "A")
+            {
+                return;
+            }
+
+            int groupIndex = baseImageFile.Index;
+
+            FilteredFiles = Files.Where(imageFile => imageFile.Index == groupIndex).ToList();
+            CurrentFile = FilteredFiles.FirstOrDefault();
+        }
     }
 }
