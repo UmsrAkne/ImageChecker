@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Xml.Linq;
 using ImageChecker.Models;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -195,34 +192,6 @@ namespace ImageChecker.ViewModels
                 ic.Load(directoryPath);
                 ic.SelectSameGroupImages(ImageContainerA.CurrentFile);
             }
-        }
-
-        public void LoadXML(string xmlFilePath)
-        {
-            // if (ImageLoader != null && ImageLoader.Loaded)
-            // {
-            //     XDocument xDocument = XDocument.Load(xmlFilePath);
-            //     XElement xElement = xDocument.Element("root");
-            //     IEnumerable<XElement> locations = xElement.Elements("location");
-            //     locations.ToList().ForEach(l =>
-            //     {
-            //         ImageFile imgFile = ImageLoader.ImageFiles.FirstOrDefault(img =>
-            //         {
-            //             return Path.GetFileNameWithoutExtension(img.FileInfo.Name) == l.Attribute("name").Value;
-            //         });
-            //         if (imgFile != null)
-            //         {
-            //             imgFile.Scale = Scale;
-            //             imgFile.DefaultX = int.Parse(l.Attribute("x").Value);
-            //             imgFile.DefaultY = int.Parse(l.Attribute("y").Value);
-            //         }
-            //     });
-            //     StatusBarText = $"{xmlFilePath} をロードしました";
-            // }
-            // else
-            // {
-            //     StatusBarText = $"XML は画像をロードした後に読み込んでください";
-            // }
         }
     }
 }
