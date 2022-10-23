@@ -350,29 +350,36 @@
             Name="ImageListBoxA"
             Grid.Row="1"
             Grid.Column="1"
-            ItemsSource="{Binding ImageLoader.ImageFilesA}"
-            SelectedItem="{Binding ImageLoader.CurrentImageFileA}" />
+            ItemsSource="{Binding ImageContainerA.FilteredFiles}"
+            SelectedItem="{Binding ImageContainerA.CurrentFile}">
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding ChangeImageGroupCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
 
         <ListBox
             Name="ImageListBoxB"
             Grid.Row="1"
             Grid.Column="2"
-            ItemsSource="{Binding ImageLoader.ImageFilesB}"
-            SelectedItem="{Binding ImageLoader.CurrentImageFileB}" />
+            ItemsSource="{Binding ImageContainerB.FilteredFiles}"
+            SelectedItem="{Binding ImageContainerB.CurrentFile}" />
 
         <ListBox
             Name="ImageListBoxC"
             Grid.Row="1"
             Grid.Column="3"
-            ItemsSource="{Binding ImageLoader.ImageFilesC}"
-            SelectedItem="{Binding ImageLoader.CurrentImageFileC}" />
+            ItemsSource="{Binding ImageContainerC.FilteredFiles}"
+            SelectedItem="{Binding ImageContainerC.CurrentFile}" />
 
         <ListBox
             Name="ImageListBoxD"
             Grid.Row="1"
             Grid.Column="4"
-            ItemsSource="{Binding ImageLoader.ImageFilesD}"
-            SelectedItem="{Binding ImageLoader.CurrentImageFileD}" />
+            ItemsSource="{Binding ImageContainerD.FilteredFiles}"
+            SelectedItem="{Binding ImageContainerD.CurrentFile}" />
 
         <StatusBar
             Grid.Row="2"
