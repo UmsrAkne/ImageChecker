@@ -17,13 +17,14 @@ namespace ImageChecker.ViewModels
         private bool drawingB = true;
         private bool drawingC = true;
         private bool drawingD = true;
-        private ImageLoader imageLoader = new ImageLoader();
         private double scale = 0.5;
         private int x;
         private int y;
         private string imageTagReplaceBaseText;
         private string drawTagReplaceBaseText;
         private string statusBarText;
+
+        private List<ImageContainer> imageContainers;
 
         private DelegateCommand generateImageTagCommand;
         private DelegateCommand generateDrawTagCommand;
@@ -33,6 +34,14 @@ namespace ImageChecker.ViewModels
         {
             ImageTagReplaceBaseText = Properties.Settings.Default.ImageTagReplaceBaseText;
             DrawTagReplaceBaseText = Properties.Settings.Default.DrawTagReplaceBaseText;
+
+            imageContainers = new List<ImageContainer>()
+            {
+                ImageContainerA,
+                ImageContainerB,
+                ImageContainerC,
+                ImageContainerD,
+            };
         }
 
         public bool DrawingA
@@ -59,12 +68,6 @@ namespace ImageChecker.ViewModels
             set => SetProperty(ref drawingD, value);
         }
 
-        public ImageLoader ImageLoader
-        {
-            get => imageLoader;
-            private set => SetProperty(ref imageLoader, value);
-        }
-
         public ImageContainer ImageContainerA { get; } = new ImageContainer("A");
 
         public ImageContainer ImageContainerB { get; } = new ImageContainer("B");
@@ -79,7 +82,7 @@ namespace ImageChecker.ViewModels
             set
             {
                 SetProperty(ref scale, value);
-                ImageLoader?.ImageFiles?.ForEach(img => img.Scale = scale);
+                imageContainers?.ForEach(ic => ic.CurrentFile.Scale = scale);
             }
         }
 
@@ -88,7 +91,7 @@ namespace ImageChecker.ViewModels
             get => x;
             set
             {
-                ImageLoader?.ImageFiles?.ForEach(img => img.X = value);
+                imageContainers?.ForEach(ic => ic.CurrentFile.X = value);
                 SetProperty(ref x, value);
             }
         }
@@ -98,7 +101,7 @@ namespace ImageChecker.ViewModels
             get => y;
             set
             {
-                ImageLoader?.ImageFiles?.ForEach(img => img.Y = value);
+                imageContainers?.ForEach(ic => ic.CurrentFile.Y = value);
                 SetProperty(ref y, value);
             }
         }
@@ -131,17 +134,14 @@ namespace ImageChecker.ViewModels
         {
             get => generateImageTagCommand ?? (generateImageTagCommand = new DelegateCommand(() =>
             {
-                if (ImageLoader.Loaded)
-                {
-                    string imageA = DrawingA ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileA.FileInfo.Name) : string.Empty;
-                    string imageB = DrawingB ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileB.FileInfo.Name) : string.Empty;
-                    string imageC = DrawingC ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileC.FileInfo.Name) : string.Empty;
-                    string imageD = DrawingD ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileD.FileInfo.Name) : string.Empty;
+                string imageA = DrawingA ? Path.GetFileNameWithoutExtension(ImageContainerA.CurrentFile.FileInfo.Name) : string.Empty;
+                string imageB = DrawingB ? Path.GetFileNameWithoutExtension(ImageContainerB.CurrentFile.FileInfo.Name) : string.Empty;
+                string imageC = DrawingC ? Path.GetFileNameWithoutExtension(ImageContainerC.CurrentFile.FileInfo.Name) : string.Empty;
+                string imageD = DrawingD ? Path.GetFileNameWithoutExtension(ImageContainerD.CurrentFile.FileInfo.Name) : string.Empty;
 
-                    var baseText = ImageTagReplaceBaseText;
-                    baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
-                    Clipboard.SetText(baseText);
-                }
+                var baseText = ImageTagReplaceBaseText;
+                baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
+                Clipboard.SetText(baseText);
             }));
         }
 
@@ -149,17 +149,14 @@ namespace ImageChecker.ViewModels
         {
             get => generateDrawTagCommand ?? (generateDrawTagCommand = new DelegateCommand(() =>
             {
-                if (ImageLoader.Loaded)
-                {
-                    string imageA = DrawingA ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileA.FileInfo.Name) : string.Empty;
-                    string imageB = DrawingB ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileB.FileInfo.Name) : string.Empty;
-                    string imageC = DrawingC ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileC.FileInfo.Name) : string.Empty;
-                    string imageD = DrawingD ? Path.GetFileNameWithoutExtension(ImageLoader.CurrentImageFileD.FileInfo.Name) : string.Empty;
+                 string imageA = DrawingA ? Path.GetFileNameWithoutExtension(ImageContainerA.CurrentFile.FileInfo.Name) : string.Empty;
+                 string imageB = DrawingB ? Path.GetFileNameWithoutExtension(ImageContainerB.CurrentFile.FileInfo.Name) : string.Empty;
+                 string imageC = DrawingC ? Path.GetFileNameWithoutExtension(ImageContainerC.CurrentFile.FileInfo.Name) : string.Empty;
+                 string imageD = DrawingD ? Path.GetFileNameWithoutExtension(ImageContainerD.CurrentFile.FileInfo.Name) : string.Empty;
 
-                    var baseText = drawTagReplaceBaseText;
-                    baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
-                    Clipboard.SetText(baseText);
-                }
+                 var baseText = drawTagReplaceBaseText;
+                 baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
+                 Clipboard.SetText(baseText);
             }));
         }
 
@@ -193,18 +190,7 @@ namespace ImageChecker.ViewModels
 
         public void LoadImages(string directoryPath)
         {
-            ImageLoader = new ImageLoader();
-            ImageLoader.Load(directoryPath);
-
-            var list = new List<ImageContainer>
-            {
-                ImageContainerA,
-                ImageContainerB,
-                ImageContainerC,
-                ImageContainerD,
-            };
-
-            foreach (var ic in list)
+            foreach (var ic in imageContainers)
             {
                 ic.Load(directoryPath);
                 ic.SelectSameGroupImages(ImageContainerA.CurrentFile);
@@ -213,32 +199,30 @@ namespace ImageChecker.ViewModels
 
         public void LoadXML(string xmlFilePath)
         {
-            if (ImageLoader != null && ImageLoader.Loaded)
-            {
-                XDocument xDocument = XDocument.Load(xmlFilePath);
-                XElement xElement = xDocument.Element("root");
-                IEnumerable<XElement> locations = xElement.Elements("location");
-                locations.ToList().ForEach(l =>
-                {
-                    ImageFile imgFile = ImageLoader.ImageFiles.FirstOrDefault(img =>
-                    {
-                        return Path.GetFileNameWithoutExtension(img.FileInfo.Name) == l.Attribute("name").Value;
-                    });
-
-                    if (imgFile != null)
-                    {
-                        imgFile.Scale = Scale;
-                        imgFile.DefaultX = int.Parse(l.Attribute("x").Value);
-                        imgFile.DefaultY = int.Parse(l.Attribute("y").Value);
-                    }
-                });
-
-                StatusBarText = $"{xmlFilePath} をロードしました";
-            }
-            else
-            {
-                StatusBarText = $"XML は画像をロードした後に読み込んでください";
-            }
+            // if (ImageLoader != null && ImageLoader.Loaded)
+            // {
+            //     XDocument xDocument = XDocument.Load(xmlFilePath);
+            //     XElement xElement = xDocument.Element("root");
+            //     IEnumerable<XElement> locations = xElement.Elements("location");
+            //     locations.ToList().ForEach(l =>
+            //     {
+            //         ImageFile imgFile = ImageLoader.ImageFiles.FirstOrDefault(img =>
+            //         {
+            //             return Path.GetFileNameWithoutExtension(img.FileInfo.Name) == l.Attribute("name").Value;
+            //         });
+            //         if (imgFile != null)
+            //         {
+            //             imgFile.Scale = Scale;
+            //             imgFile.DefaultX = int.Parse(l.Attribute("x").Value);
+            //             imgFile.DefaultY = int.Parse(l.Attribute("y").Value);
+            //         }
+            //     });
+            //     StatusBarText = $"{xmlFilePath} をロードしました";
+            // }
+            // else
+            // {
+            //     StatusBarText = $"XML は画像をロードした後に読み込んでください";
+            // }
         }
     }
 }
