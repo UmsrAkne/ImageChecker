@@ -163,8 +163,19 @@ namespace ImageChecker.ViewModels
 
         public DelegateCommand<ListBox> FocusToListBoxCommand
         {
-            get => focusToListBoxCommand ?? (focusToListBoxCommand = new DelegateCommand<ListBox>((l) => Keyboard.Focus(l)));
+            get => focusToListBoxCommand ?? (focusToListBoxCommand = new DelegateCommand<ListBox>((l) =>
+            {
+                var dObj = l.ItemContainerGenerator.ContainerFromIndex(l.SelectedIndex);
+                if (!(dObj is ListBoxItem target))
+                {
+                    return;
+                }
+
+                target.Focus();
+                l.SelectedItem = l.Items[l.SelectedIndex];
+            }));
         }
+
 
         public void LoadImages(string directoryPath)
         {
