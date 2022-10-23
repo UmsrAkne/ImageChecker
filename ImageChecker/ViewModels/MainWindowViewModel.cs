@@ -184,6 +184,12 @@ namespace ImageChecker.ViewModels
             }));
         }
 
+        public DelegateCommand ChangeImageGroupCommand => new DelegateCommand(() =>
+        {
+            ImageContainerB.SelectSameGroupImages(ImageContainerA.CurrentFile);
+            ImageContainerC.SelectSameGroupImages(ImageContainerA.CurrentFile);
+            ImageContainerD.SelectSameGroupImages(ImageContainerA.CurrentFile);
+        });
 
         public void LoadImages(string directoryPath)
         {

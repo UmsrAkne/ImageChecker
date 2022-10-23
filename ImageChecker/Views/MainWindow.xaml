@@ -351,7 +351,14 @@
             Grid.Row="1"
             Grid.Column="1"
             ItemsSource="{Binding ImageContainerA.FilteredFiles}"
-            SelectedItem="{Binding ImageContainerA.CurrentFile}" />
+            SelectedItem="{Binding ImageContainerA.CurrentFile}">
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding ChangeImageGroupCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
 
         <ListBox
             Name="ImageListBoxB"
