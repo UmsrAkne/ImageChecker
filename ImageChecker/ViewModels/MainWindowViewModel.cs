@@ -65,6 +65,14 @@ namespace ImageChecker.ViewModels
             private set => SetProperty(ref imageLoader, value);
         }
 
+        public ImageContainer ImageContainerA { get; } = new ImageContainer("A");
+
+        public ImageContainer ImageContainerB { get; } = new ImageContainer("B");
+
+        public ImageContainer ImageContainerC { get; } = new ImageContainer("C");
+
+        public ImageContainer ImageContainerD { get; } = new ImageContainer("D");
+
         public double Scale
         {
             get => scale;
@@ -181,6 +189,20 @@ namespace ImageChecker.ViewModels
         {
             ImageLoader = new ImageLoader();
             ImageLoader.Load(directoryPath);
+
+            var list = new List<ImageContainer>
+            {
+                ImageContainerA,
+                ImageContainerB,
+                ImageContainerC,
+                ImageContainerD,
+            };
+
+            foreach (var ic in list)
+            {
+                ic.Load(directoryPath);
+                ic.SelectSameGroupImages(ImageContainerA.CurrentFile);
+            }
         }
 
         public void LoadXML(string xmlFilePath)
