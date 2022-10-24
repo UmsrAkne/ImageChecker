@@ -17,11 +17,14 @@ namespace ImageChecker.Models
             this.keyChar = keyChar;
         }
 
-        public List<ImageFile> Files { get => files; set => SetProperty(ref files, value); }
-
-        public List<ImageFile> FilteredFiles { get => filteredFiles; set => SetProperty(ref filteredFiles, value); }
+        public List<ImageFile> FilteredFiles
+        {
+            get => filteredFiles; private set => SetProperty(ref filteredFiles, value);
+        }
 
         public ImageFile CurrentFile { get => currentFile; set => SetProperty(ref currentFile, value); }
+
+        private List<ImageFile> Files { get => files; set => SetProperty(ref files, value); }
 
         public void Load(string directoryPath)
         {
