@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using ImageChecker.Models;
@@ -10,10 +9,6 @@ namespace ImageChecker.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private bool drawingA = true;
-        private bool drawingB = true;
-        private bool drawingC = true;
-        private bool drawingD = true;
         private string currentDirectoryPath;
         private double scale = 0.5;
         private int x;
@@ -43,30 +38,6 @@ namespace ImageChecker.ViewModels
         }
 
         public string CurrentDirectoryPath { get => currentDirectoryPath; set => SetProperty(ref currentDirectoryPath, value); }
-
-        public bool DrawingA
-        {
-            get => drawingA;
-            set => SetProperty(ref drawingA, value);
-        }
-
-        public bool DrawingB
-        {
-            get => drawingB;
-            set => SetProperty(ref drawingB, value);
-        }
-
-        public bool DrawingC
-        {
-            get => drawingC;
-            set => SetProperty(ref drawingC, value);
-        }
-
-        public bool DrawingD
-        {
-            get => drawingD;
-            set => SetProperty(ref drawingD, value);
-        }
 
         public ImageContainer ImageContainerA { get; } = new ImageContainer("A");
 
@@ -134,10 +105,10 @@ namespace ImageChecker.ViewModels
         {
             get => generateImageTagCommand ?? (generateImageTagCommand = new DelegateCommand(() =>
             {
-                string imageA = DrawingA ? Path.GetFileNameWithoutExtension(ImageContainerA.CurrentFile.FileInfo.Name) : string.Empty;
-                string imageB = DrawingB ? Path.GetFileNameWithoutExtension(ImageContainerB.CurrentFile.FileInfo.Name) : string.Empty;
-                string imageC = DrawingC ? Path.GetFileNameWithoutExtension(ImageContainerC.CurrentFile.FileInfo.Name) : string.Empty;
-                string imageD = DrawingD ? Path.GetFileNameWithoutExtension(ImageContainerD.CurrentFile.FileInfo.Name) : string.Empty;
+                string imageA = ImageContainerA.GetCurrentFileName();
+                string imageB = ImageContainerB.GetCurrentFileName();
+                string imageC = ImageContainerC.GetCurrentFileName();
+                string imageD = ImageContainerD.GetCurrentFileName();
 
                 var baseText = ImageTagReplaceBaseText;
                 baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
@@ -149,10 +120,10 @@ namespace ImageChecker.ViewModels
         {
             get => generateDrawTagCommand ?? (generateDrawTagCommand = new DelegateCommand(() =>
             {
-                 string imageA = DrawingA ? Path.GetFileNameWithoutExtension(ImageContainerA.CurrentFile.FileInfo.Name) : string.Empty;
-                 string imageB = DrawingB ? Path.GetFileNameWithoutExtension(ImageContainerB.CurrentFile.FileInfo.Name) : string.Empty;
-                 string imageC = DrawingC ? Path.GetFileNameWithoutExtension(ImageContainerC.CurrentFile.FileInfo.Name) : string.Empty;
-                 string imageD = DrawingD ? Path.GetFileNameWithoutExtension(ImageContainerD.CurrentFile.FileInfo.Name) : string.Empty;
+                 string imageA = ImageContainerA.GetCurrentFileName();
+                 string imageB = ImageContainerB.GetCurrentFileName();
+                 string imageC = ImageContainerC.GetCurrentFileName();
+                 string imageD = ImageContainerD.GetCurrentFileName();
 
                  var baseText = drawTagReplaceBaseText;
                  baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);

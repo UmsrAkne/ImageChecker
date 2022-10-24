@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -52,6 +53,16 @@ namespace ImageChecker.Models
 
             FilteredFiles = Files.Where(imageFile => imageFile.Index == groupIndex).ToList();
             CurrentFile = FilteredFiles.FirstOrDefault();
+        }
+
+        public string GetCurrentFileName()
+        {
+            if (!Drawing || CurrentFile == null)
+            {
+                return string.Empty;
+            }
+
+            return Path.GetFileNameWithoutExtension(CurrentFile.FileInfo.FullName);
         }
     }
 }
