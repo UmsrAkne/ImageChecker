@@ -9,6 +9,7 @@ namespace ImageChecker.Models
     {
         private readonly string keyChar;
         private List<ImageFile> filteredFiles = new List<ImageFile>();
+        private bool drawing;
         private ImageFile currentFile;
 
         public ImageContainer(string keyChar)
@@ -23,6 +24,8 @@ namespace ImageChecker.Models
 
         public ImageFile CurrentFile { get => currentFile; set => SetProperty(ref currentFile, value); }
 
+        public bool Drawing { get => drawing; set => SetProperty(ref drawing, value); }
+
         private List<ImageFile> Files { get; set; } = new List<ImageFile>();
 
         public void Load(string directoryPath)
@@ -35,6 +38,7 @@ namespace ImageChecker.Models
 
             FilteredFiles = Files.ToList();
             CurrentFile = Files.FirstOrDefault();
+            Drawing = Files.Count != 0;
         }
 
         public void SelectSameGroupImages(ImageFile baseImageFile)

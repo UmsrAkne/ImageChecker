@@ -14,6 +14,7 @@ namespace ImageChecker.ViewModels
         private bool drawingB = true;
         private bool drawingC = true;
         private bool drawingD = true;
+        private string currentDirectoryPath;
         private double scale = 0.5;
         private int x;
         private int y;
@@ -40,6 +41,8 @@ namespace ImageChecker.ViewModels
                 ImageContainerD,
             };
         }
+
+        public string CurrentDirectoryPath { get => currentDirectoryPath; set => SetProperty(ref currentDirectoryPath, value); }
 
         public bool DrawingA
         {
@@ -187,6 +190,8 @@ namespace ImageChecker.ViewModels
 
         public void LoadImages(string directoryPath)
         {
+            CurrentDirectoryPath = directoryPath;
+
             foreach (var ic in imageContainers)
             {
                 ic.Load(directoryPath);
