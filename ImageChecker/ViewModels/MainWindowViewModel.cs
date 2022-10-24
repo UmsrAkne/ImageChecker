@@ -7,8 +7,11 @@ using Prism.Mvvm;
 
 namespace ImageChecker.ViewModels
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class MainWindowViewModel : BindableBase
     {
+        private readonly List<ImageContainer> imageContainers;
+
         private string currentDirectoryPath;
         private double scale = 0.5;
         private int x;
@@ -16,8 +19,6 @@ namespace ImageChecker.ViewModels
         private string imageTagReplaceBaseText;
         private string drawTagReplaceBaseText;
         private string statusBarText;
-
-        private List<ImageContainer> imageContainers;
 
         private DelegateCommand generateImageTagCommand;
         private DelegateCommand generateDrawTagCommand;
@@ -37,7 +38,7 @@ namespace ImageChecker.ViewModels
             };
         }
 
-        public string CurrentDirectoryPath { get => currentDirectoryPath; set => SetProperty(ref currentDirectoryPath, value); }
+        public string CurrentDirectoryPath { get => currentDirectoryPath; private set => SetProperty(ref currentDirectoryPath, value); }
 
         public ImageContainer ImageContainerA { get; } = new ImageContainer("A");
 
