@@ -8,7 +8,6 @@ namespace ImageChecker.Models
     public class ImageContainer : BindableBase
     {
         private readonly string keyChar;
-        private List<ImageFile> files = new List<ImageFile>();
         private List<ImageFile> filteredFiles = new List<ImageFile>();
         private ImageFile currentFile;
 
@@ -24,7 +23,7 @@ namespace ImageChecker.Models
 
         public ImageFile CurrentFile { get => currentFile; set => SetProperty(ref currentFile, value); }
 
-        private List<ImageFile> Files { get => files; set => SetProperty(ref files, value); }
+        private List<ImageFile> Files { get; set; } = new List<ImageFile>();
 
         public void Load(string directoryPath)
         {
