@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,8 +9,8 @@ namespace ImageChecker.Models
     public class ImageContainer : BindableBase
     {
         private readonly string keyChar;
-        private List<ImageFile> files = new List<ImageFile>();
         private List<ImageFile> filteredFiles = new List<ImageFile>();
+        private bool drawing;
         private ImageFile currentFile;
 
         public ImageContainer(string keyChar)
@@ -17,11 +18,16 @@ namespace ImageChecker.Models
             this.keyChar = keyChar;
         }
 
-        public List<ImageFile> Files { get => files; set => SetProperty(ref files, value); }
-
-        public List<ImageFile> FilteredFiles { get => filteredFiles; set => SetProperty(ref filteredFiles, value); }
+        public List<ImageFile> FilteredFiles
+        {
+            get => filteredFiles; private set => SetProperty(ref filteredFiles, value);
+        }
 
         public ImageFile CurrentFile { get => currentFile; set => SetProperty(ref currentFile, value); }
+
+        public bool Drawing { get => drawing; set => SetProperty(ref drawing, value); }
+
+        private List<ImageFile> Files { get; set; } = new List<ImageFile>();
 
         public void Load(string directoryPath)
         {
@@ -33,6 +39,7 @@ namespace ImageChecker.Models
 
             FilteredFiles = Files.ToList();
             CurrentFile = Files.FirstOrDefault();
+            Drawing = Files.Count != 0;
         }
 
         public void SelectSameGroupImages(ImageFile baseImageFile)
@@ -46,6 +53,16 @@ namespace ImageChecker.Models
 
             FilteredFiles = Files.Where(imageFile => imageFile.Index == groupIndex).ToList();
             CurrentFile = FilteredFiles.FirstOrDefault();
+        }
+
+        public string GetCurrentFileName()
+        {
+            if (!Drawing || CurrentFile == null)
+            {
+                return string.Empty;
+            }
+
+            return Path.GetFileNameWithoutExtension(CurrentFile.FileInfo.FullName);
         }
     }
 }

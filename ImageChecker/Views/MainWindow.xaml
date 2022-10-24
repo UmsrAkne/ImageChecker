@@ -8,7 +8,7 @@
     xmlns:model="clr-namespace:ImageChecker.Models"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:viewModels="clr-namespace:ImageChecker.ViewModels"
-    Title="{Binding ImageLoader.CurrentDirectoryPath}"
+    Title="{Binding CurrentDirectoryPath}"
     Width="1200"
     Height="700"
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
@@ -162,12 +162,12 @@
                 </Canvas.Resources>
 
                 <Image
-                    Canvas.Left="{Binding ImageLoader.CurrentImageFileA.X}"
-                    Canvas.Top="{Binding ImageLoader.CurrentImageFileA.Y}"
-                    Width="{Binding ImageLoader.CurrentImageFileA.Width}"
-                    Height="{Binding ImageLoader.CurrentImageFileA.Height}"
-                    Source="{Binding ImageLoader.CurrentImageFileA.FileInfo.FullName}"
-                    Visibility="{Binding DrawingA, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Canvas.Left="{Binding ImageContainerA.CurrentFile.X}"
+                    Canvas.Top="{Binding ImageContainerA.CurrentFile.Y}"
+                    Width="{Binding ImageContainerA.CurrentFile.Width}"
+                    Height="{Binding ImageContainerA.CurrentFile.Height}"
+                    Source="{Binding ImageContainerA.CurrentFile.FileInfo.FullName}"
+                    Visibility="{Binding ImageContainerA.Drawing, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.LayoutTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
@@ -176,12 +176,12 @@
                 </Image>
 
                 <Image
-                    Canvas.Left="{Binding ImageLoader.CurrentImageFileD.X}"
-                    Canvas.Top="{Binding ImageLoader.CurrentImageFileD.Y}"
-                    Width="{Binding ImageLoader.CurrentImageFileD.Width}"
-                    Height="{Binding ImageLoader.CurrentImageFileD.Height}"
-                    Source="{Binding ImageLoader.CurrentImageFileD.FileInfo.FullName}"
-                    Visibility="{Binding DrawingD, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Canvas.Left="{Binding ImageContainerD.CurrentFile.X}"
+                    Canvas.Top="{Binding ImageContainerD.CurrentFile.Y}"
+                    Width="{Binding ImageContainerD.CurrentFile.Width}"
+                    Height="{Binding ImageContainerD.CurrentFile.Height}"
+                    Source="{Binding ImageContainerD.CurrentFile.FileInfo.FullName}"
+                    Visibility="{Binding ImageContainerD.Drawing, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.LayoutTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
@@ -190,12 +190,12 @@
                 </Image>
 
                 <Image
-                    Canvas.Left="{Binding ImageLoader.CurrentImageFileB.X}"
-                    Canvas.Top="{Binding ImageLoader.CurrentImageFileB.Y}"
-                    Width="{Binding ImageLoader.CurrentImageFileB.Width}"
-                    Height="{Binding ImageLoader.CurrentImageFileB.Height}"
-                    Source="{Binding ImageLoader.CurrentImageFileB.FileInfo.FullName}"
-                    Visibility="{Binding DrawingB, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Canvas.Left="{Binding ImageContainerB.CurrentFile.X}"
+                    Canvas.Top="{Binding ImageContainerB.CurrentFile.Y}"
+                    Width="{Binding ImageContainerB.CurrentFile.Width}"
+                    Height="{Binding ImageContainerB.CurrentFile.Height}"
+                    Source="{Binding ImageContainerB.CurrentFile.FileInfo.FullName}"
+                    Visibility="{Binding ImageContainerB.Drawing, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.LayoutTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
@@ -204,12 +204,12 @@
                 </Image>
 
                 <Image
-                    Canvas.Left="{Binding ImageLoader.CurrentImageFileC.X}"
-                    Canvas.Top="{Binding ImageLoader.CurrentImageFileC.Y}"
-                    Width="{Binding ImageLoader.CurrentImageFileC.Width}"
-                    Height="{Binding ImageLoader.CurrentImageFileC.Height}"
-                    Source="{Binding ImageLoader.CurrentImageFileC.FileInfo.FullName}"
-                    Visibility="{Binding DrawingC, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Canvas.Left="{Binding ImageContainerC.CurrentFile.X}"
+                    Canvas.Top="{Binding ImageContainerC.CurrentFile.Y}"
+                    Width="{Binding ImageContainerC.CurrentFile.Width}"
+                    Height="{Binding ImageContainerC.CurrentFile.Height}"
+                    Source="{Binding ImageContainerC.CurrentFile.FileInfo.FullName}"
+                    Visibility="{Binding ImageContainerC.Drawing, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.LayoutTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
@@ -240,33 +240,33 @@
                             </Style>
                         </StackPanel.Resources>
 
-                        <CheckBox IsChecked="{Binding DrawingA}" />
+                        <CheckBox IsChecked="{Binding ImageContainerA.Drawing}" />
                         <TextBlock Foreground="WhiteSmoke" Text="A" />
                         <ComboBox
-                            IsEnabled="{Binding DrawingA}"
-                            ItemsSource="{Binding ImageLoader.ImageFilesA}"
-                            SelectedItem="{Binding ImageLoader.CurrentImageFileA}" />
+                            IsEnabled="{Binding ImageContainerA.Drawing}"
+                            ItemsSource="{Binding ImageContainerA.FilteredFiles}"
+                            SelectedItem="{Binding ImageContainerA.CurrentFile}" />
 
-                        <CheckBox IsChecked="{Binding DrawingB}" />
+                        <CheckBox IsChecked="{Binding ImageContainerB.Drawing}" />
                         <TextBlock Foreground="WhiteSmoke" Text="B" />
                         <ComboBox
-                            IsEnabled="{Binding DrawingB}"
-                            ItemsSource="{Binding ImageLoader.ImageFilesB}"
-                            SelectedItem="{Binding ImageLoader.CurrentImageFileB}" />
+                            IsEnabled="{Binding ImageContainerB.Drawing}"
+                            ItemsSource="{Binding ImageContainerB.FilteredFiles}"
+                            SelectedItem="{Binding ImageContainerB.CurrentFile}" />
 
-                        <CheckBox IsChecked="{Binding DrawingC}" />
+                        <CheckBox IsChecked="{Binding ImageContainerC.Drawing}" />
                         <TextBlock Foreground="WhiteSmoke" Text="C" />
                         <ComboBox
-                            IsEnabled="{Binding DrawingC}"
-                            ItemsSource="{Binding ImageLoader.ImageFilesC}"
-                            SelectedItem="{Binding ImageLoader.CurrentImageFileC}" />
+                            IsEnabled="{Binding ImageContainerC.Drawing}"
+                            ItemsSource="{Binding ImageContainerC.FilteredFiles}"
+                            SelectedItem="{Binding ImageContainerC.CurrentFile}" />
 
-                        <CheckBox IsChecked="{Binding DrawingD}" />
+                        <CheckBox IsChecked="{Binding ImageContainerD.Drawing}" />
                         <TextBlock Foreground="WhiteSmoke" Text="D" />
                         <ComboBox
-                            IsEnabled="{Binding DrawingD}"
-                            ItemsSource="{Binding ImageLoader.ImageFilesD}"
-                            SelectedItem="{Binding ImageLoader.CurrentImageFileD}" />
+                            IsEnabled="{Binding ImageContainerD.Drawing}"
+                            ItemsSource="{Binding ImageContainerD.FilteredFiles}"
+                            SelectedItem="{Binding ImageContainerD.CurrentFile}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
