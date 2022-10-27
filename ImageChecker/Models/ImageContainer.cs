@@ -28,9 +28,9 @@ namespace ImageChecker.Models
 
         public bool Drawing { get => drawing; set => SetProperty(ref drawing, value); }
 
-        private List<ImageFile> Files { get; set; } = new List<ImageFile>();
-
         public int SelectedIndex { get => selectedIndex; set => SetProperty(ref selectedIndex, value); }
+
+        private List<ImageFile> Files { get; set; } = new List<ImageFile>();
 
         public void Load(string directoryPath)
         {
