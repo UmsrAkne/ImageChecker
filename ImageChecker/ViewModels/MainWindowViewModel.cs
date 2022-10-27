@@ -20,6 +20,8 @@ namespace ImageChecker.ViewModels
         private string drawTagReplaceBaseText;
         private string statusBarText;
 
+        private DelegateCommand<ListBox> cursorDownCommand;
+        private DelegateCommand<ListBox> cursorUpCommand;
         private DelegateCommand generateImageTagCommand;
         private DelegateCommand generateDrawTagCommand;
         private DelegateCommand<ListBox> focusToListBoxCommand;
@@ -150,6 +152,22 @@ namespace ImageChecker.ViewModels
 
                 target.Focus();
                 l.SelectedItem = l.Items[l.SelectedIndex];
+            }));
+        }
+
+        public DelegateCommand<ListBox> CursorDownCommand
+        {
+            get => cursorDownCommand ?? (cursorDownCommand = new DelegateCommand<ListBox>((lb) =>
+            {
+                lb.SelectedIndex++;
+            }));
+        }
+
+        public DelegateCommand<ListBox> CursorUpCommand
+        {
+            get => cursorUpCommand ?? (cursorUpCommand = new DelegateCommand<ListBox>((lb) =>
+            {
+                lb.SelectedIndex--;
             }));
         }
 

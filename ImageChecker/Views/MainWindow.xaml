@@ -347,6 +347,7 @@
             Grid.Row="1"
             Grid.Column="1"
             ItemsSource="{Binding ImageContainerA.FilteredFiles}"
+            SelectedIndex="{Binding ImageContainerA.SelectedIndex}"
             SelectedItem="{Binding ImageContainerA.CurrentFile}">
 
             <i:Interaction.Triggers>
@@ -354,6 +355,19 @@
                     <i:InvokeCommandAction Command="{Binding ChangeImageGroupCommand}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
+
+            <ListBox.InputBindings>
+                <KeyBinding
+                    Key="J"
+                    Command="{Binding CursorDownCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}}" />
+
+                <KeyBinding
+                    Key="K"
+                    Command="{Binding CursorUpCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}}" />
+            </ListBox.InputBindings>
+
         </ListBox>
 
         <ListBox
@@ -361,21 +375,63 @@
             Grid.Row="1"
             Grid.Column="2"
             ItemsSource="{Binding ImageContainerB.FilteredFiles}"
-            SelectedItem="{Binding ImageContainerB.CurrentFile}" />
+            SelectedIndex="{Binding ImageContainerB.SelectedIndex}"
+            SelectedItem="{Binding ImageContainerB.CurrentFile}">
+
+            <ListBox.InputBindings>
+                <KeyBinding
+                    Key="J"
+                    Command="{Binding CursorDownCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}}" />
+
+                <KeyBinding
+                    Key="K"
+                    Command="{Binding CursorUpCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}}" />
+            </ListBox.InputBindings>
+        </ListBox>
 
         <ListBox
             Name="ImageListBoxC"
             Grid.Row="1"
             Grid.Column="3"
             ItemsSource="{Binding ImageContainerC.FilteredFiles}"
-            SelectedItem="{Binding ImageContainerC.CurrentFile}" />
+            SelectedIndex="{Binding ImageContainerC.SelectedIndex}"
+            SelectedItem="{Binding ImageContainerC.CurrentFile}">
+
+            <ListBox.InputBindings>
+                <KeyBinding
+                    Key="J"
+                    Command="{Binding CursorDownCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}}" />
+
+                <KeyBinding
+                    Key="K"
+                    Command="{Binding CursorUpCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}}" />
+            </ListBox.InputBindings>
+        </ListBox>
 
         <ListBox
             Name="ImageListBoxD"
             Grid.Row="1"
             Grid.Column="4"
             ItemsSource="{Binding ImageContainerD.FilteredFiles}"
-            SelectedItem="{Binding ImageContainerD.CurrentFile}" />
+            SelectedIndex="{Binding ImageContainerD.SelectedIndex}"
+            SelectedItem="{Binding ImageContainerD.CurrentFile}">
+
+            <ListBox.InputBindings>
+                <KeyBinding
+                    Key="J"
+                    Command="{Binding CursorDownCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}}" />
+
+                <KeyBinding
+                    Key="K"
+                    Command="{Binding CursorUpCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}}" />
+            </ListBox.InputBindings>
+        </ListBox>
 
         <StatusBar
             Grid.Row="2"
