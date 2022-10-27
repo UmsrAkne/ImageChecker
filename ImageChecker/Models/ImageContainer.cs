@@ -11,6 +11,7 @@ namespace ImageChecker.Models
         private readonly string keyChar;
         private List<ImageFile> filteredFiles = new List<ImageFile>();
         private bool drawing;
+        private int selectedIndex;
         private ImageFile currentFile;
 
         public ImageContainer(string keyChar)
@@ -26,6 +27,8 @@ namespace ImageChecker.Models
         public ImageFile CurrentFile { get => currentFile; set => SetProperty(ref currentFile, value); }
 
         public bool Drawing { get => drawing; set => SetProperty(ref drawing, value); }
+
+        public int SelectedIndex { get => selectedIndex; set => SetProperty(ref selectedIndex, value); }
 
         private List<ImageFile> Files { get; set; } = new List<ImageFile>();
 
