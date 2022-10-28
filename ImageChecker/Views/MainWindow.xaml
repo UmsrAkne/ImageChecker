@@ -121,7 +121,13 @@
             Grid.Column="0"
             Grid.ColumnSpan="5"
             Background="Transparent">
-            <MenuItem Foreground="WhiteSmoke" Header="File" />
+            <MenuItem Foreground="WhiteSmoke" Header="File">
+                <MenuItem
+                    Command="{Binding ShowSettingPageCommand}"
+                    Foreground="Black"
+                    Header="Setting" />
+            </MenuItem>
+
             <MenuItem Foreground="WhiteSmoke" Header="Edit">
                 <MenuItem
                     Command="{Binding GenerateImageTagCommand}"
@@ -131,11 +137,6 @@
                     Command="{Binding GenerateDrawTagCommand}"
                     Foreground="Black"
                     Header="Generate draw tag (Ctrl + D)" />
-
-                <MenuItem
-                    Command="{Binding ResetBaseTextCommand}"
-                    Foreground="Black"
-                    Header="Reset tag base text" />
             </MenuItem>
         </Menu>
 
@@ -316,26 +317,6 @@
                         Minimum="-1000"
                         TickFrequency="10"
                         Value="{Binding Y}" />
-
-                </DockPanel>
-
-                <DockPanel>
-                    <TextBlock
-                        Width="auto"
-                        HorizontalAlignment="Left"
-                        Text="Image tag : " />
-
-                    <TextBox Margin="5,2" Text="{Binding ImageTagReplaceBaseText, UpdateSourceTrigger=PropertyChanged}" />
-
-                </DockPanel>
-
-                <DockPanel>
-                    <TextBlock
-                        Width="auto"
-                        HorizontalAlignment="Left"
-                        Text="draw tag  : " />
-
-                    <TextBox Margin="5,2" Text="{Binding DrawTagReplaceBaseText, UpdateSourceTrigger=PropertyChanged}" />
 
                 </DockPanel>
 

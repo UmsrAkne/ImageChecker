@@ -2,8 +2,10 @@
 using System.Windows;
 using System.Windows.Controls;
 using ImageChecker.Models;
+using ImageChecker.Views;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
 
 namespace ImageChecker.ViewModels
 {
@@ -11,13 +13,12 @@ namespace ImageChecker.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         private readonly List<ImageContainer> imageContainers;
+        private readonly IDialogService dialogService;
 
         private string currentDirectoryPath;
         private double scale = 0.5;
         private int x;
         private int y;
-        private string imageTagReplaceBaseText;
-        private string drawTagReplaceBaseText;
         private string statusBarText;
 
         private DelegateCommand<ListBox> cursorDownCommand;
@@ -26,11 +27,8 @@ namespace ImageChecker.ViewModels
         private DelegateCommand generateDrawTagCommand;
         private DelegateCommand<ListBox> focusToListBoxCommand;
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IDialogService dialogService)
         {
-            ImageTagReplaceBaseText = Properties.Settings.Default.ImageTagReplaceBaseText;
-            DrawTagReplaceBaseText = Properties.Settings.Default.DrawTagReplaceBaseText;
-
             imageContainers = new List<ImageContainer>()
             {
                 ImageContainerA,
@@ -38,6 +36,8 @@ namespace ImageChecker.ViewModels
                 ImageContainerC,
                 ImageContainerD,
             };
+
+            this.dialogService = dialogService;
         }
 
         public string CurrentDirectoryPath { get => currentDirectoryPath; private set => SetProperty(ref currentDirectoryPath, value); }
@@ -80,28 +80,6 @@ namespace ImageChecker.ViewModels
             }
         }
 
-        public string ImageTagReplaceBaseText
-        {
-            get => imageTagReplaceBaseText;
-            set
-            {
-                SetProperty(ref imageTagReplaceBaseText, value);
-                Properties.Settings.Default.ImageTagReplaceBaseText = value;
-                Properties.Settings.Default.Save();
-            }
-        }
-
-        public string DrawTagReplaceBaseText
-        {
-            get => drawTagReplaceBaseText;
-            set
-            {
-                SetProperty(ref drawTagReplaceBaseText, value);
-                Properties.Settings.Default.DrawTagReplaceBaseText = value;
-                Properties.Settings.Default.Save();
-            }
-        }
-
         public string StatusBarText { get => statusBarText; set => SetProperty(ref statusBarText, value); }
 
         public DelegateCommand GenerateImageTagCommand
@@ -113,7 +91,7 @@ namespace ImageChecker.ViewModels
                 string imageC = ImageContainerC.GetCurrentFileName();
                 string imageD = ImageContainerD.GetCurrentFileName();
 
-                var baseText = ImageTagReplaceBaseText;
+                var baseText = Properties.Settings.Default.ImageTagReplaceBaseText;
                 baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
                 Clipboard.SetText(baseText);
             }));
@@ -128,17 +106,11 @@ namespace ImageChecker.ViewModels
                  string imageC = ImageContainerC.GetCurrentFileName();
                  string imageD = ImageContainerD.GetCurrentFileName();
 
-                 var baseText = drawTagReplaceBaseText;
+                 var baseText = Properties.Settings.Default.DrawTagReplaceBaseText;
                  baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
                  Clipboard.SetText(baseText);
             }));
         }
-
-        public DelegateCommand ResetBaseTextCommand => new DelegateCommand(() =>
-        {
-            ImageTagReplaceBaseText = "<image a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" scale=\"\" x=\"\" y=\"\" rotation=\"\" statusInherit=\"\" target=\"main\" />";
-            DrawTagReplaceBaseText = "<draw a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" depth=\"\" delay=\"\" target=\"main\"/>";
-        });
 
         public DelegateCommand<ListBox> FocusToListBoxCommand
         {
@@ -176,6 +148,11 @@ namespace ImageChecker.ViewModels
             ImageContainerB.SelectSameGroupImages(ImageContainerA.CurrentFile);
             ImageContainerC.SelectSameGroupImages(ImageContainerA.CurrentFile);
             ImageContainerD.SelectSameGroupImages(ImageContainerA.CurrentFile);
+        });
+
+        public DelegateCommand ShowSettingPageCommand => new DelegateCommand(() =>
+        {
+            dialogService.ShowDialog(nameof(SettingPage), default, _ => { });
         });
 
         public void LoadImages(string directoryPath)
