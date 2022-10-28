@@ -2,8 +2,10 @@
 using System.Windows;
 using System.Windows.Controls;
 using ImageChecker.Models;
+using ImageChecker.Views;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
 
 namespace ImageChecker.ViewModels
 {
@@ -11,6 +13,7 @@ namespace ImageChecker.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         private readonly List<ImageContainer> imageContainers;
+        private readonly IDialogService dialogService;
 
         private string currentDirectoryPath;
         private double scale = 0.5;
@@ -26,7 +29,7 @@ namespace ImageChecker.ViewModels
         private DelegateCommand generateDrawTagCommand;
         private DelegateCommand<ListBox> focusToListBoxCommand;
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IDialogService dialogService)
         {
             ImageTagReplaceBaseText = Properties.Settings.Default.ImageTagReplaceBaseText;
             DrawTagReplaceBaseText = Properties.Settings.Default.DrawTagReplaceBaseText;
@@ -38,6 +41,8 @@ namespace ImageChecker.ViewModels
                 ImageContainerC,
                 ImageContainerD,
             };
+
+            this.dialogService = dialogService;
         }
 
         public string CurrentDirectoryPath { get => currentDirectoryPath; private set => SetProperty(ref currentDirectoryPath, value); }
@@ -177,6 +182,12 @@ namespace ImageChecker.ViewModels
             ImageContainerC.SelectSameGroupImages(ImageContainerA.CurrentFile);
             ImageContainerD.SelectSameGroupImages(ImageContainerA.CurrentFile);
         });
+
+        public DelegateCommand ShowSettingPageCommand => new DelegateCommand(() =>
+        {
+            dialogService.ShowDialog(nameof(SettingPage), default, _ => { });
+        });
+
 
         public void LoadImages(string directoryPath)
         {

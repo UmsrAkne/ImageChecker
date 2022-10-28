@@ -121,7 +121,13 @@
             Grid.Column="0"
             Grid.ColumnSpan="5"
             Background="Transparent">
-            <MenuItem Foreground="WhiteSmoke" Header="File" />
+            <MenuItem Foreground="WhiteSmoke" Header="File">
+                <MenuItem
+                    Command="{Binding ShowSettingPageCommand}"
+                    Foreground="Black"
+                    Header="Setting" />
+            </MenuItem>
+
             <MenuItem Foreground="WhiteSmoke" Header="Edit">
                 <MenuItem
                     Command="{Binding GenerateImageTagCommand}"
