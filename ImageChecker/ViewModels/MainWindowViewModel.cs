@@ -19,8 +19,6 @@ namespace ImageChecker.ViewModels
         private double scale = 0.5;
         private int x;
         private int y;
-        private string imageTagReplaceBaseText;
-        private string drawTagReplaceBaseText;
         private string statusBarText;
 
         private DelegateCommand<ListBox> cursorDownCommand;
@@ -31,9 +29,6 @@ namespace ImageChecker.ViewModels
 
         public MainWindowViewModel(IDialogService dialogService)
         {
-            ImageTagReplaceBaseText = Properties.Settings.Default.ImageTagReplaceBaseText;
-            DrawTagReplaceBaseText = Properties.Settings.Default.DrawTagReplaceBaseText;
-
             imageContainers = new List<ImageContainer>()
             {
                 ImageContainerA,
@@ -85,28 +80,6 @@ namespace ImageChecker.ViewModels
             }
         }
 
-        public string ImageTagReplaceBaseText
-        {
-            get => imageTagReplaceBaseText;
-            set
-            {
-                SetProperty(ref imageTagReplaceBaseText, value);
-                Properties.Settings.Default.ImageTagReplaceBaseText = value;
-                Properties.Settings.Default.Save();
-            }
-        }
-
-        public string DrawTagReplaceBaseText
-        {
-            get => drawTagReplaceBaseText;
-            set
-            {
-                SetProperty(ref drawTagReplaceBaseText, value);
-                Properties.Settings.Default.DrawTagReplaceBaseText = value;
-                Properties.Settings.Default.Save();
-            }
-        }
-
         public string StatusBarText { get => statusBarText; set => SetProperty(ref statusBarText, value); }
 
         public DelegateCommand GenerateImageTagCommand
@@ -118,7 +91,7 @@ namespace ImageChecker.ViewModels
                 string imageC = ImageContainerC.GetCurrentFileName();
                 string imageD = ImageContainerD.GetCurrentFileName();
 
-                var baseText = ImageTagReplaceBaseText;
+                var baseText = Properties.Settings.Default.ImageTagReplaceBaseText;
                 baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
                 Clipboard.SetText(baseText);
             }));
@@ -133,7 +106,7 @@ namespace ImageChecker.ViewModels
                  string imageC = ImageContainerC.GetCurrentFileName();
                  string imageD = ImageContainerD.GetCurrentFileName();
 
-                 var baseText = drawTagReplaceBaseText;
+                 var baseText = Properties.Settings.Default.DrawTagReplaceBaseText;
                  baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
                  Clipboard.SetText(baseText);
             }));
@@ -181,7 +154,6 @@ namespace ImageChecker.ViewModels
         {
             dialogService.ShowDialog(nameof(SettingPage), default, _ => { });
         });
-
 
         public void LoadImages(string directoryPath)
         {
