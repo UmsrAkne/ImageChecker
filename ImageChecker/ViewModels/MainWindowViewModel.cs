@@ -139,12 +139,6 @@ namespace ImageChecker.ViewModels
             }));
         }
 
-        public DelegateCommand ResetBaseTextCommand => new DelegateCommand(() =>
-        {
-            ImageTagReplaceBaseText = "<image a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" scale=\"\" x=\"\" y=\"\" rotation=\"\" statusInherit=\"\" target=\"main\" />";
-            DrawTagReplaceBaseText = "<draw a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" depth=\"\" delay=\"\" target=\"main\"/>";
-        });
-
         public DelegateCommand<ListBox> FocusToListBoxCommand
         {
             get => focusToListBoxCommand ?? (focusToListBoxCommand = new DelegateCommand<ListBox>((l) =>

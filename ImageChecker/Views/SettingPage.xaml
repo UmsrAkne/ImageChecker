@@ -19,10 +19,13 @@
 
             <StackPanel Margin="5" Orientation="Horizontal">
                 <TextBlock Text="Image タグの生成用" />
-                <Button Margin="10,0" Content="デフォルトに戻す" />
+                <Button
+                    Margin="10,0"
+                    Command="{Binding ResetImageTagBaseTextCommand}"
+                    Content="デフォルトに戻す" />
             </StackPanel>
 
-            <TextBox Margin="5,0" />
+            <TextBox Margin="5,0" Text="{Binding ImageTagBaseText}" />
 
             <Border
                 Height="1"
@@ -31,10 +34,13 @@
 
             <StackPanel Margin="5" Orientation="Horizontal">
                 <TextBlock Text="Draw タグの生成用" />
-                <Button Margin="10,0" Content="デフォルトに戻す" />
+                <Button
+                    Margin="10,0"
+                    Command="{Binding ResetDrawTagBaseTextCommand}"
+                    Content="デフォルトに戻す" />
             </StackPanel>
 
-            <TextBox Margin="5,0" />
+            <TextBox Margin="5,0" Text="{Binding DrawTagBaseText}" />
 
         </StackPanel>
 
@@ -44,6 +50,7 @@
                 Width="50"
                 Margin="10"
                 HorizontalAlignment="Right"
+                Command="{Binding ExitCommand}"
                 Content="終了" />
         </StackPanel>
 
