@@ -31,9 +31,12 @@ namespace ImageChecker.Models
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             var vm = ((Window)sender).DataContext as MainWindowViewModel;
 
-            if (Directory.Exists(files[0]))
+            if (files != null && Directory.Exists(files[0]))
             {
-                vm.LoadImages(files[0]);
+                if (vm != null)
+                {
+                    vm.LoadImages(files[0]);
+                }
             }
         }
 
