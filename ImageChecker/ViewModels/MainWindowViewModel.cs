@@ -96,7 +96,7 @@ namespace ImageChecker.ViewModels
 
                 var baseText = Properties.Settings.Default.ImageTagReplaceBaseText;
                 baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
-                Clipboard.SetDataObject(baseText);
+                SaveHistory(baseText, true);
             }));
         }
 
@@ -111,7 +111,7 @@ namespace ImageChecker.ViewModels
 
                  var baseText = Properties.Settings.Default.DrawTagReplaceBaseText;
                  baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
-                 Clipboard.SetDataObject(baseText);
+                 SaveHistory(baseText, false);
             }));
         }
 
@@ -167,6 +167,20 @@ namespace ImageChecker.ViewModels
                 ic.Load(directoryPath);
                 ic.SelectSameGroupImages(ImageContainerA.CurrentFile);
             }
+        }
+
+        private void SaveHistory(string text, bool isImageTag)
+        {
+            ClipboardHistories.Insert(0, new Tag(isImageTag)
+            {
+                ImageNameA = ImageContainerA.GetCurrentFileName(),
+                ImageNameB = ImageContainerB.GetCurrentFileName(),
+                ImageNameC = ImageContainerC.GetCurrentFileName(),
+                ImageNameD = ImageContainerD.GetCurrentFileName(),
+                CopiedText = text,
+            });
+
+            Clipboard.SetDataObject(text);
         }
     }
 }
