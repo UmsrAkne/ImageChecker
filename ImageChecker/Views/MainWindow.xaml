@@ -347,6 +347,12 @@
                     Key="K"
                     Command="{Binding CursorUpCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}}" />
+
+                <KeyBinding
+                    Key="L"
+                    Command="{Binding FocusToListBoxCommand}"
+                    CommandParameter="{Binding ElementName=ImageListBoxB}" />
+
             </ListBox.InputBindings>
 
         </ListBox>
@@ -369,6 +375,17 @@
                     Key="K"
                     Command="{Binding CursorUpCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}}" />
+
+                <KeyBinding
+                    Key="H"
+                    Command="{Binding FocusToListBoxCommand}"
+                    CommandParameter="{Binding ElementName=ImageListBoxA}" />
+
+                <KeyBinding
+                    Key="L"
+                    Command="{Binding FocusToListBoxCommand}"
+                    CommandParameter="{Binding ElementName=ImageListBoxC}" />
+
             </ListBox.InputBindings>
         </ListBox>
 
@@ -390,6 +407,17 @@
                     Key="K"
                     Command="{Binding CursorUpCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}}" />
+
+                <KeyBinding
+                    Key="H"
+                    Command="{Binding FocusToListBoxCommand}"
+                    CommandParameter="{Binding ElementName=ImageListBoxB}" />
+
+                <KeyBinding
+                    Key="L"
+                    Command="{Binding FocusToListBoxCommand}"
+                    CommandParameter="{Binding ElementName=ImageListBoxD}" />
+
             </ListBox.InputBindings>
         </ListBox>
 
@@ -411,6 +439,12 @@
                     Key="K"
                     Command="{Binding CursorUpCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}}" />
+
+                <KeyBinding
+                    Key="H"
+                    Command="{Binding FocusToListBoxCommand}"
+                    CommandParameter="{Binding ElementName=ImageListBoxC}" />
+
             </ListBox.InputBindings>
         </ListBox>
 
