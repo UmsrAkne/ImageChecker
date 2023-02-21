@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using ImageChecker.Models;
@@ -49,6 +50,8 @@ namespace ImageChecker.ViewModels
         public ImageContainer ImageContainerC { get; } = new ImageContainer("C");
 
         public ImageContainer ImageContainerD { get; } = new ImageContainer("D");
+
+        public ObservableCollection<Tag> ClipboardHistories { get; } = new ObservableCollection<Tag>();
 
         public double Scale
         {
