@@ -324,9 +324,19 @@
             </StackPanel>
 
             <ListBox
+                x:Name="HistoryListBox"
                 Grid.Row="3"
                 HorizontalContentAlignment="Left"
                 ItemsSource="{Binding ClipboardHistories}">
+
+                <ListBox.InputBindings>
+                    <KeyBinding
+                        Key="C"
+                        Command="{Binding CopyFromHistoryCommand}"
+                        CommandParameter="{Binding SelectedItem, ElementName=HistoryListBox}"
+                        Modifiers="Control" />
+                </ListBox.InputBindings>
+
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Foreground="WhiteSmoke" Text="{Binding CopiedText}" />

@@ -158,6 +158,14 @@ namespace ImageChecker.ViewModels
             dialogService.ShowDialog(nameof(SettingPage), default, _ => { });
         });
 
+        public DelegateCommand<Tag> CopyFromHistoryCommand => new DelegateCommand<Tag>(tag =>
+        {
+            if (tag != null)
+            {
+                Clipboard.SetDataObject(tag.CopiedText);
+            }
+        });
+
         public void LoadImages(string directoryPath)
         {
             CurrentDirectoryPath = directoryPath;
