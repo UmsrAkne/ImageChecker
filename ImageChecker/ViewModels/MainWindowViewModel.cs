@@ -166,6 +166,17 @@ namespace ImageChecker.ViewModels
             }
         });
 
+        public DelegateCommand<Tag> SetImagesCommand => new DelegateCommand<Tag>(tag =>
+        {
+            if (tag != null)
+            {
+                ImageContainerA.SetImageByName(tag.ImageNameA);
+                ImageContainerB.SetImageByName(tag.ImageNameB);
+                ImageContainerC.SetImageByName(tag.ImageNameC);
+                ImageContainerD.SetImageByName(tag.ImageNameD);
+            }
+        });
+
         public void LoadImages(string directoryPath)
         {
             CurrentDirectoryPath = directoryPath;

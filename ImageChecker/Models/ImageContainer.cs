@@ -66,5 +66,15 @@ namespace ImageChecker.Models
 
             return Path.GetFileNameWithoutExtension(CurrentFile.FileInfo.FullName);
         }
+
+        public void SetImageByName(string name)
+        {
+            Drawing = !string.IsNullOrWhiteSpace(name);
+            if (Drawing)
+            {
+                CurrentFile =
+                    FilteredFiles.FirstOrDefault(f => Path.GetFileNameWithoutExtension(f.FileInfo.Name) == name);
+            }
+        }
     }
 }

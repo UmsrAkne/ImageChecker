@@ -339,7 +339,14 @@
 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Foreground="WhiteSmoke" Text="{Binding CopiedText}" />
+                        <ContentControl>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDoubleClick">
+                                    <i:InvokeCommandAction Command="{Binding DataContext.SetImagesCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <TextBlock Foreground="WhiteSmoke" Text="{Binding CopiedText}" />
+                        </ContentControl>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
