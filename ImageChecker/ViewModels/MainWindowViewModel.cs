@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using ImageChecker.Models;
@@ -50,6 +51,8 @@ namespace ImageChecker.ViewModels
 
         public ImageContainer ImageContainerD { get; } = new ImageContainer("D");
 
+        public ObservableCollection<Tag> ClipboardHistories { get; } = new ObservableCollection<Tag>();
+
         public double Scale
         {
             get => scale;
@@ -93,7 +96,7 @@ namespace ImageChecker.ViewModels
 
                 var baseText = Properties.Settings.Default.ImageTagReplaceBaseText;
                 baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
-                Clipboard.SetDataObject(baseText);
+                SaveHistory(baseText, true);
             }));
         }
 
@@ -108,7 +111,7 @@ namespace ImageChecker.ViewModels
 
                  var baseText = Properties.Settings.Default.DrawTagReplaceBaseText;
                  baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
-                 Clipboard.SetDataObject(baseText);
+                 SaveHistory(baseText, false);
             }));
         }
 
@@ -155,6 +158,25 @@ namespace ImageChecker.ViewModels
             dialogService.ShowDialog(nameof(SettingPage), default, _ => { });
         });
 
+        public DelegateCommand<Tag> CopyFromHistoryCommand => new DelegateCommand<Tag>(tag =>
+        {
+            if (tag != null)
+            {
+                Clipboard.SetDataObject(tag.CopiedText);
+            }
+        });
+
+        public DelegateCommand<Tag> SetImagesCommand => new DelegateCommand<Tag>(tag =>
+        {
+            if (tag != null)
+            {
+                ImageContainerA.SetImageByName(tag.ImageNameA);
+                ImageContainerB.SetImageByName(tag.ImageNameB);
+                ImageContainerC.SetImageByName(tag.ImageNameC);
+                ImageContainerD.SetImageByName(tag.ImageNameD);
+            }
+        });
+
         public void LoadImages(string directoryPath)
         {
             CurrentDirectoryPath = directoryPath;
@@ -164,6 +186,20 @@ namespace ImageChecker.ViewModels
                 ic.Load(directoryPath);
                 ic.SelectSameGroupImages(ImageContainerA.CurrentFile);
             }
+        }
+
+        private void SaveHistory(string text, bool isImageTag)
+        {
+            ClipboardHistories.Insert(0, new Tag(isImageTag)
+            {
+                ImageNameA = ImageContainerA.GetCurrentFileName(),
+                ImageNameB = ImageContainerB.GetCurrentFileName(),
+                ImageNameC = ImageContainerC.GetCurrentFileName(),
+                ImageNameD = ImageContainerD.GetCurrentFileName(),
+                CopiedText = text,
+            });
+
+            Clipboard.SetDataObject(text);
         }
     }
 }

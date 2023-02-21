@@ -145,6 +145,7 @@
                 <RowDefinition Height="450" />
                 <RowDefinition Height="30" />
                 <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
 
             <Canvas
@@ -321,6 +322,35 @@
                 </DockPanel>
 
             </StackPanel>
+
+            <ListBox
+                x:Name="HistoryListBox"
+                Grid.Row="3"
+                HorizontalContentAlignment="Left"
+                ItemsSource="{Binding ClipboardHistories}">
+
+                <ListBox.InputBindings>
+                    <KeyBinding
+                        Key="C"
+                        Command="{Binding CopyFromHistoryCommand}"
+                        CommandParameter="{Binding SelectedItem, ElementName=HistoryListBox}"
+                        Modifiers="Control" />
+                </ListBox.InputBindings>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDoubleClick">
+                                    <i:InvokeCommandAction Command="{Binding DataContext.SetImagesCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <TextBlock Foreground="WhiteSmoke" Text="{Binding CopiedText}" />
+                        </ContentControl>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
         </Grid>
 
         <ListBox
