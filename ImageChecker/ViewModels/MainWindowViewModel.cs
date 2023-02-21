@@ -93,7 +93,7 @@ namespace ImageChecker.ViewModels
 
                 var baseText = Properties.Settings.Default.ImageTagReplaceBaseText;
                 baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
-                Clipboard.SetText(baseText);
+                Clipboard.SetDataObject(baseText);
             }));
         }
 
@@ -108,7 +108,7 @@ namespace ImageChecker.ViewModels
 
                  var baseText = Properties.Settings.Default.DrawTagReplaceBaseText;
                  baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
-                 Clipboard.SetText(baseText);
+                 Clipboard.SetDataObject(baseText);
             }));
         }
 
