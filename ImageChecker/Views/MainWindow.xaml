@@ -145,6 +145,7 @@
                 <RowDefinition Height="450" />
                 <RowDefinition Height="30" />
                 <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
 
             <Canvas
@@ -321,6 +322,9 @@
                 </DockPanel>
 
             </StackPanel>
+
+            <ListBox Grid.Row="3" />
+
         </Grid>
 
         <ListBox
