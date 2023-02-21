@@ -323,7 +323,16 @@
 
             </StackPanel>
 
-            <ListBox Grid.Row="3" />
+            <ListBox
+                Grid.Row="3"
+                HorizontalContentAlignment="Left"
+                ItemsSource="{Binding ClipboardHistories}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Foreground="WhiteSmoke" Text="{Binding CopiedText}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
         </Grid>
 
