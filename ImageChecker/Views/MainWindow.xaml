@@ -144,7 +144,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="450" />
                 <RowDefinition Height="30" />
-                <RowDefinition />
+                <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
@@ -268,8 +268,8 @@
                     </StackPanel>
                 </Border>
             </StackPanel>
-            <StackPanel Grid.Row="2">
 
+            <StackPanel Grid.Row="2" Margin="0,3">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
                         <Setter Property="Foreground" Value="White" />
