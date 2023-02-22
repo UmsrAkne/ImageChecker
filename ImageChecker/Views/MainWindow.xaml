@@ -10,7 +10,7 @@
     xmlns:viewModels="clr-namespace:ImageChecker.ViewModels"
     Title="{Binding CurrentDirectoryPath}"
     Width="1200"
-    Height="700"
+    Height="800"
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowDrop="True"
