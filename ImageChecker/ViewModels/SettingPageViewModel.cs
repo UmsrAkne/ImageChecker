@@ -8,6 +8,12 @@ namespace ImageChecker.ViewModels
     // ReSharper disable once ClassNeverInstantiated.Global
     public class SettingPageViewModel : BindableBase, IDialogAware
     {
+        public const string DefaultImageTagBaseText =
+            "<image a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" scale=\"1.0\" x=\"0\" y=\"0\" rotation=\"0\" target=\"main\" />";
+
+        public const string DefaultDrawTagBaseText =
+            "<draw a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" depth=\"0.1\" target=\"main\" />";
+
         private string imageTagBaseText;
         private string drawTagBaseText;
 
@@ -27,12 +33,12 @@ namespace ImageChecker.ViewModels
 
         public DelegateCommand ResetImageTagBaseTextCommand => new DelegateCommand(() =>
         {
-            ImageTagBaseText = "<image a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" scale=\"1.0\" x=\"0\" y=\"0\" rotation=\"0\" target=\"main\" />";
+            ImageTagBaseText = DefaultImageTagBaseText;
         });
 
         public DelegateCommand ResetDrawTagBaseTextCommand => new DelegateCommand(() =>
         {
-            DrawTagBaseText = "<draw a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" depth=\"0.1\" target=\"main\" />";
+            DrawTagBaseText = DefaultDrawTagBaseText;
         });
 
         public DelegateCommand ExitCommand => new DelegateCommand(() =>

@@ -38,6 +38,16 @@ namespace ImageChecker.ViewModels
                 ImageContainerD,
             };
 
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.ImageTagReplaceBaseText))
+            {
+                Properties.Settings.Default.ImageTagReplaceBaseText = SettingPageViewModel.DefaultImageTagBaseText;
+            }
+
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.DrawTagReplaceBaseText))
+            {
+                Properties.Settings.Default.DrawTagReplaceBaseText = SettingPageViewModel.DefaultDrawTagBaseText;
+            }
+
             this.dialogService = dialogService;
         }
 
