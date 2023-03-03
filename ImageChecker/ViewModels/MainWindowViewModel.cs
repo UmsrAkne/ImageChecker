@@ -17,7 +17,7 @@ namespace ImageChecker.ViewModels
         private readonly IDialogService dialogService;
 
         private string currentDirectoryPath;
-        private double scale = 0.5;
+        private double scale = 0.34;
         private int x;
         private int y;
         private string statusBarText;
@@ -27,6 +27,8 @@ namespace ImageChecker.ViewModels
         private DelegateCommand generateImageTagCommand;
         private DelegateCommand generateDrawTagCommand;
         private DelegateCommand<ListBox> focusToListBoxCommand;
+        private int imageViewWidth = 640;
+        private int imageViewHeight = 360;
 
         public MainWindowViewModel(IDialogService dialogService)
         {
@@ -49,6 +51,7 @@ namespace ImageChecker.ViewModels
             }
 
             this.dialogService = dialogService;
+            ImageViewHeight = imageViewHeight;
         }
 
         public string CurrentDirectoryPath { get => currentDirectoryPath; private set => SetProperty(ref currentDirectoryPath, value); }
@@ -94,6 +97,10 @@ namespace ImageChecker.ViewModels
         }
 
         public string StatusBarText { get => statusBarText; set => SetProperty(ref statusBarText, value); }
+
+        public int ImageViewWidth { get => imageViewWidth; private set => SetProperty(ref imageViewWidth, value); }
+
+        public int ImageViewHeight { get => imageViewHeight; private set => SetProperty(ref imageViewHeight, value); }
 
         public DelegateCommand GenerateImageTagCommand
         {
@@ -185,6 +192,18 @@ namespace ImageChecker.ViewModels
                 ImageContainerC.SetImageByName(tag.ImageNameC);
                 ImageContainerD.SetImageByName(tag.ImageNameD);
             }
+        });
+
+        public DelegateCommand ChangeToHdRatio => new DelegateCommand(() =>
+        {
+            ImageViewWidth = 640;
+            ImageViewHeight = 360;
+        });
+
+        public DelegateCommand ChangeToVgaRatio => new DelegateCommand(() =>
+        {
+            ImageViewHeight = 640;
+            ImageViewHeight = 480;
         });
 
         public void LoadImages(string directoryPath)

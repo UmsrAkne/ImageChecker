@@ -101,7 +101,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="600" />
+            <ColumnDefinition Width="{Binding ImageViewWidth}" />
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
@@ -138,11 +138,23 @@
                     Foreground="Black"
                     Header="Generate draw tag (Ctrl + D)" />
             </MenuItem>
+
+            <MenuItem Foreground="WhiteSmoke" Header="View">
+                <MenuItem
+                    Command="{Binding ChangeToVgaRatio}"
+                    Foreground="Black"
+                    Header="Change To 4:3" />
+
+                <MenuItem
+                    Command="{Binding ChangeToHdRatio}"
+                    Foreground="Black"
+                    Header="Change To 16:9" />
+            </MenuItem>
         </Menu>
 
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="450" />
+                <RowDefinition Height="{Binding ImageViewHeight}" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="auto" />
                 <RowDefinition />
@@ -288,7 +300,7 @@
                         IsSnapToTickEnabled="true"
                         Maximum="4"
                         Minimum="0.1"
-                        TickFrequency="0.1"
+                        TickFrequency="0.02"
                         Value="{Binding Scale}" />
 
                 </DockPanel>
