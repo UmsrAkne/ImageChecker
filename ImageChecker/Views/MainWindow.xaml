@@ -288,7 +288,7 @@
                         IsSnapToTickEnabled="true"
                         Maximum="4"
                         Minimum="0.1"
-                        TickFrequency="0.1"
+                        TickFrequency="0.02"
                         Value="{Binding Scale}" />
 
                 </DockPanel>
