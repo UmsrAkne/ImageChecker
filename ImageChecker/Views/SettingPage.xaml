@@ -25,7 +25,10 @@
                     Content="デフォルトに戻す" />
             </StackPanel>
 
-            <TextBox Margin="5,0" Text="{Binding ImageTagBaseText}" />
+            <TextBox
+                Margin="5,0"
+                AcceptsTab="True"
+                Text="{Binding ImageTagBaseText}" />
 
             <Border
                 Height="1"
@@ -40,7 +43,10 @@
                     Content="デフォルトに戻す" />
             </StackPanel>
 
-            <TextBox Margin="5,0" Text="{Binding DrawTagBaseText}" />
+            <TextBox
+                Margin="5,0"
+                AcceptsTab="True"
+                Text="{Binding DrawTagBaseText}" />
 
         </StackPanel>
 
