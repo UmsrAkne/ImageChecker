@@ -294,7 +294,7 @@
                 <DockPanel>
 
                     <TextBlock Text="Scale = " />
-                    <TextBlock Text="{Binding Scale}" />
+                    <TextBlock Text="{Binding DisplayScale}" />
 
                     <Slider
                         IsSnapToTickEnabled="true"

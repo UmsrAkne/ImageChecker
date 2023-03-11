@@ -29,6 +29,7 @@ namespace ImageChecker.ViewModels
         private DelegateCommand<ListBox> focusToListBoxCommand;
         private int imageViewWidth = 640;
         private int imageViewHeight = 360;
+        private double displayScale = 1.0;
 
         public MainWindowViewModel(IDialogService dialogService)
         {
@@ -72,8 +73,15 @@ namespace ImageChecker.ViewModels
             set
             {
                 SetProperty(ref scale, value);
+                DisplayScale = value;
                 imageContainers?.ForEach(ic => ic.CurrentFile.Scale = scale);
             }
+        }
+
+        public double DisplayScale
+        {
+            get => displayScale;
+            private set => SetProperty(ref displayScale, value * 2);
         }
 
         public int X
