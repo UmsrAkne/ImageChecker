@@ -81,8 +81,8 @@ namespace ImageChecker.ViewModels
             get => x;
             set
             {
-                imageContainers?.ForEach(ic => ic.CurrentFile.X = value);
                 SetProperty(ref x, value);
+                imageContainers?.ForEach(ic => ic.CurrentFile.X = value);
             }
         }
 
@@ -91,8 +91,8 @@ namespace ImageChecker.ViewModels
             get => y;
             set
             {
-                imageContainers?.ForEach(ic => ic.CurrentFile.Y = value);
                 SetProperty(ref y, value);
+                imageContainers?.ForEach(ic => ic.CurrentFile.Y = value);
             }
         }
 
