@@ -294,13 +294,13 @@
                 <DockPanel>
 
                     <TextBlock Text="Scale = " />
-                    <TextBlock Text="{Binding Scale}" />
+                    <TextBlock Text="{Binding DisplayScale}" />
 
                     <Slider
                         IsSnapToTickEnabled="true"
                         Maximum="4"
                         Minimum="0.1"
-                        TickFrequency="0.02"
+                        TickFrequency="0.05"
                         Value="{Binding Scale}" />
 
                 </DockPanel>

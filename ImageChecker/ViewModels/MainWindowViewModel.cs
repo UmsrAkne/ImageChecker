@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using ImageChecker.Models;
@@ -17,7 +18,7 @@ namespace ImageChecker.ViewModels
         private readonly IDialogService dialogService;
 
         private string currentDirectoryPath;
-        private double scale = 0.34;
+        private double scale = 0.5;
         private int x;
         private int y;
         private string statusBarText;
@@ -29,6 +30,7 @@ namespace ImageChecker.ViewModels
         private DelegateCommand<ListBox> focusToListBoxCommand;
         private int imageViewWidth = 640;
         private int imageViewHeight = 360;
+        private double displayScale = 1.0;
 
         public MainWindowViewModel(IDialogService dialogService)
         {
@@ -72,8 +74,15 @@ namespace ImageChecker.ViewModels
             set
             {
                 SetProperty(ref scale, value);
+                DisplayScale = value;
                 imageContainers?.ForEach(ic => ic.CurrentFile.Scale = scale);
             }
+        }
+
+        public double DisplayScale
+        {
+            get => displayScale;
+            private set => SetProperty(ref displayScale, value * 2);
         }
 
         public int X
@@ -81,8 +90,9 @@ namespace ImageChecker.ViewModels
             get => x;
             set
             {
+                int displayValue = (int)(value / 0.5);
+                SetProperty(ref x, displayValue);
                 imageContainers?.ForEach(ic => ic.CurrentFile.X = value);
-                SetProperty(ref x, value);
             }
         }
 
@@ -91,8 +101,9 @@ namespace ImageChecker.ViewModels
             get => y;
             set
             {
+                int displayValue = (int)(value / 0.5);
+                SetProperty(ref y, displayValue);
                 imageContainers?.ForEach(ic => ic.CurrentFile.Y = value);
-                SetProperty(ref y, value);
             }
         }
 
@@ -112,7 +123,16 @@ namespace ImageChecker.ViewModels
                 string imageD = ImageContainerD.GetCurrentFileName();
 
                 var baseText = Properties.Settings.Default.ImageTagReplaceBaseText;
-                baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
+                baseText =
+                    baseText
+                        .Replace("$a", imageA)
+                        .Replace("$b", imageB)
+                        .Replace("$c", imageC)
+                        .Replace("$d", imageD)
+                        .Replace("$scale", DisplayScale.ToString(CultureInfo.InvariantCulture))
+                        .Replace("$x", X.ToString())
+                        .Replace("$y", Y.ToString());
+
                 SaveHistory(baseText, true);
             }));
         }
