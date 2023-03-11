@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using ImageChecker.Models;
@@ -122,7 +123,16 @@ namespace ImageChecker.ViewModels
                 string imageD = ImageContainerD.GetCurrentFileName();
 
                 var baseText = Properties.Settings.Default.ImageTagReplaceBaseText;
-                baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
+                baseText =
+                    baseText
+                        .Replace("$a", imageA)
+                        .Replace("$b", imageB)
+                        .Replace("$c", imageC)
+                        .Replace("$d", imageD)
+                        .Replace("$scale", DisplayScale.ToString(CultureInfo.InvariantCulture))
+                        .Replace("$x", X.ToString())
+                        .Replace("$y", Y.ToString());
+
                 SaveHistory(baseText, true);
             }));
         }

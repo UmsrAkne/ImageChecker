@@ -9,7 +9,7 @@ namespace ImageChecker.ViewModels
     public class SettingPageViewModel : BindableBase, IDialogAware
     {
         public const string DefaultImageTagBaseText =
-            "<image a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" scale=\"1.0\" x=\"0\" y=\"0\" rotation=\"0\" target=\"main\" />";
+            "<image a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" scale=\"$scale\" x=\"$x\" y=\"$y\" rotation=\"0\" target=\"main\" />";
 
         public const string DefaultDrawTagBaseText =
             "<draw a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" depth=\"0.1\" target=\"main\" />";
