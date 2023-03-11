@@ -17,7 +17,7 @@ namespace ImageChecker.ViewModels
         private readonly IDialogService dialogService;
 
         private string currentDirectoryPath;
-        private double scale = 0.34;
+        private double scale = 0.5;
         private int x;
         private int y;
         private string statusBarText;
