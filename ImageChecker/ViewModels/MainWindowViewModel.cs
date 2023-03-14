@@ -75,7 +75,13 @@ namespace ImageChecker.ViewModels
             {
                 SetProperty(ref scale, value);
                 DisplayScale = value;
-                imageContainers?.ForEach(ic => ic.CurrentFile.Scale = scale);
+                imageContainers?.ForEach(ic =>
+                {
+                    if (ic.CurrentFile != null)
+                    {
+                        ic.CurrentFile.Scale = scale;
+                    }
+                });
             }
         }
 
@@ -92,7 +98,13 @@ namespace ImageChecker.ViewModels
             {
                 int displayValue = (int)(value / 0.5);
                 SetProperty(ref x, displayValue);
-                imageContainers?.ForEach(ic => ic.CurrentFile.X = value);
+                imageContainers?.ForEach(ic =>
+                {
+                    if (ic.CurrentFile != null)
+                    {
+                        ic.CurrentFile.X = value;
+                    }
+                });
             }
         }
 
@@ -103,7 +115,13 @@ namespace ImageChecker.ViewModels
             {
                 int displayValue = (int)(value / 0.5);
                 SetProperty(ref y, displayValue);
-                imageContainers?.ForEach(ic => ic.CurrentFile.Y = value);
+                imageContainers?.ForEach(ic =>
+                {
+                    if (ic.CurrentFile != null)
+                    {
+                        ic.CurrentFile.Y = value;
+                    }
+                });
             }
         }
 
