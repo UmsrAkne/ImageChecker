@@ -308,12 +308,12 @@
                 <DockPanel Margin="0,5">
 
                     <TextBlock Text="X = " />
-                    <TextBlock Text="{Binding X}" />
+                    <TextBlock Text="{Binding DisplayX}" />
 
                     <Slider
                         IsSnapToTickEnabled="true"
-                        Maximum="1000"
-                        Minimum="-1000"
+                        Maximum="2000"
+                        Minimum="-2000"
                         TickFrequency="10"
                         Value="{Binding X}" />
 
@@ -322,12 +322,12 @@
                 <DockPanel>
 
                     <TextBlock Text="Y = " />
-                    <TextBlock Text="{Binding Y}" />
+                    <TextBlock Text="{Binding DisplayY}" />
 
                     <Slider
                         IsSnapToTickEnabled="true"
-                        Maximum="1000"
-                        Minimum="-1000"
+                        Maximum="2000"
+                        Minimum="-2000"
                         TickFrequency="10"
                         Value="{Binding Y}" />
 
