@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using ImageChecker.Models;
@@ -96,8 +97,7 @@ namespace ImageChecker.ViewModels
             get => x;
             set
             {
-                int displayValue = (int)(value / 0.5);
-                SetProperty(ref x, displayValue);
+                SetProperty(ref x, value);
                 imageContainers?.ForEach(ic =>
                 {
                     if (ic.CurrentFile != null)
@@ -105,6 +105,25 @@ namespace ImageChecker.ViewModels
                         ic.CurrentFile.X = value;
                     }
                 });
+
+                RaisePropertyChanged(nameof(DisplayX));
+            }
+        }
+
+        public int DisplayX
+        {
+            get
+            {
+                var pos = 0;
+                var currentImage = imageContainers.FirstOrDefault(ic => ic.CurrentFile != null);
+                if (currentImage != null)
+                {
+                    var image = currentImage.CurrentFile;
+                    pos = (int)((image.Width * scale) - imageViewWidth) / 2 * -1;
+                    pos -= image.X;
+                }
+
+                return pos * 2;
             }
         }
 
@@ -113,8 +132,7 @@ namespace ImageChecker.ViewModels
             get => y;
             set
             {
-                int displayValue = (int)(value / 0.5);
-                SetProperty(ref y, displayValue);
+                SetProperty(ref y, value);
                 imageContainers?.ForEach(ic =>
                 {
                     if (ic.CurrentFile != null)
@@ -122,6 +140,25 @@ namespace ImageChecker.ViewModels
                         ic.CurrentFile.Y = value;
                     }
                 });
+
+                RaisePropertyChanged(nameof(DisplayY));
+            }
+        }
+
+        public int DisplayY
+        {
+            get
+            {
+                var pos = 0;
+                var currentImage = imageContainers.FirstOrDefault(ic => ic.CurrentFile != null);
+                if (currentImage != null)
+                {
+                    var image = currentImage.CurrentFile;
+                    pos = (int)((image.Height * scale) - imageViewHeight) / 2 * -1;
+                    pos -= image.Y;
+                }
+
+                return pos * 2;
             }
         }
 
