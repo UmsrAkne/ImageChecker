@@ -1,4 +1,5 @@
 using System;
+using ImageChecker.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -16,11 +17,22 @@ namespace ImageChecker.ViewModels
 
         private string imageTagBaseText;
         private string drawTagBaseText;
+        private ScalingCenter scalingCenter;
 
         public SettingPageViewModel()
         {
-             ImageTagBaseText = Properties.Settings.Default.ImageTagReplaceBaseText;
-             DrawTagBaseText = Properties.Settings.Default.DrawTagReplaceBaseText;
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.ScalingCenter))
+            {
+                scalingCenter = ScalingCenter.Center;
+            }
+            else
+            {
+                scalingCenter =
+                    (ScalingCenter)Enum.Parse(typeof(ScalingCenter), Properties.Settings.Default.ScalingCenter, true);
+            }
+
+            ImageTagBaseText = Properties.Settings.Default.ImageTagReplaceBaseText;
+            DrawTagBaseText = Properties.Settings.Default.DrawTagReplaceBaseText;
         }
 
         public event Action<IDialogResult> RequestClose;
@@ -41,6 +53,11 @@ namespace ImageChecker.ViewModels
             DrawTagBaseText = DefaultDrawTagBaseText;
         });
 
+        public DelegateCommand<object> SetScalingCenterCommand => new DelegateCommand<object>(param =>
+        {
+            scalingCenter = (ScalingCenter)param;
+        });
+
         public DelegateCommand ExitCommand => new DelegateCommand(() =>
         {
             RequestClose?.Invoke(default);
@@ -52,6 +69,7 @@ namespace ImageChecker.ViewModels
         {
             Properties.Settings.Default.ImageTagReplaceBaseText = ImageTagBaseText;
             Properties.Settings.Default.DrawTagReplaceBaseText = DrawTagBaseText;
+            Properties.Settings.Default.ScalingCenter = scalingCenter.ToString();
             Properties.Settings.Default.Save();
         }
 
