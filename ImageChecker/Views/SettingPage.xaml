@@ -72,7 +72,8 @@
                         Margin="8,0"
                         VerticalAlignment="Center"
                         Command="{Binding SetScalingCenterCommand}"
-                        GroupName="RadioButtonGroup">
+                        GroupName="RadioButtonGroup"
+                        IsChecked="{Binding ScalingCenterIsCenter}">
                         <RadioButton.CommandParameter>
                             <models:ScalingCenter>Center</models:ScalingCenter>
                         </RadioButton.CommandParameter>
@@ -85,7 +86,8 @@
                         Margin="8,0"
                         VerticalAlignment="Center"
                         Command="{Binding SetScalingCenterCommand}"
-                        GroupName="RadioButtonGroup">
+                        GroupName="RadioButtonGroup"
+                        IsChecked="{Binding ScalingCenterIsTopLeft}">
                         <RadioButton.CommandParameter>
                             <models:ScalingCenter>TopLeft</models:ScalingCenter>
                         </RadioButton.CommandParameter>

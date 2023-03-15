@@ -18,6 +18,8 @@ namespace ImageChecker.ViewModels
         private string imageTagBaseText;
         private string drawTagBaseText;
         private ScalingCenter scalingCenter;
+        private bool scalingCenterIsCenter;
+        private bool scalingCenterIsTopLeft;
 
         public SettingPageViewModel()
         {
@@ -31,6 +33,16 @@ namespace ImageChecker.ViewModels
                     (ScalingCenter)Enum.Parse(typeof(ScalingCenter), Properties.Settings.Default.ScalingCenter, true);
             }
 
+            if (scalingCenter == ScalingCenter.Center)
+            {
+                ScalingCenterIsCenter = true;
+            }
+
+            if (scalingCenter == ScalingCenter.TopLeft)
+            {
+                ScalingCenterIsTopLeft = true;
+            }
+
             ImageTagBaseText = Properties.Settings.Default.ImageTagReplaceBaseText;
             DrawTagBaseText = Properties.Settings.Default.DrawTagReplaceBaseText;
         }
@@ -42,6 +54,10 @@ namespace ImageChecker.ViewModels
         public string ImageTagBaseText { get => imageTagBaseText; set => SetProperty(ref imageTagBaseText, value); }
 
         public string DrawTagBaseText { get => drawTagBaseText; set => SetProperty(ref drawTagBaseText, value); }
+
+        public bool ScalingCenterIsCenter { get => scalingCenterIsCenter; set => SetProperty(ref scalingCenterIsCenter, value); }
+
+        public bool ScalingCenterIsTopLeft { get => scalingCenterIsTopLeft; set => SetProperty(ref scalingCenterIsTopLeft, value); }
 
         public DelegateCommand ResetImageTagBaseTextCommand => new DelegateCommand(() =>
         {
