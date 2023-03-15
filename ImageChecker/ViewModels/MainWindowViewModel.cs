@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -116,13 +117,22 @@ namespace ImageChecker.ViewModels
             {
                 var pos = 0;
                 var currentImage = imageContainers.FirstOrDefault(ic => ic.CurrentFile != null);
-                if (currentImage != null)
+                if (currentImage == null)
                 {
-                    var image = currentImage.CurrentFile;
-                    pos = (int)((image.Width * scale) - imageViewWidth) / 2 * -1;
-                    pos -= image.X;
+                    return 0;
                 }
 
+                var scalingCenter =
+                    (ScalingCenter)Enum.Parse(typeof(ScalingCenter), Properties.Settings.Default.ScalingCenter, true);
+
+                if (scalingCenter == ScalingCenter.TopLeft)
+                {
+                    return currentImage.CurrentFile.X * 2;
+                }
+
+                var image = currentImage.CurrentFile;
+                pos = (int)((image.Width * scale) - imageViewWidth) / 2 * -1;
+                pos -= image.X;
                 return pos * 2;
             }
         }
@@ -151,12 +161,23 @@ namespace ImageChecker.ViewModels
             {
                 var pos = 0;
                 var currentImage = imageContainers.FirstOrDefault(ic => ic.CurrentFile != null);
-                if (currentImage != null)
+
+                if (currentImage == null)
                 {
-                    var image = currentImage.CurrentFile;
-                    pos = (int)((image.Height * scale) - imageViewHeight) / 2 * -1;
-                    pos -= image.Y;
+                    return 0;
                 }
+
+                var scalingCenter =
+                    (ScalingCenter)Enum.Parse(typeof(ScalingCenter), Properties.Settings.Default.ScalingCenter, true);
+
+                if (scalingCenter == ScalingCenter.TopLeft)
+                {
+                    return currentImage.CurrentFile.Y * 2;
+                }
+
+                var image = currentImage.CurrentFile;
+                pos = (int)((image.Height * scale) - imageViewHeight) / 2 * -1;
+                pos -= image.Y;
 
                 return pos * 2;
             }

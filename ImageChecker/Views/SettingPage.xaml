@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:ImageChecker.Models"
     xmlns:viewModels="clr-namespace:ImageChecker.ViewModels"
     Title="SettingPage"
     Width="600"
@@ -56,6 +57,43 @@
                 Margin="5,0"
                 AcceptsTab="True"
                 Text="{Binding DrawTagBaseText}" />
+
+            <Border
+                Height="1"
+                Margin="5,15"
+                Background="Black" />
+
+            <StackPanel Margin="5,0">
+                <TextBlock Foreground="WhiteSmoke" Text="拡大時の中心点" />
+
+                <StackPanel Margin="15,5" Orientation="Horizontal">
+                    <TextBlock Foreground="WhiteSmoke" Text="Center" />
+                    <RadioButton
+                        Margin="8,0"
+                        VerticalAlignment="Center"
+                        Command="{Binding SetScalingCenterCommand}"
+                        GroupName="RadioButtonGroup"
+                        IsChecked="{Binding ScalingCenterIsCenter}">
+                        <RadioButton.CommandParameter>
+                            <models:ScalingCenter>Center</models:ScalingCenter>
+                        </RadioButton.CommandParameter>
+                    </RadioButton>
+
+                    <Border Width="0" Margin="10,0" />
+
+                    <TextBlock Foreground="WhiteSmoke" Text="TopLeft" />
+                    <RadioButton
+                        Margin="8,0"
+                        VerticalAlignment="Center"
+                        Command="{Binding SetScalingCenterCommand}"
+                        GroupName="RadioButtonGroup"
+                        IsChecked="{Binding ScalingCenterIsTopLeft}">
+                        <RadioButton.CommandParameter>
+                            <models:ScalingCenter>TopLeft</models:ScalingCenter>
+                        </RadioButton.CommandParameter>
+                    </RadioButton>
+                </StackPanel>
+            </StackPanel>
 
         </StackPanel>
 
