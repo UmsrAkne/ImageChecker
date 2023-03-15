@@ -14,7 +14,7 @@
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowDrop="True"
-    Background="#404040"
+    Background="{StaticResource BgDarkColorBrush}"
     mc:Ignorable="d">
 
     <i:Interaction.Behaviors>
