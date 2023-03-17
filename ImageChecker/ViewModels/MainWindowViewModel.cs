@@ -115,7 +115,6 @@ namespace ImageChecker.ViewModels
         {
             get
             {
-                var pos = 0;
                 var currentImage = imageContainers.FirstOrDefault(ic => ic.CurrentFile != null);
                 if (currentImage == null)
                 {
@@ -131,7 +130,7 @@ namespace ImageChecker.ViewModels
                 }
 
                 var image = currentImage.CurrentFile;
-                pos = (int)((image.Width * scale) - imageViewWidth) / 2 * -1;
+                var pos = (int)((image.Width * scale) - imageViewWidth) / 2 * -1;
                 pos -= image.X;
                 return pos * 2;
             }
@@ -159,7 +158,6 @@ namespace ImageChecker.ViewModels
         {
             get
             {
-                var pos = 0;
                 var currentImage = imageContainers.FirstOrDefault(ic => ic.CurrentFile != null);
 
                 if (currentImage == null)
@@ -176,7 +174,7 @@ namespace ImageChecker.ViewModels
                 }
 
                 var image = currentImage.CurrentFile;
-                pos = (int)((image.Height * scale) - imageViewHeight) / 2 * -1;
+                var pos = (int)((image.Height * scale) - imageViewHeight) / 2 * -1;
                 pos -= image.Y;
 
                 return pos * 2;

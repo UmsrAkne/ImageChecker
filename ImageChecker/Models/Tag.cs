@@ -1,5 +1,3 @@
-using System;
-
 namespace ImageChecker.Models
 {
     public class Tag
