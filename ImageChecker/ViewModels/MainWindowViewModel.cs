@@ -84,6 +84,9 @@ namespace ImageChecker.ViewModels
                         ic.CurrentFile.Scale = scale;
                     }
                 });
+
+                RaisePropertyChanged(nameof(DisplayX));
+                RaisePropertyChanged(nameof(DisplayY));
             }
         }
 
