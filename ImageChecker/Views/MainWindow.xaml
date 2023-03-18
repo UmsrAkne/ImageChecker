@@ -338,7 +338,7 @@
             <ListBox
                 x:Name="HistoryListBox"
                 Grid.Row="3"
-                HorizontalContentAlignment="Left"
+                HorizontalContentAlignment="Stretch"
                 ItemsSource="{Binding ClipboardHistories}">
 
                 <ListBox.InputBindings>
@@ -357,7 +357,9 @@
                                     <i:InvokeCommandAction Command="{Binding DataContext.SetImagesCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                            <TextBlock Foreground="WhiteSmoke" Text="{Binding CopiedText}" />
+                            <Border BorderBrush="White" BorderThickness="0,0,0,1">
+                                <TextBlock Foreground="WhiteSmoke" Text="{Binding CopiedText}" />
+                            </Border>
                         </ContentControl>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
