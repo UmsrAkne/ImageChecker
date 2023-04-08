@@ -207,8 +207,8 @@ namespace ImageChecker.ViewModels
                         .Replace("$c", imageC)
                         .Replace("$d", imageD)
                         .Replace("$scale", DisplayScale.ToString(CultureInfo.InvariantCulture))
-                        .Replace("$x", X.ToString())
-                        .Replace("$y", Y.ToString());
+                        .Replace("$x", DisplayX.ToString())
+                        .Replace("$y", DisplayY.ToString());
 
                 SaveHistory(baseText, true);
             }));
