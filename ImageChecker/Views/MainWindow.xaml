@@ -52,6 +52,39 @@
             Command="{Binding FocusToListBoxCommand}"
             CommandParameter="{Binding ElementName=ImageListBoxD}" />
 
+        <KeyBinding
+            Key="X"
+            Command="{Binding MoveImageLeftCommand}"
+            CommandParameter="x" />
+
+        <KeyBinding
+            Key="X"
+            Command="{Binding MoveImageRightCommand}"
+            CommandParameter="x"
+            Modifiers="Shift" />
+
+        <KeyBinding
+            Key="Y"
+            Command="{Binding MoveImageLeftCommand}"
+            CommandParameter="Y" />
+
+        <KeyBinding
+            Key="Y"
+            Command="{Binding MoveImageRightCommand}"
+            CommandParameter="y"
+            Modifiers="Shift" />
+
+        <KeyBinding
+            Key="S"
+            Command="{Binding ChangeScaleCommand}"
+            CommandParameter="-0.05"
+            Modifiers="Shift" />
+
+        <KeyBinding
+            Key="S"
+            Command="{Binding ChangeScaleCommand}"
+            CommandParameter="0.05" />
+
     </Window.InputBindings>
 
     <Window.Resources>

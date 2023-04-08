@@ -303,6 +303,37 @@ namespace ImageChecker.ViewModels
             ImageViewHeight = 480;
         });
 
+        public DelegateCommand<string> MoveImageLeftCommand => new DelegateCommand<string>(target =>
+        {
+            const int moveFrequency = 10;
+            if (target == "x")
+            {
+                X += moveFrequency;
+            }
+            else
+            {
+                Y += moveFrequency;
+            }
+        });
+
+        public DelegateCommand<string> MoveImageRightCommand => new DelegateCommand<string>(target =>
+        {
+            const int moveFrequency = 10;
+            if (target == "x")
+            {
+                X -= moveFrequency;
+            }
+            else
+            {
+                Y -= moveFrequency;
+            }
+        });
+
+        public DelegateCommand<object> ChangeScaleCommand => new DelegateCommand<object>(amount =>
+        {
+            Scale += double.Parse((string)amount);
+        });
+
         public void LoadImages(string directoryPath)
         {
             CurrentDirectoryPath = directoryPath;
