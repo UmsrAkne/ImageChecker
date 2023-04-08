@@ -23,7 +23,21 @@ namespace ImageChecker.Models
             get => filteredFiles; private set => SetProperty(ref filteredFiles, value);
         }
 
-        public ImageFile CurrentFile { get => currentFile; set => SetProperty(ref currentFile, value); }
+        public ImageFile CurrentFile
+        {
+            get => currentFile;
+            set
+            {
+                if (currentFile != null && value != null)
+                {
+                    value.Scale = currentFile.Scale;
+                    value.X = currentFile.X;
+                    value.Y = currentFile.Y;
+                }
+
+                SetProperty(ref currentFile, value);
+            }
+        }
 
         public bool Drawing { get => drawing; set => SetProperty(ref drawing, value); }
 
