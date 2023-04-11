@@ -75,7 +75,6 @@
     <Compile Include="Models\DragAndDropBehavior.cs" />
     <Compile Include="Models\ImageContainer.cs" />
     <Compile Include="Models\ImageFile.cs" />
-    <Compile Include="Models\ImageLoader.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
