@@ -205,8 +205,8 @@
                 </Canvas.Resources>
 
                 <Image
-                    Canvas.Left="{Binding ImageContainerA.CurrentFile.X}"
-                    Canvas.Top="{Binding ImageContainerA.CurrentFile.Y}"
+                    Canvas.Left="{Binding ImageContainerA.X}"
+                    Canvas.Top="{Binding ImageContainerA.Y}"
                     Width="{Binding ImageContainerA.CurrentFile.Width}"
                     Height="{Binding ImageContainerA.CurrentFile.Height}"
                     Source="{Binding ImageContainerA.CurrentFile.FileInfo.FullName}"
@@ -219,8 +219,8 @@
                 </Image>
 
                 <Image
-                    Canvas.Left="{Binding ImageContainerD.CurrentFile.X}"
-                    Canvas.Top="{Binding ImageContainerD.CurrentFile.Y}"
+                    Canvas.Left="{Binding ImageContainerD.X}"
+                    Canvas.Top="{Binding ImageContainerD.Y}"
                     Width="{Binding ImageContainerD.CurrentFile.Width}"
                     Height="{Binding ImageContainerD.CurrentFile.Height}"
                     Source="{Binding ImageContainerD.CurrentFile.FileInfo.FullName}"
@@ -233,8 +233,8 @@
                 </Image>
 
                 <Image
-                    Canvas.Left="{Binding ImageContainerB.CurrentFile.X}"
-                    Canvas.Top="{Binding ImageContainerB.CurrentFile.Y}"
+                    Canvas.Left="{Binding ImageContainerB.X}"
+                    Canvas.Top="{Binding ImageContainerB.Y}"
                     Width="{Binding ImageContainerB.CurrentFile.Width}"
                     Height="{Binding ImageContainerB.CurrentFile.Height}"
                     Source="{Binding ImageContainerB.CurrentFile.FileInfo.FullName}"
@@ -247,8 +247,8 @@
                 </Image>
 
                 <Image
-                    Canvas.Left="{Binding ImageContainerC.CurrentFile.X}"
-                    Canvas.Top="{Binding ImageContainerC.CurrentFile.Y}"
+                    Canvas.Left="{Binding ImageContainerC.X}"
+                    Canvas.Top="{Binding ImageContainerC.Y}"
                     Width="{Binding ImageContainerC.CurrentFile.Width}"
                     Height="{Binding ImageContainerC.CurrentFile.Height}"
                     Source="{Binding ImageContainerC.CurrentFile.FileInfo.FullName}"

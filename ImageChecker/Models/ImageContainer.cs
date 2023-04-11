@@ -12,6 +12,9 @@ namespace ImageChecker.Models
         private bool drawing;
         private int selectedIndex;
         private ImageFile currentFile;
+        private int x;
+        private int y;
+        private double scale;
 
         public ImageContainer(string keyChar)
         {
@@ -26,18 +29,14 @@ namespace ImageChecker.Models
         public ImageFile CurrentFile
         {
             get => currentFile;
-            set
-            {
-                if (currentFile != null && value != null)
-                {
-                    value.Scale = currentFile.Scale;
-                    value.X = currentFile.X;
-                    value.Y = currentFile.Y;
-                }
-
-                SetProperty(ref currentFile, value);
-            }
+            set => SetProperty(ref currentFile, value);
         }
+
+        public int X { get => x; set => SetProperty(ref x, value); }
+
+        public int Y { get => y; set => SetProperty(ref y, value); }
+
+        public double Scale { get => scale; set => SetProperty(ref scale, value); }
 
         public bool Drawing { get => drawing; set => SetProperty(ref drawing, value); }
 
