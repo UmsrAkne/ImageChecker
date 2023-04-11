@@ -7,11 +7,6 @@
 
     public class ImageFile : BindableBase
     {
-        private int x;
-        private int y;
-        private int defaultX;
-        private int defaultY;
-        private double scale;
         private int width;
         private int height;
 
@@ -31,49 +26,6 @@
                 MatchCollection matches = Regex.Matches(FileInfo.Name, @"[ABCD](\d\d)(\d\d)");
                 Index = int.Parse(matches[0].Groups[1].Value);
                 SubIndex = int.Parse(matches[0].Groups[2].Value);
-            }
-        }
-
-        public int X
-        {
-            get => (int)(x + (scale * defaultX));
-            set => SetProperty(ref x, value);
-        }
-
-        public int Y
-        {
-            get => (int)(y + (scale * defaultY));
-            set => SetProperty(ref y, value);
-        }
-
-        public int DefaultX
-        {
-            get => defaultX;
-            set
-            {
-                SetProperty(ref defaultX, value);
-                RaisePropertyChanged(nameof(X));
-            }
-        }
-
-        public int DefaultY
-        {
-            get => defaultY;
-            set
-            {
-                SetProperty(ref defaultY, value);
-                RaisePropertyChanged(nameof(Y));
-            }
-        }
-
-        public double Scale
-        {
-            get => scale;
-            set
-            {
-                SetProperty(ref scale, value);
-                RaisePropertyChanged(nameof(X));
-                RaisePropertyChanged(nameof(Y));
             }
         }
 

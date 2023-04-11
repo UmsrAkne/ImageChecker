@@ -79,10 +79,7 @@ namespace ImageChecker.ViewModels
                 DisplayScale = value;
                 imageContainers?.ForEach(ic =>
                 {
-                    if (ic.CurrentFile != null)
-                    {
-                        ic.CurrentFile.Scale = scale;
-                    }
+                    ic.Scale = scale;
                 });
 
                 RaisePropertyChanged(nameof(DisplayX));
@@ -102,13 +99,7 @@ namespace ImageChecker.ViewModels
             set
             {
                 SetProperty(ref x, value);
-                imageContainers?.ForEach(ic =>
-                {
-                    if (ic.CurrentFile != null)
-                    {
-                        ic.CurrentFile.X = value;
-                    }
-                });
+                imageContainers?.ForEach(ic => ic.X = value);
 
                 RaisePropertyChanged(nameof(DisplayX));
             }
@@ -118,8 +109,8 @@ namespace ImageChecker.ViewModels
         {
             get
             {
-                var currentImage = imageContainers.FirstOrDefault(ic => ic.CurrentFile != null);
-                if (currentImage == null)
+                var fistContainer = imageContainers.FirstOrDefault();
+                if (fistContainer?.CurrentFile == null)
                 {
                     return 0;
                 }
@@ -129,12 +120,11 @@ namespace ImageChecker.ViewModels
 
                 if (scalingCenter == ScalingCenter.TopLeft)
                 {
-                    return currentImage.CurrentFile.X * 2;
+                    return fistContainer.X * 2;
                 }
 
-                var image = currentImage.CurrentFile;
-                var pos = (int)((image.Width * scale) - imageViewWidth) / 2 * -1;
-                pos -= image.X;
+                var pos = (int)((fistContainer.CurrentFile.Width * scale) - imageViewWidth) / 2 * -1;
+                pos -= fistContainer.X;
                 return pos * 2;
             }
         }
@@ -145,13 +135,7 @@ namespace ImageChecker.ViewModels
             set
             {
                 SetProperty(ref y, value);
-                imageContainers?.ForEach(ic =>
-                {
-                    if (ic.CurrentFile != null)
-                    {
-                        ic.CurrentFile.Y = value;
-                    }
-                });
+                imageContainers?.ForEach(ic => ic.Y = value);
 
                 RaisePropertyChanged(nameof(DisplayY));
             }
@@ -161,9 +145,8 @@ namespace ImageChecker.ViewModels
         {
             get
             {
-                var currentImage = imageContainers.FirstOrDefault(ic => ic.CurrentFile != null);
-
-                if (currentImage == null)
+                var firstContainer = imageContainers.FirstOrDefault();
+                if (firstContainer?.CurrentFile == null)
                 {
                     return 0;
                 }
@@ -173,12 +156,11 @@ namespace ImageChecker.ViewModels
 
                 if (scalingCenter == ScalingCenter.TopLeft)
                 {
-                    return currentImage.CurrentFile.Y * 2;
+                    return firstContainer.Y * 2;
                 }
 
-                var image = currentImage.CurrentFile;
-                var pos = (int)((image.Height * scale) - imageViewHeight) / 2 * -1;
-                pos -= image.Y;
+                var pos = (int)((firstContainer.CurrentFile.Height * scale) - imageViewHeight) / 2 * -1;
+                pos -= firstContainer.Y;
 
                 return pos * 2;
             }
