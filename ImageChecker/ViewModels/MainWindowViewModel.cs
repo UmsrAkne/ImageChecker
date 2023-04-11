@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using ImageChecker.Models;
@@ -181,6 +183,21 @@ namespace ImageChecker.ViewModels
                 string imageC = ImageContainerC.GetCurrentFileName();
                 string imageD = ImageContainerD.GetCurrentFileName();
 
+                string dx = 0.ToString();
+                string dy = 0.ToString();
+                try
+                {
+                    dx = DisplayX.ToString();
+                    dy = DisplayY.ToString();
+                }
+                catch (Exception e)
+                {
+                    using (StreamWriter sw = new StreamWriter(@"stackTrace.txt", false, Encoding.UTF8))
+                    {
+                        sw.Write(e);
+                    }
+                }
+
                 var baseText = Properties.Settings.Default.ImageTagReplaceBaseText;
                 baseText =
                     baseText
@@ -189,8 +206,8 @@ namespace ImageChecker.ViewModels
                         .Replace("$c", imageC)
                         .Replace("$d", imageD)
                         .Replace("$scale", DisplayScale.ToString(CultureInfo.InvariantCulture))
-                        .Replace("$x", DisplayX.ToString())
-                        .Replace("$y", DisplayY.ToString());
+                        .Replace("$x", dx)
+                        .Replace("$y", dy);
 
                 SaveHistory(baseText, true);
             }));
