@@ -85,6 +85,11 @@
             Command="{Binding ChangeScaleCommand}"
             CommandParameter="0.05" />
 
+        <KeyBinding
+            Key="D1"
+            Command="{Binding ChangeToOriginalSizeCommand}"
+            Modifiers="Control" />
+
     </Window.InputBindings>
 
     <Window.Resources>
