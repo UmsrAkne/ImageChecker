@@ -56,6 +56,11 @@ namespace ImageChecker.ViewModels
                 Properties.Settings.Default.DrawTagReplaceBaseText = SettingPageViewModel.DefaultDrawTagBaseText;
             }
 
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.ScalingCenter))
+            {
+                Properties.Settings.Default.ScalingCenter = ScalingCenter.Center.ToString();
+            }
+
             this.dialogService = dialogService;
             ImageViewHeight = imageViewHeight;
         }
