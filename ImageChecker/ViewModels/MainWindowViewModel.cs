@@ -338,6 +338,17 @@ namespace ImageChecker.ViewModels
             Scale += double.Parse((string)amount);
         });
 
+        public DelegateCommand ChangeToOriginalSizeCommand => new DelegateCommand(() =>
+        {
+            foreach (var imageContainer in imageContainers)
+            {
+                imageContainer.X = 0;
+                imageContainer.Y = 0;
+            }
+
+            Scale = 0.5;
+        });
+
         public void LoadImages(string directoryPath)
         {
             CurrentDirectoryPath = directoryPath;
