@@ -337,7 +337,7 @@
                     <Slider
                         IsSnapToTickEnabled="true"
                         Maximum="4"
-                        Minimum="0.1"
+                        Minimum="0.5"
                         TickFrequency="0.05"
                         Value="{Binding Scale}" />
 
