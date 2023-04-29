@@ -132,7 +132,7 @@ namespace ImageChecker.ViewModels
 
                 var pos = (int)((fistContainer.CurrentFile.Width * scale) - imageViewWidth) / 2 * -1;
                 pos -= fistContainer.X;
-                return pos * 2;
+                return pos * 2 * -1;
             }
         }
 
