@@ -63,6 +63,28 @@
                 Margin="5,15"
                 Background="Black" />
 
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Foreground="WhiteSmoke"
+                    Text="Animation Draw タグの生成用" />
+                <Button
+                    Margin="10,0"
+                    Padding="10,2"
+                    Command="{Binding ResetAnimeDrawTagBaseTextCommand}"
+                    Content="デフォルトに戻す" />
+            </StackPanel>
+
+            <TextBox
+                Margin="5,0"
+                AcceptsTab="True"
+                Text="{Binding AnimeDrawTagBaseText}" />
+
+            <Border
+                Height="1"
+                Margin="5,15"
+                Background="Black" />
+
             <StackPanel Margin="5,0">
                 <TextBlock Foreground="WhiteSmoke" Text="拡大時の中心点" />
 

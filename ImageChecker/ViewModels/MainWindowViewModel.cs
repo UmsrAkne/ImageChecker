@@ -31,6 +31,7 @@ namespace ImageChecker.ViewModels
         private DelegateCommand<ListBox> cursorUpCommand;
         private DelegateCommand generateImageTagCommand;
         private DelegateCommand generateDrawTagCommand;
+        private DelegateCommand generateAnimeDraTagCommand;
         private DelegateCommand<ListBox> focusToListBoxCommand;
         private int imageViewWidth = 640;
         private int imageViewHeight = 360;
@@ -54,6 +55,12 @@ namespace ImageChecker.ViewModels
             if (string.IsNullOrWhiteSpace(Properties.Settings.Default.DrawTagReplaceBaseText))
             {
                 Properties.Settings.Default.DrawTagReplaceBaseText = SettingPageViewModel.DefaultDrawTagBaseText;
+            }
+
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.AnimeDrawTagReplaceBaseText))
+            {
+                Properties.Settings.Default.AnimeDrawTagReplaceBaseText =
+                    SettingPageViewModel.DefaultAnimeDrawTagBaseText;
             }
 
             if (string.IsNullOrWhiteSpace(Properties.Settings.Default.ScalingCenter))
@@ -232,6 +239,43 @@ namespace ImageChecker.ViewModels
                  SaveHistory(baseText, false);
             }));
         }
+
+        public DelegateCommand GenerateAnimeDraTagCommand =>
+            generateAnimeDraTagCommand ?? (generateAnimeDraTagCommand = new DelegateCommand(() =>
+            {
+                string imageA = ImageContainerA.GetCurrentFileName();
+                string imageB = ImageContainerB.GetCurrentFileName();
+                string imageC = ImageContainerC.GetCurrentFileName();
+                string imageD = ImageContainerD.GetCurrentFileName();
+
+                string dx = 0.ToString();
+                string dy = 0.ToString();
+                try
+                {
+                    dx = DisplayX.ToString();
+                    dy = DisplayY.ToString();
+                }
+                catch (Exception e)
+                {
+                    using (StreamWriter sw = new StreamWriter(@"stackTrace.txt", false, Encoding.UTF8))
+                    {
+                        sw.Write(e);
+                    }
+                }
+
+                var baseText = Properties.Settings.Default.AnimeDrawTagReplaceBaseText;
+                baseText =
+                    baseText
+                        .Replace("$a", imageA)
+                        .Replace("$b", imageB)
+                        .Replace("$c", imageC)
+                        .Replace("$d", imageD)
+                        .Replace("$scale", DisplayScale.ToString(CultureInfo.InvariantCulture))
+                        .Replace("$x", dx)
+                        .Replace("$y", dy);
+
+                SaveHistory(baseText, true);
+            }));
 
         public DelegateCommand<ListBox> FocusToListBoxCommand
         {

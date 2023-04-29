@@ -15,8 +15,12 @@ namespace ImageChecker.ViewModels
         public const string DefaultDrawTagBaseText =
             "<draw a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" depth=\"0.1\" target=\"main\" />";
 
+        public const string DefaultAnimeDrawTagBaseText =
+            "<anime name=\"draw\" a=\"$a\" b=\"$b\" c=\"$c\" d=\"$d\" scale=\"$scale\" x=\"$x\" y=\"$y\" target=\"main\" />";
+
         private string imageTagBaseText;
         private string drawTagBaseText;
+        private string animeDrawTagBaseText;
         private ScalingCenter scalingCenter;
         private bool scalingCenterIsCenter;
         private bool scalingCenterIsTopLeft;
@@ -45,6 +49,7 @@ namespace ImageChecker.ViewModels
 
             ImageTagBaseText = Properties.Settings.Default.ImageTagReplaceBaseText;
             DrawTagBaseText = Properties.Settings.Default.DrawTagReplaceBaseText;
+            animeDrawTagBaseText = Properties.Settings.Default.AnimeDrawTagReplaceBaseText;
         }
 
         public event Action<IDialogResult> RequestClose;
@@ -54,6 +59,8 @@ namespace ImageChecker.ViewModels
         public string ImageTagBaseText { get => imageTagBaseText; set => SetProperty(ref imageTagBaseText, value); }
 
         public string DrawTagBaseText { get => drawTagBaseText; set => SetProperty(ref drawTagBaseText, value); }
+
+        public string AnimeDrawTagBaseText { get => animeDrawTagBaseText; set => SetProperty(ref animeDrawTagBaseText, value); }
 
         public bool ScalingCenterIsCenter { get => scalingCenterIsCenter; set => SetProperty(ref scalingCenterIsCenter, value); }
 
@@ -67,6 +74,11 @@ namespace ImageChecker.ViewModels
         public DelegateCommand ResetDrawTagBaseTextCommand => new DelegateCommand(() =>
         {
             DrawTagBaseText = DefaultDrawTagBaseText;
+        });
+
+        public DelegateCommand ResetAnimeDrawTagBaseTextCommand => new DelegateCommand(() =>
+        {
+            AnimeDrawTagBaseText = DefaultAnimeDrawTagBaseText;
         });
 
         public DelegateCommand<object> SetScalingCenterCommand => new DelegateCommand<object>(param =>
@@ -85,6 +97,7 @@ namespace ImageChecker.ViewModels
         {
             Properties.Settings.Default.ImageTagReplaceBaseText = ImageTagBaseText;
             Properties.Settings.Default.DrawTagReplaceBaseText = DrawTagBaseText;
+            Properties.Settings.Default.DrawTagReplaceBaseText = AnimeDrawTagBaseText;
             Properties.Settings.Default.ScalingCenter = scalingCenter.ToString();
             Properties.Settings.Default.Save();
         }

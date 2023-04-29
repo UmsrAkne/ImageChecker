@@ -49,6 +49,18 @@ namespace ImageChecker.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AnimeDrawTagReplaceBaseText {
+            get {
+                return ((string)(this["AnimeDrawTagReplaceBaseText"]));
+            }
+            set {
+                this["AnimeDrawTagReplaceBaseText"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ScalingCenter {
             get {
                 return ((string)(this["ScalingCenter"]));
