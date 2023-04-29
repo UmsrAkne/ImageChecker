@@ -33,6 +33,11 @@
             Modifiers="Control" />
 
         <KeyBinding
+            Key="D"
+            Command="{Binding GenerateAnimeDraTagCommand}"
+            Modifiers="Control+Shift" />
+
+        <KeyBinding
             Key="A"
             Command="{Binding FocusToListBoxCommand}"
             CommandParameter="{Binding ElementName=ImageListBoxA}" />
@@ -175,6 +180,10 @@
                     Command="{Binding GenerateDrawTagCommand}"
                     Foreground="Black"
                     Header="Generate draw tag (Ctrl + D)" />
+                <MenuItem
+                    Command="{Binding GenerateAnimeDraTagCommand}"
+                    Foreground="Black"
+                    Header="Generate animation draw tag (Ctrl + Shift + D)" />
             </MenuItem>
 
             <MenuItem Foreground="WhiteSmoke" Header="View">
