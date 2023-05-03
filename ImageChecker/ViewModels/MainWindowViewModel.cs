@@ -336,6 +336,9 @@ namespace ImageChecker.ViewModels
                 ImageContainerB.SetImageByName(tag.ImageNameB);
                 ImageContainerC.SetImageByName(tag.ImageNameC);
                 ImageContainerD.SetImageByName(tag.ImageNameD);
+                X = tag.X;
+                Y = tag.Y;
+                Scale = tag.Scale;
             }
         });
 
