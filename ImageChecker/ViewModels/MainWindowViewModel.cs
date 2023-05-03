@@ -412,6 +412,9 @@ namespace ImageChecker.ViewModels
                 ImageNameB = ImageContainerB.GetCurrentFileName(),
                 ImageNameC = ImageContainerC.GetCurrentFileName(),
                 ImageNameD = ImageContainerD.GetCurrentFileName(),
+                X = X,
+                Y = Y,
+                Scale = Scale,
                 CopiedText = text,
             });
 
