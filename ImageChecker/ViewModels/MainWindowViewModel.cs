@@ -336,6 +336,9 @@ namespace ImageChecker.ViewModels
                 ImageContainerB.SetImageByName(tag.ImageNameB);
                 ImageContainerC.SetImageByName(tag.ImageNameC);
                 ImageContainerD.SetImageByName(tag.ImageNameD);
+                X = tag.X;
+                Y = tag.Y;
+                Scale = tag.Scale;
             }
         });
 
@@ -412,6 +415,9 @@ namespace ImageChecker.ViewModels
                 ImageNameB = ImageContainerB.GetCurrentFileName(),
                 ImageNameC = ImageContainerC.GetCurrentFileName(),
                 ImageNameD = ImageContainerD.GetCurrentFileName(),
+                X = X,
+                Y = Y,
+                Scale = Scale,
                 CopiedText = text,
             });
 

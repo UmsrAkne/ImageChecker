@@ -15,6 +15,12 @@ namespace ImageChecker.Models
 
         public string ImageNameD { get; set; } = string.Empty;
 
+        public int X { get; set; }
+
+        public int Y { get; set; }
+
+        public double Scale { get; set; }
+
         public string CopiedText { get; set; } = string.Empty;
 
         private string ElementName { get; set; }
