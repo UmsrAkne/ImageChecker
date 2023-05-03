@@ -342,6 +342,52 @@ namespace ImageChecker.ViewModels
             }
         });
 
+        public DelegateCommand<object> PositionSetCommand => new DelegateCommand<object>(point =>
+        {
+            var p = (Point)point;
+
+            var afterPos = new Point
+            {
+                X = -(int)(((ImageContainerA.CurrentFile.Width / 2.0) * DisplayScale) - ImageViewWidth),
+                Y = -(int)(((ImageContainerA.CurrentFile.Height / 2.0) * DisplayScale) - ImageViewHeight),
+            };
+
+            // 中央
+            if (p == new Point(0, 0))
+            {
+                X = (int)afterPos.X / 2;
+                Y = (int)afterPos.Y / 2;
+            }
+
+            // 左上
+            if (p == new Point(-1, 1))
+            {
+                X = 0;
+                Y = 0;
+            }
+
+            // 右上
+            if (p == new Point(1, 1))
+            {
+                X = (int)afterPos.X;
+                Y = 0;
+            }
+
+            // 右下
+            if (p == new Point(1, -1))
+            {
+                X = (int)afterPos.X;
+                Y = (int)afterPos.Y;
+            }
+
+            // 左下
+            if (p == new Point(-1, -1))
+            {
+                X = 0;
+                Y = (int)afterPos.Y;
+            }
+        });
+
         public DelegateCommand ChangeToHdRatio => new DelegateCommand(() =>
         {
             ImageViewWidth = 640;
