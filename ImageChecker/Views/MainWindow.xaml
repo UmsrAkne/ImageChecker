@@ -188,6 +188,52 @@
 
             <MenuItem Foreground="WhiteSmoke" Header="View">
                 <MenuItem
+                    Command="{Binding PositionSetCommand}"
+                    Foreground="Black"
+                    Header="Set to center">
+                    <MenuItem.CommandParameter>
+                        <Point X="0" Y="0" />
+                    </MenuItem.CommandParameter>
+                </MenuItem>
+
+                <MenuItem
+                    Command="{Binding PositionSetCommand}"
+                    Foreground="Black"
+                    Header="Set to left top">
+                    <MenuItem.CommandParameter>
+                        <Point X="-1" Y="1" />
+                    </MenuItem.CommandParameter>
+                </MenuItem>
+
+                <MenuItem
+                    Command="{Binding PositionSetCommand}"
+                    Foreground="Black"
+                    Header="Set to right top">
+                    <MenuItem.CommandParameter>
+                        <Point X="1" Y="1" />
+                    </MenuItem.CommandParameter>
+                </MenuItem>
+
+                <MenuItem
+                    Command="{Binding PositionSetCommand}"
+                    Foreground="Black"
+                    Header="Set to right bottom">
+                    <MenuItem.CommandParameter>
+                        <Point X="1" Y="-1" />
+                    </MenuItem.CommandParameter>
+                </MenuItem>
+
+                <MenuItem
+                    Command="{Binding PositionSetCommand}"
+                    Foreground="Black"
+                    Header="Set to left bottom">
+                    <MenuItem.CommandParameter>
+                        <Point X="-1" Y="-1" />
+                    </MenuItem.CommandParameter>
+                </MenuItem>
+
+
+                <MenuItem
                     Command="{Binding ChangeToVgaRatio}"
                     Foreground="Black"
                     Header="Change To 4:3" />
