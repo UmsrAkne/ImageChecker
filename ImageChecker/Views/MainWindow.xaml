@@ -257,6 +257,10 @@
                 Grid.Row="0"
                 Background="Gray"
                 ClipToBounds="True">
+                <i:Interaction.Behaviors>
+                    <model:DragBehavior />
+                </i:Interaction.Behaviors>
+
                 <Canvas.Resources>
                     <Style TargetType="Image">
                         <Setter Property="HorizontalAlignment" Value="Left" />
