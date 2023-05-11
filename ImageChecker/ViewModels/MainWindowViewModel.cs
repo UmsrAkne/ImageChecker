@@ -442,6 +442,14 @@ namespace ImageChecker.ViewModels
             Scale = 0.5;
         });
 
+        public DelegateCommand<ListBox> ChangeDisplayStatusCommand => new DelegateCommand<ListBox>(listBox =>
+        {
+            listBox.Visibility = listBox.Visibility == Visibility.Visible
+                ? Visibility.Collapsed
+                : Visibility.Visible;
+        });
+
+
         public void LoadImages(string directoryPath)
         {
             CurrentDirectoryPath = directoryPath;

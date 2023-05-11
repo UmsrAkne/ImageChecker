@@ -148,7 +148,28 @@
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition>
+                <ColumnDefinition.Style>
+                    <Style TargetType="ColumnDefinition">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Visibility, ElementName=ImageListBoxD}">
+                                <DataTrigger.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DataTrigger.Value>
+                                <Setter Property="Width" Value="Auto" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding Path=.Visibility, ElementName=ImageListBoxD}">
+                                <DataTrigger.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DataTrigger.Value>
+                                <Setter Property="Width" Value="*" />
+                            </DataTrigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </ColumnDefinition.Style>
+            </ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -242,6 +263,13 @@
                     Command="{Binding ChangeToHdRatio}"
                     Foreground="Black"
                     Header="Change To 16:9" />
+
+                <MenuItem
+                    Command="{Binding ChangeDisplayStatusCommand}"
+                    CommandParameter="{Binding ElementName=ImageListBoxD}"
+                    Foreground="Black"
+                    Header="Toggle Display D Image" />
+
             </MenuItem>
         </Menu>
 
