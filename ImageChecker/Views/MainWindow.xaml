@@ -108,7 +108,7 @@
                 <Setter.Value>
                     <DataTemplate DataType="{x:Type model:ImageFile}">
                         <Border
-                            Width="90"
+                            Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=ListBox}}"
                             MinWidth="110"
                             Padding="0,2"
                             BorderBrush="DarkGray"
