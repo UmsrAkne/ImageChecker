@@ -23,6 +23,6 @@ namespace ImageChecker.Models
 
         public string CopiedText { get; set; } = string.Empty;
 
-        private string ElementName { get; set; }
+        private string ElementName { get; }
     }
 }
