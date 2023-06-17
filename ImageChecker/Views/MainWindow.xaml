@@ -596,7 +596,8 @@
             Grid.Column="4"
             ItemsSource="{Binding ImageContainerD.FilteredFiles}"
             SelectedIndex="{Binding ImageContainerD.SelectedIndex}"
-            SelectedItem="{Binding ImageContainerD.CurrentFile}">
+            SelectedItem="{Binding ImageContainerD.CurrentFile}"
+            Visibility="Collapsed">
 
             <ListBox.InputBindings>
                 <KeyBinding
