@@ -449,7 +449,6 @@ namespace ImageChecker.ViewModels
                 : Visibility.Visible;
         });
 
-
         public void LoadImages(string directoryPath)
         {
             CurrentDirectoryPath = directoryPath;
