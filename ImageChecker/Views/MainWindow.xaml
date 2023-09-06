@@ -209,14 +209,24 @@
 
             <MenuItem Foreground="WhiteSmoke" Header="View">
                 <MenuItem
-                    Command="{Binding PositionSetCommand}"
+                    Command="{Binding ChangeToVgaRatio}"
                     Foreground="Black"
-                    Header="Set to center">
-                    <MenuItem.CommandParameter>
-                        <Point X="0" Y="0" />
-                    </MenuItem.CommandParameter>
-                </MenuItem>
+                    Header="Change To 4:3" />
 
+                <MenuItem
+                    Command="{Binding ChangeToHdRatio}"
+                    Foreground="Black"
+                    Header="Change To 16:9" />
+
+                <MenuItem
+                    Command="{Binding ChangeDisplayStatusCommand}"
+                    CommandParameter="{Binding ElementName=ImageListBoxD}"
+                    Foreground="Black"
+                    Header="Toggle Display D Image" />
+
+            </MenuItem>
+
+            <MenuItem Foreground="WhiteSmoke" Header="Set Left">
                 <MenuItem
                     Command="{Binding PositionSetCommand}"
                     Foreground="Black"
@@ -226,6 +236,29 @@
                     </MenuItem.CommandParameter>
                 </MenuItem>
 
+                <MenuItem
+                    Command="{Binding PositionSetCommand}"
+                    Foreground="Black"
+                    Header="Set to left bottom">
+                    <MenuItem.CommandParameter>
+                        <Point X="-1" Y="-1" />
+                    </MenuItem.CommandParameter>
+                </MenuItem>
+
+            </MenuItem>
+
+            <MenuItem Foreground="WhiteSmoke" Header="Set Center">
+                <MenuItem
+                    Command="{Binding PositionSetCommand}"
+                    Foreground="Black"
+                    Header="Set to center">
+                    <MenuItem.CommandParameter>
+                        <Point X="0" Y="0" />
+                    </MenuItem.CommandParameter>
+                </MenuItem>
+            </MenuItem>
+
+            <MenuItem Foreground="WhiteSmoke" Header="Set Right">
                 <MenuItem
                     Command="{Binding PositionSetCommand}"
                     Foreground="Black"
@@ -243,32 +276,6 @@
                         <Point X="1" Y="-1" />
                     </MenuItem.CommandParameter>
                 </MenuItem>
-
-                <MenuItem
-                    Command="{Binding PositionSetCommand}"
-                    Foreground="Black"
-                    Header="Set to left bottom">
-                    <MenuItem.CommandParameter>
-                        <Point X="-1" Y="-1" />
-                    </MenuItem.CommandParameter>
-                </MenuItem>
-
-
-                <MenuItem
-                    Command="{Binding ChangeToVgaRatio}"
-                    Foreground="Black"
-                    Header="Change To 4:3" />
-
-                <MenuItem
-                    Command="{Binding ChangeToHdRatio}"
-                    Foreground="Black"
-                    Header="Change To 16:9" />
-
-                <MenuItem
-                    Command="{Binding ChangeDisplayStatusCommand}"
-                    CommandParameter="{Binding ElementName=ImageListBoxD}"
-                    Foreground="Black"
-                    Header="Toggle Display D Image" />
 
             </MenuItem>
         </Menu>
