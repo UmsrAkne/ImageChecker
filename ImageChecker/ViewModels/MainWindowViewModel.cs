@@ -31,7 +31,7 @@ namespace ImageChecker.ViewModels
         private DelegateCommand<ListBox> cursorUpCommand;
         private DelegateCommand generateImageTagCommand;
         private DelegateCommand generateDrawTagCommand;
-        private DelegateCommand generateAnimeDraTagCommand;
+        private DelegateCommand generateAnimeDrawTagCommand;
         private DelegateCommand<ListBox> focusToListBoxCommand;
         private int imageViewWidth = 640;
         private int imageViewHeight = 360;
@@ -229,19 +229,19 @@ namespace ImageChecker.ViewModels
         {
             get => generateDrawTagCommand ?? (generateDrawTagCommand = new DelegateCommand(() =>
             {
-                 string imageA = ImageContainerA.GetCurrentFileName();
-                 string imageB = ImageContainerB.GetCurrentFileName();
-                 string imageC = ImageContainerC.GetCurrentFileName();
-                 string imageD = ImageContainerD.GetCurrentFileName();
+                string imageA = ImageContainerA.GetCurrentFileName();
+                string imageB = ImageContainerB.GetCurrentFileName();
+                string imageC = ImageContainerC.GetCurrentFileName();
+                string imageD = ImageContainerD.GetCurrentFileName();
 
-                 var baseText = Properties.Settings.Default.DrawTagReplaceBaseText;
-                 baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
-                 SaveHistory(baseText, false);
+                var baseText = Properties.Settings.Default.DrawTagReplaceBaseText;
+                baseText = baseText.Replace("$a", imageA).Replace("$b", imageB).Replace("$c", imageC).Replace("$d", imageD);
+                SaveHistory(baseText, false);
             }));
         }
 
-        public DelegateCommand GenerateAnimeDraTagCommand =>
-            generateAnimeDraTagCommand ?? (generateAnimeDraTagCommand = new DelegateCommand(() =>
+        public DelegateCommand GenerateAnimeDrawTagCommand =>
+            generateAnimeDrawTagCommand ?? (generateAnimeDrawTagCommand = new DelegateCommand(() =>
             {
                 string imageA = ImageContainerA.GetCurrentFileName();
                 string imageB = ImageContainerB.GetCurrentFileName();
