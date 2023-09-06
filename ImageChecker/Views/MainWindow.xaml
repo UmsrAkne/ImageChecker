@@ -34,7 +34,7 @@
 
         <KeyBinding
             Key="D"
-            Command="{Binding GenerateAnimeDraTagCommand}"
+            Command="{Binding GenerateAnimeDrawTagCommand}"
             Modifiers="Control+Shift" />
 
         <KeyBinding
@@ -202,7 +202,7 @@
                     Foreground="Black"
                     Header="Generate draw tag (Ctrl + D)" />
                 <MenuItem
-                    Command="{Binding GenerateAnimeDraTagCommand}"
+                    Command="{Binding GenerateAnimeDrawTagCommand}"
                     Foreground="Black"
                     Header="Generate animation draw tag (Ctrl + Shift + D)" />
             </MenuItem>
